@@ -6,7 +6,7 @@ function role(type){
         if(req.session.accoountType===type){
             next()
         }else{
-            return res.status(403).render("errors/403.ejs");
+            return res.status(403).render("errors/403");
         }
     }
 }

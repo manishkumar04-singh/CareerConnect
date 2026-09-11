@@ -17,3 +17,5 @@ public/uploads/resumes/
 
 # Temporary files
 *.tmp
+
+public/uploads/

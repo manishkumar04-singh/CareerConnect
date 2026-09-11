@@ -124,6 +124,20 @@
 
         <div class="page-header">
 
+            <% if(message) { %>
+            
+                <div class="popup-message" id="popupMessage">
+                    <span>
+                        <%= message %>
+                    </span>
+            
+                    <button type="button" onclick="this.parentElement.remove()">
+                        ×
+                    </button>
+                </div>
+            
+            <% } %>
+
             <div>
 
                 <h1>

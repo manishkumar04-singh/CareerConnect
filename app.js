@@ -1072,6 +1072,9 @@ app.get("/recruiter/interview/:id",Auth,role("recruiter"),checkObjectId,async (r
     const aId = new ObjectId(req.params.id);
     const rId = new ObjectId(req.session.userid);
 
+    const messagee=req.session.messageR2 || null;
+    delete req.session.messageR2;
+
     const application = await db.getdb().collection("applications").findOne({
         _id: aId,
         recruiterId: rId
@@ -1103,7 +1106,7 @@ app.get("/recruiter/interview/:id",Auth,role("recruiter"),checkObjectId,async (r
         _id: aId,
         jobId: jobId,
         data: data,
-        fillupData:data
+        fillupData:data,message:messagee
     });
 })
 app.post("/recruiter/interview/:id",Auth,role("recruiter"),checkObjectId,async (req,res)=>{
@@ -1111,6 +1114,8 @@ app.post("/recruiter/interview/:id",Auth,role("recruiter"),checkObjectId,async (
     const aId=new ObjectId(req.params.id);
     const rId=new ObjectId(req.session.userid);
     const application =await db.getdb().collection("applications").findOne({$and:[{_id:aId},{recruiterId:rId}]});
+
+    
 
     if(!application){
         return res.status(403).render("errors/403");
