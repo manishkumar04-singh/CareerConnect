@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Profile | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/edit-student-profile.css">
+</head>
+
+<body>
+
+    <div class="page">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">C</div>
+                <span>CareerConnect</span>
+            </div>
+
+            <p class="menu-title">MAIN MENU</p>
+
+            <a href="/student/dashboard" class="menu-item">
+                <span>⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>⌕</span>
+                <span>Find Jobs</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>▣</span>
+                <span>My Applications</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>☆</span>
+                <span>Saved Jobs</span>
+            </a>
+
+            <p class="menu-title account-title">ACCOUNT</p>
+
+            <a href="/student/profile" class="menu-item active">
+                <span>◯</span>
+                <span>My Profile</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>⚙</span>
+                <span>Settings</span>
+            </a>
+
+            <div class="sidebar-bottom">
+
+                <a href="/logout" class="menu-item">
+                    <span>↪</span>
+                    <span>Logout</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="search-box">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="text"
+                        placeholder="Search jobs, companies..."
+                    >
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <button class="notification">
+                        🔔
+                    </button>
+
+                    <div class="profile-mini">
+
+                        <div class="profile-image">
+                            M
+                        </div>
+
+                        <div>
+                            <strong>Student</strong>
+                            <small>Student Account</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTENT -->
+
+            <section class="content">
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <p class="heading-label">
+                            PROFILE SETTINGS
+                        </p>
+
+                        <h1>
+                            Edit Profile
+                        </h1>
+
+                        <p>
+                            Update your personal and career information.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="/student/profile"
+                        class="back-button"
+                    >
+                        ← Back to Profile
+                    </a>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form
+                    class="profile-form"
+                    action="/student/profile/edit"
+                    method="POST"
+                >
+
+                    <!-- PERSONAL INFORMATION -->
+
+                    <section class="form-card">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <h2>
+                                    Personal Information
+                                </h2>
+
+                                <p>
+                                    Update your basic information
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="name">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Enter your full name"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    Email Address
+                                </label>
+
+                                <input type="emial" id="email"  value="<%= email %>" readonly>
+                                <small class="email-note">
+                                    To change your email, use
+                                    <a href="/student/setting">Account Settings</a>.
+                                </small>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="phone">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="Enter your phone number"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="location">
+                                    Location
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="location"
+                                    name="location"
+                                    placeholder="e.g. Kolkata, India"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- EDUCATION -->
+
+                    <section class="form-card">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <h2>
+                                    Education
+                                </h2>
+
+                                <p>
+                                    Tell recruiters about your education
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="college">
+                                    College / University
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="college"
+                                    name="college"
+                                    placeholder="Enter your college"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="degree">
+                                    Degree
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="degree"
+                                    name="degree"
+                                    placeholder="e.g. B.Tech Information Technology"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="graduationYear">
+                                    Graduation Year
+                                </label>
+
+                                <select
+                                    id="graduationYear"
+                                    name="graduationYear"
+                                >
+
+                                    <option value="">
+                                        Select year
+                                    </option>
+
+                                    <option value="2026">
+                                        2026
+                                    </option>
+
+                                    <option value="2027">
+                                        2027
+                                    </option>
+
+                                    <option value="2028">
+                                        2028
+                                    </option>
+
+                                    <option value="2029">
+                                        2029
+                                    </option>
+
+                                    <option value="2030">
+                                        2030
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- SKILLS -->
+
+                    <section class="form-card">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <h2>
+                                    Skills
+                                </h2>
+
+                                <p>
+                                    Add your technical and professional skills
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="skills">
+                                Skills
+                            </label>
+
+                            <input
+                                type="text"
+                                id="skills"
+                                name="skills"
+                                placeholder="e.g. HTML, CSS, JavaScript, Node.js, MongoDB"
+                            >
+
+                            <small>
+                                Separate multiple skills using commas.
+                            </small>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ABOUT -->
+
+                    <section class="form-card">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <h2>
+                                    About Me
+                                </h2>
+
+                                <p>
+                                    Write a short introduction about yourself
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="about">
+                                About Me
+                            </label>
+
+                            <textarea
+                                id="about"
+                                name="about"
+                                rows="6"
+                                placeholder="Tell recruiters about yourself..."
+                            ></textarea>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="form-actions">
+
+                        <a
+                            href="/student/profile"
+                            class="cancel-button"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="save-button"
+                        >
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    
+
+</body>
+
+
+</html>

@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Interviews | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/student-interviews.css">
+
+</head>
+
+<body>
+
+
+    <div class="page-container">
+
+
+        <!-- Header -->
+
+        <div class="page-header">
+
+            <div>
+
+                <a href="/student-dashboard" class="back-link">
+                    ← Back to Dashboard
+                </a>
+
+                <h1>
+                    My Interviews
+                </h1>
+
+                <p>
+                    View your scheduled interviews and interview details.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Interview List -->
+
+        <div class="interview-list">
+
+
+            <% if (array.length === 0) { %>
+
+                <div class="empty-card">
+
+                    <div class="empty-icon">
+                        📅
+                    </div>
+
+                    <h2>
+                        No Interviews Scheduled
+                    </h2>
+
+                    <p>
+                        You don't have any scheduled interviews yet.
+                    </p>
+
+                    <a href="/student/jobs" class="jobs-button">
+                        Find Jobs
+                    </a>
+
+                </div>
+
+            <% } %>
+
+
+
+            <% array.forEach(item => { %>
+
+
+                <div class="interview-card">
+
+
+                    <!-- Top -->
+
+                    <div class="interview-top">
+
+
+                        <div class="job-icon">
+                            💼
+                        </div>
+
+
+                        <div class="job-info">
+
+                            <h2>
+                                <%= item.jobTitle %>
+                            </h2>
+
+                            <p>
+                               <%= item.company %>
+                            </p>
+
+                        </div>
+
+
+                        <div class="scheduled-badge">
+                            Scheduled
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Details -->
+
+                    <div class="interview-details">
+
+
+                        <div class="detail">
+
+                            <span>
+                                Interview Date
+                            </span>
+
+                            <strong>
+                                📅  <%= item.interviewDate %> 
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span>
+                                Interview Time
+                            </span>
+
+                            <strong>
+                                🕐  <%= item.interviewTime %>
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span>
+                                Interview Mode
+                            </span>
+
+                            <strong>
+                                💻  <%= item.interviewMode %>
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Location -->
+
+                    <div class="location-section">
+
+                        <span>
+                            Location / Meeting Link
+                        </span>
+                        <a href="<%= item.location %>">
+                            <p>
+                                <%= item.location %>
+                            </p>
+                        </a>
+                    </div>
+
+
+
+                    <!-- Instructions -->
+
+                    <% if (item.notes) { %>
+
+                        <div class="instructions">
+
+                            <span>
+                                Additional Instructions
+                            </span>
+
+                            <p>
+                                <%= item.notes %>
+                            </p>
+
+                        </div>
+
+                    <% } %>
+
+
+                </div>
+
+
+            <% }) %>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
+

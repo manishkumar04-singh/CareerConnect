@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Applications | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/recruiter-application.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                C
+            </span>
+
+            <span>
+                CareerConnect
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/recruiter-dashboard" class="nav-item">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/recruiter/jobs" class="nav-item">
+
+                <span class="nav-icon">
+                    💼
+                </span>
+
+                My Jobs
+
+            </a>
+
+
+            <a href="/recruiter/applications" class="nav-item active">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                Applications
+
+            </a>
+
+
+            <a href="/recruiter/profile" class="nav-item">
+
+                <span class="nav-icon">
+                    ◎
+                </span>
+
+                Profile
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+
+                <span class="nav-icon">
+                    ↪
+                </span>
+
+                Logout
+
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Applications
+                </h1>
+
+                <p>
+                    Manage and review applications received for your jobs.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             STATISTICS
+        ========================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Applications
+                    </span>
+
+                    <strong>
+                        <%= totalApplication %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🕐
+                </div>
+
+                <div>
+
+                    <span>
+                        Pending Review
+                    </span>
+
+                    <strong>
+                        7
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Shortlisted
+                    </span>
+
+                    <strong>
+                        3
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✕
+                </div>
+
+                <div>
+
+                    <span>
+                        Rejected
+                    </span>
+
+                    <strong>
+                        2
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             APPLICATION SECTION
+        ========================== -->
+
+        <section class="applications-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Recent Applications
+                    </h2>
+
+                    <p>
+                        Review candidates who have applied for your jobs.
+                    </p>
+
+                </div>
+
+
+                <select class="status-filter">
+
+                    <option>
+                        All Applications
+                    </option>
+
+                    <option>
+                        Applied
+                    </option>
+
+                    <option>
+                        Shortlisted
+                    </option>
+
+                    <option>
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- =========================
+                 APPLICATION CARD
+            ========================== -->
+            <% array.forEach(item=>{ %>
+
+            <article class="application-card">
+
+
+                <div class="candidate-info">
+
+
+                    <div class="candidate-avatar">
+                        M
+                    </div>
+
+
+                    <div class="candidate-details">
+
+                        <h3>
+                            <%= item.name %>
+                        </h3>
+
+                        <p>
+                           <%= item.email %>
+                        </p>
+
+                        <span>
+                            Applied for: <%= item.title %>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="application-meta">
+
+                    <div>
+
+                        <span>
+                            Applied On
+                        </span>
+
+                        <strong>
+                            <%= item.appliedDate %>
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Status
+                        </span>
+
+                        <strong class="status applied">
+                            <%= item.status %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="application-actions">
+
+                    <a
+                        href="/recruiter/view/application/<%= item.id %>"
+                        class="view-button">
+
+                        View Application
+
+                    </a>
+
+                </div>
+
+
+            </article>
+            <% }) %>
+
+
+        </section>
+
+
+    </main>
+
+    <script>
+        const dataElement=document.querySelectorAll(".status.applied");
+        dataElement.forEach(item=>{
+            if(item.innerText.trim()==='Shortlist'){
+                item.style.color="#059669";
+                item.style.background= "#ecfdf5"
+            }
+            if(item.innerText.trim()==='Reject'){
+                item.style.color="#dc2626";
+                item.style.background= "#fff1f2"
+            }
+        })
+    </script>
+</body>
+
+</html>

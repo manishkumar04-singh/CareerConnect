@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Schedule Interview</title>
+
+    <link rel="stylesheet" href="/css/recruiter-interview.css">
+</head>
+
+<body>
+<% if(data){ %>
+    <div class="scheduled-container">
+        <a href="/recruiter/application/<%= data.applicationId %>" class="back-link">
+            ← Back to Application
+        </a>
+        <div class="scheduled-header">
+    
+            <div class="scheduled-icon">
+                ✓
+            </div>
+    
+            <div>
+                <h1>Interview Already Scheduled</h1>
+    
+                <p>
+                    An interview has already been scheduled for this application.
+                </p>
+            </div>
+    
+        </div>
+    
+    
+        <div class="candidate-section">
+    
+            <div>
+                <span>Candidate</span>
+    
+                <h2>
+                    <%= name %>
+                </h2>
+    
+                <p>
+                    <%= email %>
+                </p>
+            </div>
+    
+    
+            <div>
+                <span>Applied For</span>
+    
+                <h3>
+                    <%= jobTitle %>
+                </h3>
+            </div>
+    
+        </div>
+    
+    
+        <div class="interview-details">
+    
+    
+            <div class="detail-item">
+    
+                <span>Interview Date</span>
+    
+                <strong>
+                    <%= data.interviewDate %>
+                </strong>
+    
+            </div>
+    
+    
+            <div class="detail-item">
+    
+                <span>Interview Time</span>
+    
+                <strong>
+                    <%= data.interviewTime %>
+                </strong>
+    
+            </div>
+    
+    
+            <div class="detail-item">
+    
+                <span>Interview Mode</span>
+    
+                <strong>
+                    <%= data.interviewMode %>
+                </strong>
+    
+            </div>
+    
+    
+            <div class="detail-item">
+    
+                <span>Location / Meeting Link</span>
+    
+                <strong>
+                    <%= data.location %>
+                </strong>
+    
+            </div>
+    
+    
+            <div class="detail-item full-width">
+    
+                <span>Additional Instructions</span>
+    
+                <p>
+                    <%= data.notes %>
+                </p>
+    
+            </div>
+    
+    
+        </div>
+    
+    
+        <div class="scheduled-actions">
+    
+            <a href="/recruiter/interview/edit/<%= _id %>" class="edit-interview-btn">
+    
+                Edit Interview
+    
+            </a>
+    
+        </div>
+    
+    </div>
+<% } else { %>
+    <div class="container">
+
+        <div class="top-section">
+
+            <a href="#" class="back">
+                ← Back to Application
+            </a>
+
+            <h1>Schedule Interview</h1>
+
+            <p>Schedule an interview with the shortlisted candidate.</p>
+
+            <% if(message) { %>
+            
+                <div class="popup-message" id="popupMessage">
+                    <span>
+                        <%= message %>
+                    </span>
+            
+                    <button type="button" onclick="this.parentElement.remove()">
+                        ×
+                    </button>
+                </div>
+            
+            <% } %>
+
+        </div>
+
+
+        <div class="candidate-card">
+
+            <div class="candidate-info">
+
+                <span>Candidate</span>
+
+                <h2>
+                    <%= name %>
+                </h2>
+
+                <p>
+                    <%= email %>
+                </p>
+
+            </div>
+
+
+            <div class="job-info">
+
+                <span>Applied For</span>
+
+                <h3>
+                    <%= jobTitle %>
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-card">
+        <% if(!fillupData) { %>
+            <form action="/recruiter/interview/<%= _id %>" method="POST">
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            Interview Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            value=""
+                            name="interviewDate"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="time">
+                            Interview Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="time"
+                            value=""
+                            name="interviewTime"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="mode">
+                        Interview Mode
+                    </label>
+
+                    <select
+                        id="mode"
+                        name="interviewMode"
+                        value=""
+                        required>
+
+                        <option value="">
+                            Select Interview Mode
+                        </option>
+
+                        <option value="Online">
+                            Online
+                        </option>
+
+                        <option value="In-person">
+                            In-person
+                        </option>
+
+                        <option value="Phone">
+                            Phone
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Meeting Link / Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        value=""
+                        placeholder="Enter meeting link or location"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="notes">
+                        Additional Instructions
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        rows="5"
+                        placeholder="Enter instructions for the candidate"></textarea>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <a
+                        href="/recruiter/view/application/<%= jobId %>"
+                        class="cancel-btn">
+
+                        Cancel
+
+                    </a>
+
+                <% if(!fillupData) { %>
+                    <button
+                        type="submit"
+                        class="schedule-btn">
+
+                        Schedule Interview
+
+                    </button>
+                <% } else { %>
+                    <button
+                        type="submit"
+                        class="schedule-btn">
+
+                        Update Interview
+
+                    </button>
+                <% } %>    
+                </div>
+            </form>    
+        <% } else { %>
+            <form action="/recruiter/interview/edit/<%= fillupData._id %>" method="POST">
+            
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            Interview Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            value="<%= fillupData.interviewDate %>"
+                            name="interviewDate"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="time">
+                            Interview Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="time"
+                            value="<%= fillupData.interviewTime %>"
+                            name="interviewTime"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="mode">
+                        Interview Mode
+                    </label>
+
+                    <select
+                        id="mode"
+                        name="interviewMode"
+                        value="<%= fillupData.interviewMode %>"
+                        required>
+
+                        <option value="">
+                            Select Interview Mode
+                        </option>
+
+                        <option value="Online">
+                            Online
+                        </option>
+
+                        <option value="In-person">
+                            In-person
+                        </option>
+
+                        <option value="Phone">
+                            Phone
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Meeting Link / Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        value="<%= fillupData.location %>"
+                        placeholder="Enter meeting link or location"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="notes">
+                        Additional Instructions
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        rows="5"
+                        placeholder="Enter instructions for the candidate"></textarea>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <a
+                        href="/recruiter/view/application/<%= jobId %>"
+                        class="cancel-btn">
+
+                        Cancel
+
+                    </a>
+
+                <% if(!fillupData) { %>
+                    <button
+                        type="submit"
+                        class="schedule-btn">
+
+                        Schedule Interview
+
+                    </button>
+                <% } else { %>
+                    <button
+                        type="submit"
+                        class="schedule-btn">
+
+                        Update Interview
+
+                    </button>
+                <% } %>    
+                </div>
+
+
+            </form>
+        <% } %>
+        </div>
+
+    </div>
+    
+<% } %>
+    
+</body>
+
+
+</html>
+```

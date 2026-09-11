@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recruiter Profile</title>
+
+    <link rel="stylesheet" href="/css/recruiter-profile.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/recruiter/dashboard" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/recruiter/job/post" class="nav-item">
+                <span class="nav-icon">＋</span>
+                Post a Job
+            </a>
+
+            <a href="/recruiter/jobs" class="nav-item">
+                <span class="nav-icon">▤</span>
+                My Jobs
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">♙</span>
+                Applications
+            </a>
+
+            <a href="/recruiter/profile" class="nav-item active">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Recruiter Profile</h1>
+                <p>Manage your professional information.</p>
+            </div>
+
+            <div class="profile-mini">
+
+                <div class="profile-avatar">
+                    R
+                </div>
+
+                <div class="profile-mini-info">
+                    <strong>Recruiter</strong>
+                    <span>Recruiter Account</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PROFILE HEADER -->
+
+        <section class="profile-header-card">
+
+            <div class="large-avatar">
+                R
+            </div>
+
+            <div class="profile-header-info">
+
+                <span class="account-label">
+                    RECRUITER ACCOUNT
+                </span>
+
+                <h2><%= name %></h2>
+
+                <p><%= email %></p>
+
+            </div>
+
+            <a href="/recruiter/profile/edit" class="edit-button">
+                ✎ Edit Profile
+            </a>
+
+        </section>
+
+
+        <!-- PROFILE INFORMATION -->
+
+        <section class="profile-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h2>Professional Information</h2>
+                    <p>Your company and professional details.</p>
+                </div>
+
+            </div>
+
+
+            <div class="info-grid">
+
+                <!-- COMPANY -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Company
+                    </span>
+                    <% if(!company){ %>
+                        <h3>Company not added</h3>
+                    <% } else { %>
+                        <h3><%= company %></h3>
+                    <% } %>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Email
+                    </span>
+
+                    <h3><%= email %></h3>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Phone
+                    </span>
+
+                    <% if(!phone){ %>
+                        <h3>Phone not added</h3>
+                    <% } else { %>
+                        <h3><%= phone %></h3>
+                    <% } %>
+
+                </div>
+
+
+                <!-- LOCATION -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Location
+                    </span>
+
+                    <% if(!location){ %>
+                        <h3>Location not added</h3>
+                    <% } else { %>
+                        <h3><%= location %></h3>
+                    <% } %>
+
+                </div>
+
+
+                <!-- WEBSITE -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Website
+                    </span>s
+
+                    <% if(!website){ %>
+                        <h3>Website not added</h3>
+                    <% } else { %>
+                        <a href="<%= website %>" ><%= website %></a>
+                    <% } %>
+
+                </div>
+
+
+                <!-- ACCOUNT TYPE -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Account Type
+                    </span>
+
+                    <h3>Recruiter</h3>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT COMPANY -->
+
+        <section class="profile-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h2>About</h2>
+                    <p>Tell candidates about your organization.</p>
+                </div>
+                
+            </div>
+
+            <div class="about-box">
+
+                <% if(!about){ %>
+                    <p>No information has been added yet. Add a short description about your company to help candidates understand your organization.</p>
+                <% } else { %>
+                    <p>
+                        <%= about %>
+                    </p>
+                <% } %>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROFILE COMPLETION -->
+
+        <section class="profile-card completion-card">
+
+            <div class="completion-header">
+
+                <div>
+                    <h2>Profile Completion</h2>
+                    <p>Complete your profile to attract better candidates.</p>
+                </div>
+
+                <strong><%= rate %>%</strong>
+
+            </div>
+
+            <div class="progress-container">
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

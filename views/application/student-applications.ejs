@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Applications | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/student-applications.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                C
+            </span>
+
+            <span>
+                CareerConnect
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/student-dashboard" class="nav-item">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/student-jobs" class="nav-item">
+
+                <span class="nav-icon">
+                    💼
+                </span>
+
+                Find Jobs
+
+            </a>
+
+
+            <a href="/student/application" class="nav-item active">
+
+                <span class="nav-icon">▣</span>
+                My Applications
+
+            </a>
+
+            <a href="/student/interview" class="nav-item ">
+
+                <span class="nav-icon">
+                    📅
+                </span>
+
+                My Interviews
+
+            </a>
+
+
+
+            <a href="/student/profile" class="nav-item">
+
+                <span class="nav-icon">
+                    ◎
+                </span>
+
+                Profile
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+
+                <span class="nav-icon">
+                    ↪
+                </span>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    My Applications
+                </h1>
+
+                <p>
+                    Track the jobs you have applied for and their current status.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             SUMMARY
+        ========================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Applications
+                    </span>
+
+                    <strong>
+                        <%= count %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🕐
+                </div>
+
+                <div>
+
+                    <span>
+                        Applied
+                    </span>
+
+                    <strong>
+                        <%= countApplied %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Shortlisted
+                    </span>
+
+                    <strong>
+                        <%= countShort %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✕
+                </div>
+
+                <div>
+
+                    <span>
+                        Rejected
+                    </span>
+
+                    <strong>
+                        <%= countReject %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             APPLICATIONS
+        ========================== -->
+
+        <section class="applications-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Your Applications
+                    </h2>
+
+                    <p>
+                        Here you can track all the jobs you have applied for.
+                    </p>
+
+                </div>
+
+
+                <select class="status-filter">
+
+                    <option>
+                        All Applications
+                    </option>
+
+                    <option>
+                        Applied
+                    </option>
+
+                    <option>
+                        Shortlisted
+                    </option>
+
+                    <option>
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- =========================
+                 APPLICATION CARD 1
+            ========================== -->
+            <% array.forEach(item =>{ %>
+            <article class="application-card">
+
+
+                <div class="job-info">
+
+
+                    <div class="job-icon">
+                        💼
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            <%= item.jobTitle %>
+                        </h3>
+
+                        <p>
+                            <%= item.company %>
+                        </p>
+
+                        <span>
+                            📍 <%= item.location %>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="application-date">
+
+                    <span>
+                        Applied On
+                    </span>
+
+                    <strong>
+                        <%= item.appliedDate %>
+                    </strong>
+
+                </div>
+
+
+
+                <div class="application-status">
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong class="status applied">
+                        <%= item.status %>
+                    </strong>
+
+                </div>
+                
+                <% if (item.status==="Applied" || item.status==="Reject" ) { %>
+                
+                    <div class="application-action">
+                
+                        <a href="/student/application/cancel/<%= item._id %>" class="cancel-btn">
+                            Cancel Application
+                        </a>
+                
+                    </div>
+                
+                <% } %>
+
+            </article>
+            <% }) %>
+
+
+            
+
+
+        </section>
+
+
+
+        <!-- =========================
+             EMPTY STATE
+        ========================== -->
+
+        <!--
+        We will make this dynamic later
+        when there are no applications.
+        -->
+
+        <!--
+        <section class="empty-card">
+
+            <div class="empty-icon">
+                📋
+            </div>
+
+            <h3>
+                No Applications Yet
+            </h3>
+
+            <p>
+                You haven't applied for any jobs yet.
+                Start exploring available opportunities.
+            </p>
+
+            <a href="/student/jobs" class="browse-button">
+                Browse Jobs
+            </a>
+
+        </section>
+        -->
+
+
+    </main>
+
+    <script>
+        
+        const dataElement=document.querySelectorAll(".status.applied");
+        let countReject=0;
+        let countshort=0;
+        dataElement.forEach(element=>{
+            if(element.innerText.trim()=== 'Reject'){
+                element.style.color= "#dc2626";
+                element.style.background= "#fff1f2";
+                countReject+=1
+            }
+            if(element.innerText.trim()=== 'Shortlist'){
+                element.style.color= "#ecfdf5";
+                element.style.background= "#059669";
+                countshort+=1;
+            } 
+        });
+
+
+    </script>
+</body>
+
+</html>

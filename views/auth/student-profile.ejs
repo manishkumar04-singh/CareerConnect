@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/student-profile.css">
+</head>
+
+<body>
+
+    <div class="profile-page">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">C</div>
+                <span>CareerConnect</span>
+            </div>
+
+            <p class="menu-title">MAIN MENU</p>
+
+            <a href="/student-dashboard" class="menu-item">
+                <span>⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="/student-jobs" class="menu-item">
+                <span>⌕</span>
+                <span>Find Jobs</span>
+            </a>
+
+            <a href="/student/application" class="menu-item">
+                <span>▣</span>
+                <span>My Applications</span>
+            </a>
+
+            <a href="/student-saved-jobs" class="menu-item">
+                <span>☆</span>
+                <span>Saved Jobs</span>
+            </a>
+
+            <p class="menu-title account-title">ACCOUNT</p>
+
+            <a href="/student/profile" class="menu-item active">
+                <span>◯</span>
+                <span>My Profile</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>⚙</span>
+                <span>Settings</span>
+            </a>
+
+            <div class="sidebar-bottom">
+
+                <a href="/logout" class="menu-item">
+                    <span>↪</span>
+                    <span>Logout</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input type="text" placeholder="Search jobs, companies...">
+                </div>
+
+                <div class="topbar-right">
+
+                    <button class="notification">
+                        🔔
+                    </button>
+
+                    <div class="profile-mini">
+
+                        <div class="profile-image">
+                            M
+                        </div>
+
+                        <div>
+                            <strong>Student</strong>
+                            <small>Student Account</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- PAGE CONTENT -->
+
+            <section class="content">
+
+                <div class="page-heading">
+
+                    <div>
+                        <p class="heading-label">ACCOUNT</p>
+
+                        <h1>My Profile</h1>
+
+                        <p>
+                            Manage your personal information and career details.
+                        </p>
+                    </div>
+
+                    <button class="edit-button">
+                        <a href="/student/profile/edit">✎ Edit Profile</a>
+                    </button>
+
+                </div>
+
+
+                <!-- PROFILE HEADER -->
+
+                <section class="profile-header">
+
+                    <div class="large-profile-image">
+                        M
+                    </div>
+
+                    <div class="profile-main-info">
+
+                        <h2>Manish Kumar Singh</h2>
+
+                        <p class="role">
+                            B.Tech Information Technology Student
+                        </p>
+
+                        <p class="location">
+                            📍 Kolkata, India
+                        </p>
+
+                    </div>
+
+                    <div class="completion">
+
+                        <div class="completion-top">
+                            <span>Profile Completion</span>
+                            <strong><%= rate %>%</strong>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar"></div>
+                        </div>
+
+                        <p>Complete your profile to improve job opportunities.</p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PROFILE GRID -->
+
+                <div class="profile-grid">
+
+
+                    <!-- PERSONAL INFORMATION -->
+
+                    <section class="profile-card">
+
+                        <div class="card-heading">
+
+                            <div>
+                                <h2>Personal Information</h2>
+                                <p>Your basic personal details</p>
+                            </div>
+
+                            <button class="small-edit">Edit</button>
+
+                        </div>
+
+                        <div class="info-grid">
+
+                            <div class="info-item">
+
+                                <label>Full Name</label>
+
+                                <span> <%= Name %></span>
+
+                            </div>
+
+                            <div class="info-item">
+
+                                <label>Email Address</label>
+
+                                <span><%= Email %></span>
+
+                            </div>
+
+                            <div class="info-item">
+
+                                <label>Phone Number</label>
+
+                                <span>+91 <%= phone %></span>
+
+                            </div>
+
+                            <div class="info-item">
+
+                                <label>Location</label>
+
+                                <span><%= location %>, India</span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- EDUCATION -->
+
+                    <section class="profile-card">
+
+                        <div class="card-heading">
+
+                            <div>
+                                <h2>Education</h2>
+                                <p>Your academic background</p>
+                            </div>
+
+                            <button class="add-button">+ Add</button>
+
+                        </div>
+
+                        <div class="education-item">
+
+                            <div class="education-icon">
+                                🎓
+                            </div>
+
+                            <div>
+
+                                <h3><%= degree %></h3>
+
+                                <p><%= college %></p>
+
+                                <span>2024 – 2028</span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- SKILLS -->
+
+                    <section class="profile-card">
+
+                        <div class="card-heading">
+
+                            <div>
+                                <h2>Skills</h2>
+                                <p>Your technical skills</p>
+                            </div>
+
+                            <button class="add-button">+ Add</button>
+
+                        </div>
+
+                        <div class="skills">
+
+                            <% const skill=skills.split(",") %>
+
+                            <% skill.forEach(item => { %>
+                                <span><%= item.trim() %></span>
+                            <% } )%>    
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ABOUT -->
+
+                    <section class="profile-card">
+
+                        <div class="card-heading">
+
+                            <div>
+                                <h2>About Me</h2>
+                                <p>A short introduction about yourself</p>
+                            </div>
+
+                            <button class="small-edit">Edit</button>
+
+                        </div>
+
+                        <p class="about-text">
+                            <%= about %>
+                        </p>
+
+                    </section>
+
+
+                    <!-- RESUME -->
+
+                    <!-- RESUME -->
+
+<section class="profile-card resume-card">
+
+    <div class="card-heading">
+
+        <div>
+            <h2>Resume</h2>
+            <p>Keep your resume updated</p>
+        </div>
+
+    </div>
+
+
+    <div class="resume-box">
+
+        <div class="resume-icon">
+            📄
+        </div>
+
+        <div class="resume-info">
+
+            <% if (!filename) { %>
+                <h3>No Reume Uploaded</h3>
+            <% } else { %>
+                <h3><%= filename %></h3>    
+            <% } %>
+            <p>Uploaded recently</p>
+
+        </div>
+
+        <a href="/uploads/resumes/<%=filename %>" class="resume-button" target="_blank">
+            View
+        </a>
+
+    </div>
+
+
+    <!-- FILE PICKER -->
+
+    <form
+        action="/student/profile/resume"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <input
+            type="file"
+            id="resume"
+            name="resume"
+            accept=".pdf"
+            hidden
+        >
+
+        <label
+            for="resume"
+            class="upload-button"
+        >
+            ↑ Upload New Resume
+        </label>
+
+    </form>
+
+</section>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script>document.getElementById("resume").addEventListener("change",function(){
+                this.form.submit();
+            });
+    </script>
+
+</body>
+
+</html>

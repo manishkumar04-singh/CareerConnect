@@ -1,0 +1,1038 @@
+/* =========================================================
+   CAREERCONNECT
+   AUTHENTICATION PAGES
+   ========================================================= */
+
+
+/* ==================== AUTH PAGE ==================== */
+
+.auth-page {
+    min-height: 720px;
+
+    background: #f8fafc;
+
+    padding: 70px 0;
+}
+
+
+/* ==================== AUTH CONTAINER ==================== */
+
+.auth-container {
+    width: min(1050px, 92%);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 45px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   LEFT INTRODUCTION
+   ========================================================= */
+
+.auth-intro {
+    padding: 60px 55px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #172033,
+            #243653
+        );
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+.auth-intro-content {
+    max-width: 430px;
+}
+
+
+/* ==================== BRAND ==================== */
+
+.auth-brand {
+    font-size: 22px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+
+    margin-bottom: 65px;
+}
+
+
+.auth-brand span {
+    color: #60a5fa;
+}
+
+
+/* ==================== LABEL ==================== */
+
+.auth-label {
+    display: inline-block;
+
+    color: #93c5fd;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.6px;
+
+    margin-bottom: 15px;
+}
+
+
+/* ==================== HEADING ==================== */
+
+.auth-intro h1 {
+    font-size: 43px;
+
+    line-height: 1.12;
+
+    letter-spacing: -1.7px;
+
+    margin-bottom: 22px;
+}
+
+
+.auth-intro h1 span {
+    color: #60a5fa;
+}
+
+
+.auth-intro > div > p {
+    color: #cbd5e1;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-bottom: 38px;
+}
+
+
+/* ==================== BENEFITS ==================== */
+
+.auth-benefits {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+.benefit-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 13px;
+}
+
+
+.benefit-icon {
+    width: 25px;
+    height: 25px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(96, 165, 250, 0.15);
+
+    color: #60a5fa;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.benefit-item strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    margin-bottom: 3px;
+}
+
+
+.benefit-item p {
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   RIGHT FORM
+   ========================================================= */
+
+.auth-form-section {
+    padding: 60px 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    background: #ffffff;
+}
+
+
+.auth-form-container {
+    width: 100%;
+
+    max-width: 390px;
+
+    margin: 0 auto;
+}
+
+
+/* ==================== FORM HEADING ==================== */
+
+.form-heading {
+    margin-bottom: 35px;
+}
+
+
+.form-heading h2 {
+    color: #172033;
+
+    font-size: 29px;
+
+    letter-spacing: -0.8px;
+
+    margin-bottom: 7px;
+}
+
+
+.form-heading p {
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+
+/* ==================== FORM ==================== */
+
+.auth-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 23px;
+}
+
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.form-group label {
+    color: #172033;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* ==================== LABEL ROW ==================== */
+
+.label-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.label-row a {
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.label-row a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==================== INPUT ==================== */
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #172033;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group input::placeholder {
+    color: #9ca3af;
+}
+
+
+.form-group input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* ==================== REMEMBER ==================== */
+
+.remember-row {
+    margin-top: -5px;
+}
+
+
+.checkbox-container {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+
+.checkbox-container input {
+    width: 14px;
+    height: 14px;
+
+    accent-color: #2563eb;
+
+    cursor: pointer;
+}
+
+
+/* ==================== SUBMIT BUTTON ==================== */
+
+.auth-submit-btn {
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.auth-submit-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.20);
+}
+
+
+.auth-submit-btn span {
+    font-size: 17px;
+}
+
+
+/* ==================== SWITCH ==================== */
+
+.auth-switch {
+    text-align: center;
+
+    margin-top: 25px;
+}
+
+
+.auth-switch p {
+    color: #6b7280;
+
+    font-size: 12px;
+}
+
+
+.auth-switch a {
+    color: #2563eb;
+
+    font-weight: 700;
+}
+
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==================== DIVIDER ==================== */
+
+.auth-divider {
+    margin-top: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #9ca3af;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background: #e5e7eb;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-intro {
+        padding: 45px;
+    }
+
+    .auth-brand {
+        margin-bottom: 35px;
+    }
+
+    .auth-intro h1 {
+        font-size: 38px;
+    }
+
+    .auth-form-section {
+        padding: 50px 45px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .auth-page {
+        padding: 35px 0;
+    }
+
+    .auth-container {
+        width: 94%;
+
+        border-radius: 14px;
+    }
+
+    .auth-intro {
+        padding: 35px 25px;
+    }
+
+    .auth-intro h1 {
+        font-size: 34px;
+    }
+
+    .auth-form-section {
+        padding: 40px 25px;
+    }
+
+}
+
+/* =========================================================
+   REGISTER PAGE
+   ========================================================= */
+
+
+/* ==================== SELECT ==================== */
+
+.form-group select {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #172033;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* ==================== TERMS ==================== */
+
+.terms-row {
+    margin-top: -5px;
+}
+
+
+.terms-row .checkbox-container {
+    align-items: flex-start;
+
+    line-height: 1.5;
+}
+
+
+.terms-row .checkbox-container a {
+    color: #2563eb;
+
+    font-weight: 600;
+}
+
+
+.terms-row .checkbox-container a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==================== REGISTER FORM ==================== */
+
+.register-form {
+    gap: 18px;
+}
+
+
+/* =========================================================
+   REGISTER RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .register-form {
+        gap: 20px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .register-form {
+        gap: 18px;
+    }
+
+}
+
+/* =========================
+   FORGOT PASSWORD LINK
+========================= */
+
+.forgot-password-link {
+    border: none;
+    background: transparent;
+
+    color: #2563eb;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    padding: 0;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   MODAL OVERLAY
+========================= */
+
+.forgot-modal-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(15, 23, 42, 0.35);
+
+    backdrop-filter: blur(4px);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 9999;
+}
+
+
+/* SHOW MODAL */
+
+.forgot-modal-overlay.active {
+    display: flex;
+}
+
+
+/* =========================
+   MODAL BOX
+========================= */
+
+.forgot-modal {
+    width: 100%;
+
+    max-width: 420px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 30px;
+
+    position: relative;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.20);
+}
+
+.forgot-modal.inactive{
+    display: none;
+}
+
+
+/* CLOSE BUTTON */
+
+.forgot-close {
+    position: absolute;
+
+    top: 13px;
+    right: 16px;
+
+    border: none;
+    background: transparent;
+
+    color: #94a3b8;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+.forgot-close:hover {
+    color: #334155;
+}
+
+
+/* ICON */
+
+.forgot-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    margin: 0 auto 15px;
+
+    background: #eff6ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+}
+
+
+/* HEADING */
+
+.forgot-modal h2 {
+    font-size: 20px;
+
+    margin-bottom: 8px;
+
+    color: #172033;
+}
+
+.forgot-text {
+    max-width: 330px;
+
+    margin: 0 auto 22px;
+
+    color: #7d8798;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.forgot-form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 7px;
+
+    margin-bottom: 7px;
+
+    text-align: left;
+}
+
+.forgot-form-group label {
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #374151;
+}
+
+.forgot-form-group input {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: 1px solid #dfe3ea;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+.forgot-form-group input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================
+   MESSAGE SPACE
+========================= */
+
+.forgot-message {
+    min-height: 18px;
+
+    margin: 4px 0 10px;
+
+    color: #dc2626;
+
+    font-size: 11px;
+
+    text-align: left;
+}
+
+
+/* =========================
+   SEND OTP BUTTON
+========================= */
+
+.forgot-send-button {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.forgot-send-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.forgot-back-button {
+    margin-top: 13px;
+
+    border: none;
+    background: transparent;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.forgot-back-button:hover {
+    color: #2563eb;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 500px) {
+
+    .forgot-modal {
+        padding: 24px 20px;
+    }
+
+}
+
+.verify-otp-box {
+    display: none;
+
+    width: 100%;
+    max-width: 420px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 30px;
+
+    position: relative;
+
+    text-align: center;
+
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.20);
+}
+
+.verify-otp-box.active {
+    display: block;
+}
+
+.verify-otp-box input {
+    text-align: center;
+
+    letter-spacing: 6px;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.otp-bottom {
+    margin-top: 16px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    font-size: 11px;
+
+    color: #7d8798;
+}
+
+.resend-otp-button {
+    border: none;
+
+    background: transparent;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    padding: 0;
+}
+
+.resend-otp-button:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   RESET PASSWORD BOX
+========================= */
+
+.reset-password-box {
+    display: none;
+
+    width: 100%;
+}
+
+.reset-password-box.active {
+    display: block;
+}
+
+
+/* PASSWORD MESSAGE SPACE */
+
+.reset-password-message {
+    min-height: 18px;
+
+    margin: 4px 0 10px;
+
+    color: #dc2626;
+
+    font-size: 11px;
+
+    text-align: left;
+}
+
+.receive-message {
+    min-height: 18px;
+
+    margin: 4px 0 10px;
+
+    color: #3ddc1d;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+.forgot-message1 {
+    min-height: 18px;
+
+    margin: 4px 0 10px;
+
+    color: #e62421;
+
+    font-size: 15px;
+
+    text-align: center;
+}

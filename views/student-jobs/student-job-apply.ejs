@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apply for Job | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/student-job-apply.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/student/dashboard" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/student/jobs" class="nav-item active">
+                <span class="nav-icon">▤</span>
+                Find Jobs
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">♡</span>
+                Saved Jobs
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▣</span>
+                My Applications
+            </a>
+
+            <a href="/student/profile" class="nav-item">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <div class="page-header">
+
+            <a href="/student/jobs" class="back-button">
+                ← Back to Jobs
+            </a>
+
+            <h1>Apply for Job</h1>
+
+            <p>
+                Complete your application and submit it to the recruiter.
+            </p>
+
+        </div>
+
+
+        <div class="application-layout">
+
+
+            <!-- APPLICATION FORM -->
+
+            <section class="application-card">
+
+                <h2>Application Details</h2>
+
+                <p class="section-description">
+                    Provide the required information to submit your application.
+                </p>
+
+
+                <form
+                    action="/student/job/apply/<%= id %>"
+                    method="POST"
+                    enctype="multipart/form-data">
+
+
+                    <!-- COVER LETTER -->
+
+                    <div class="form-group">
+
+                        <label for="coverLetter">
+                            Cover Letter
+                        </label>
+
+                        <textarea
+                            id="coverLetter"
+                            name="coverLetter"
+                            rows="8"
+                            placeholder="Write a short message explaining why you are suitable for this position..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <!-- RESUME -->
+
+                    <div class="form-group">
+
+                        <label for="resume">
+                            Resume
+                        </label>
+
+                        <input
+                            type="file"
+                            id="resume"
+                            name="resume"
+                            accept=".pdf,.doc,.docx"
+                            required>
+
+                        <p class="file-hint">
+                            Upload your latest resume.
+                            Accepted formats: PDF, DOC, DOCX.
+                        </p>
+
+                    </div>
+
+
+                    <!-- CONFIRMATION -->
+
+                    <label class="agreement">
+
+                        <input
+                            type="checkbox"
+                            required>
+
+                        <span>
+                            I confirm that the information provided
+                            in this application is accurate.
+                        </span>
+
+                    </label>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="form-actions">
+
+                        <a
+                            href="/student/jobs"
+                            class="cancel-button">
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="apply-button">
+                            Submit Application
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- JOB SUMMARY -->
+
+            <aside class="job-summary">
+
+                <h3>Job Summary</h3>
+
+                <div class="job-header">
+
+                    <div class="job-icon">
+                        💼
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            <%= data.jobTitle %>
+                        </strong>
+
+                        <span>
+                            <%= data.company %>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>Location</span>
+
+                    <strong><%= data.location %></strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>Job Type</span>
+
+                    <strong><%= data.jobType %></strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>Experience</span>
+
+                    <strong><%= data.experience %> years</strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>Salary</span>
+
+                    <strong><%= data.salary %></strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>Deadline</span>
+
+                    <strong><%= data.deadline %></strong>
+
+                </div>
+
+            </aside>
+
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Post a Job</title>
+
+    <link rel="stylesheet" href="/css/post-job.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/recruiter-dashboard" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/recruiter/job/post" class="nav-item active">
+                <span class="nav-icon">＋</span>
+                Post a Job
+            </a>
+
+            <a href="/recruiter/jobs" class="nav-item">
+                <span class="nav-icon">▤</span>
+                My Jobs
+            </a>
+
+            <a href="/recruiter/application" class="nav-item">
+                <span class="nav-icon">♙</span>
+                Applications
+            </a>
+
+            <a href="/recruiter/profile" class="nav-item">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+            <a href="/recruiter/setting" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                Setting
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Post a Job</h1>
+                <p>Create a new job opportunity and find talented candidates.</p>
+            </div>
+
+            <div class="profile-mini">
+
+                <div class="profile-avatar">
+                    R
+                </div>
+
+                <div class="profile-mini-info">
+                    <strong>Recruiter</strong>
+                    <span>Recruiter Account</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- JOB FORM CARD -->
+
+        <section class="job-card">
+
+            <div class="card-heading">
+
+                <h2>Job Information</h2>
+
+                <p>
+                    Provide the details about the position you want to post.
+                </p>
+
+            </div>
+
+
+            <form action="/recruiter/job/post" method="POST">
+
+
+                <!-- BASIC JOB INFORMATION -->
+
+                <div class="form-section">
+
+                    <h3>Basic Information</h3>
+
+                    <div class="form-grid">
+
+
+                        <!-- JOB TITLE -->
+
+                        <div class="form-group full-width">
+
+                            <label for="jobTitle">
+                                Job Title
+                            </label>
+
+                            <input
+                                type="text"
+                                id="jobTitle"
+                                name="jobTitle"
+                                placeholder="e.g. Full Stack Developer"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- COMPANY -->
+
+                        <div class="form-group">
+
+                            <label for="company">
+                                Company Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="company"
+                                name="company"
+                                placeholder="Enter company name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- LOCATION -->
+
+                        <div class="form-group">
+
+                            <label for="location">
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                name="location"
+                                placeholder="e.g. Kolkata, West Bengal"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- JOB TYPE -->
+
+                        <div class="form-group">
+
+                            <label for="jobType">
+                                Job Type
+                            </label>
+
+                            <select
+                                id="jobType"
+                                name="jobType"
+                                required
+                            >
+
+                                <option value="">
+                                    Select job type
+                                </option>
+
+                                <option value="Full-time">
+                                    Full-time
+                                </option>
+
+                                <option value="Part-time">
+                                    Part-time
+                                </option>
+
+                                <option value="Internship">
+                                    Internship
+                                </option>
+
+                                <option value="Contract">
+                                    Contract
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- EXPERIENCE -->
+
+                        <div class="form-group">
+
+                            <label for="experience">
+                                Experience
+                            </label>
+
+                            <input
+                                type="text"
+                                id="experience"
+                                name="experience"
+                                placeholder="e.g. 0-2 years"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- SALARY -->
+
+                        <div class="form-group">
+
+                            <label for="salary">
+                                Salary
+                            </label>
+
+                            <input
+                                type="text"
+                                id="salary"
+                                name="salary"
+                                placeholder="e.g. ₹4 - ₹7 LPA"
+                            >
+
+                        </div>
+
+
+                        <!-- DEADLINE -->
+
+                        <div class="form-group">
+
+                            <label for="deadline">
+                                Application Deadline
+                            </label>
+
+                            <input
+                                type="date"
+                                id="deadline"
+                                name="deadline"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SKILLS -->
+
+                <div class="form-section">
+
+                    <h3>Skills Required</h3>
+
+                    <div class="form-group">
+
+                        <label for="skills">
+                            Required Skills
+                        </label>
+
+                        <input
+                            type="text"
+                            id="skills"
+                            name="skills"
+                            placeholder="e.g. HTML, CSS, JavaScript, Node.js, MongoDB"
+                            required
+                        >
+
+                        <span class="input-help">
+                            Separate multiple skills with commas.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- JOB DESCRIPTION -->
+
+                <div class="form-section">
+
+                    <h3>Job Description</h3>
+
+                    <div class="form-group">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="8"
+                            placeholder="Describe the role, responsibilities and requirements..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="qualifications">
+                        Qualifications
+                    </label>
+
+                    <textarea
+                        id="qualifications"
+                        name="qualifications"
+                        rows="5"
+                        placeholder="Enter the required qualifications..."
+                        required>
+                    </textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="responsibilities">
+                        Responsibilities
+                    </label>
+
+                    <textarea
+                        id="responsibilities"
+                        name="responsibilities"
+                        rows="6"
+                        placeholder="Enter the responsibilities for this position..."
+                        required></textarea>
+
+                    </div>
+
+
+                <!-- FORM BUTTONS -->
+
+                <div class="form-actions">
+
+                    <a
+                        href="/recruiter/dashboard"
+                        class="cancel-button"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="post-button"
+                    >
+                        Post Job
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

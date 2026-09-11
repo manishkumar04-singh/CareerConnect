@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Job | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/recruiter-job-edit.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/recruiter/dashboard" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/recruiter/job/post" class="nav-item">
+                <span class="nav-icon">＋</span>
+                Post a Job
+            </a>
+
+            <a href="/recruiter/jobs" class="nav-item active">
+                <span class="nav-icon">▤</span>
+                My Jobs
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">♙</span>
+                Applications
+            </a>
+
+            <a href="/recruiter/profile" class="nav-item">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="page-header">
+
+            <div>
+                <h1>Edit Job</h1>
+
+                <p>
+                    Update the details of your job posting.
+                </p>
+            </div>
+
+            <a href="/recruiter/jobs" class="back-button">
+                ← Back to My Jobs
+            </a>
+
+        </header>
+
+
+        <!-- FORM -->
+
+        <form class="job-form"
+              action="/recruiter/job/edit/<%= data._id %>"
+              method="POST">
+
+
+            <!-- BASIC INFORMATION -->
+
+            <section class="form-card">
+
+                <div class="section-heading">
+
+                    <h2>Basic Information</h2>
+
+                    <p>
+                        Update the basic information about this job.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- JOB TITLE -->
+
+                    <div class="form-group full-width">
+
+                        <label for="jobTitle">
+                            Job Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="jobTitle"
+                            name="jobTitle"
+                            value="<%= data.jobTitle %>"
+                            placeholder="e.g. Full Stack Developer"
+                            required>
+
+                    </div>
+
+
+                    <!-- COMPANY -->
+
+                    <div class="form-group">
+
+                        <label for="company">
+                            Company
+                        </label>
+
+                        <input
+                            type="text"
+                            id="company"
+                            name="company"
+                            value="<%= data.company %>"
+                            placeholder="Company name"
+                            required>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            value="<%= data.location %>"
+                            placeholder="e.g. Kolkata"
+                            required>
+
+                    </div>
+
+
+                    <!-- JOB TYPE -->
+
+                    <div class="form-group">
+
+                        <label for="jobType">
+                            Job Type
+                        </label>
+
+                        <select
+                            id="jobType"
+                            name="jobType"
+                            required>
+
+                            <option value="<%= data.jobType %>">
+                                Select job type
+                            </option>
+
+                            <option value="Full-time">
+                                Full-time
+                            </option>
+
+                            <option value="Part-time">
+                                Part-time
+                            </option>
+
+                            <option value="Internship">
+                                Internship
+                            </option>
+
+                            <option value="Contract">
+                                Contract
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- EXPERIENCE -->
+
+                    <div class="form-group">
+
+                        <label for="experience">
+                            Experience
+                        </label>
+
+                        <input
+                            type="text"
+                            id="experience"
+                            name="experience"
+                            value="<%= data.experience %>"
+                            placeholder="e.g. 0-2 years"
+                            required>
+
+                    </div>
+
+
+                    <!-- SALARY -->
+
+                    <div class="form-group">
+
+                        <label for="salary">
+                            Salary
+                        </label>
+
+                        <input
+                            type="text"
+                            id="salary"
+                            name="salary"
+                            value="<%= data.salary %>"
+                            placeholder="e.g. ₹4 - ₹7 LPA"
+                            required>
+
+                    </div>
+
+
+                    <!-- DEADLINE -->
+
+                    <div class="form-group">
+
+                        <label for="deadline">
+                            Application Deadline
+                        </label>
+
+                        <input
+                            type="date"
+                            id="deadline"
+                            name="deadline"
+                            value="<%= data.deadline %>"
+                            required>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- JOB DESCRIPTION -->
+
+            <section class="form-card">
+
+                <div class="section-heading">
+
+                    <h2>Job Description</h2>
+
+                    <p>
+                        Describe the role and responsibilities.
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="7"
+                        
+                        required><%= data.description || "" %></textarea>
+
+                </div>
+
+            </section>
+
+
+            <!-- SKILLS -->
+
+            <section class="form-card">
+
+                <div class="section-heading">
+
+                    <h2>Required Skills</h2>
+
+                    <p>
+                        Enter the skills required for this position.
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="skills">
+                        Skills
+                    </label>
+
+                    <input
+                        type="text"
+                        id="skills"
+                        name="skills"
+                        value="<%= data.skills %>"
+                        placeholder="HTML, CSS, JavaScript, Node.js, MongoDB"
+                        required>
+
+                    <small>
+                        Separate multiple skills using commas.
+                    </small>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="qualifications">Qualifications</label>
+
+                    <textarea id="qualifications" name="qualifications"  rows="5" 
+                        placeholder="Enter the qualifications for this role..."
+                        required><%= data.qualifications || " " %></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="responsibilities">Responsibilities</label>
+
+                    <textarea
+                        id="responsibilities"
+                        name="responsibilities"
+                        placeholder="Enter the responsibilities for this role..."
+                        rows="6"
+                        required><%= data.responsibilities || "" %></textarea>
+
+                </div>
+
+            </section>
+
+
+            <!-- FORM ACTIONS -->
+
+            <div class="form-actions">
+
+                <a
+                    href="/recruiter/jobs"
+                    class="cancel-button">
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="save-button">
+                    Save Changes
+                </button>
+
+            </div>
+
+            
+
+
+        </form>
+
+    </main>
+    
+
+</body>
+
+</html>

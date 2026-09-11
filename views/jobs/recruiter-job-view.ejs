@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Details</title>
+
+    <link rel="stylesheet" href="/css/recruiter-job-view.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/recruiter/dashboard" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/recruiter/job/post" class="nav-item">
+                <span class="nav-icon">＋</span>
+                Post a Job
+            </a>
+
+            <a href="/recruiter/jobs" class="nav-item active">
+                <span class="nav-icon">▤</span>
+                My Jobs
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">♙</span>
+                Applications
+            </a>
+
+            <a href="/recruiter/profile" class="nav-item">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Job Details</h1>
+                <p>View the complete details of your job posting.</p>
+            </div>
+
+            <div class="profile-mini">
+
+                <div class="profile-avatar">
+                    R
+                </div>
+
+                <div class="profile-mini-info">
+                    <strong>Recruiter</strong>
+                    <span>Recruiter Account</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- BACK LINK -->
+
+        <a href="/recruiter/jobs" class="back-link">
+            ← Back to My Jobs
+        </a>
+
+
+        <!-- JOB HEADER -->
+
+        <section class="job-header-card">
+
+            <div class="job-header-main">
+
+                <div class="job-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <div class="title-row">
+
+                        <h2>
+                            <%= data.jobTitle %>
+                        </h2>
+
+                        <span class="status">
+                            Active
+                        </span>
+
+                    </div>
+
+                    <p class="company">
+                        <%= data.company %>
+                    </p>
+
+                    <div class="quick-details">
+
+                        <span>📍 <%= data.location %></span>
+
+                        <span>💼  <%= data.jobType %></span>
+
+                        <span>⌛  <%= data.experience %> years</span>
+
+                        <span>💰  <%= data.salary %></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <a href="/recruiter/job/edit/<%= data._id %>" class="edit-button">
+                    ✎ Edit Job
+                </a>
+
+                <button class="delete-button" type="button">
+                    Delete
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- JOB CONTENT -->
+
+        <div class="content-grid">
+
+
+            <!-- LEFT COLUMN -->
+
+            <div class="left-column">
+
+
+                <!-- DESCRIPTION -->
+
+                <section class="detail-card">
+
+                    <h2>Job Description</h2>
+
+                    <p class="description">
+
+                         <%= data.description %>
+
+                    </p>
+
+                </section>
+
+
+                <!-- SKILLS -->
+
+                <section class="detail-card">
+
+                    <h2>Skills Required</h2>
+
+                    <div class="skills">
+                    <% const skill=data.skills.split(",") %>
+                    <% skill.forEach(item=>{ %>
+
+                        <span><%= item.trim() %></span>
+                    <% }) %>   
+
+                    </div>
+
+                </section>
+
+
+                <!-- ADDITIONAL INFORMATION -->
+
+                <section class="detail-card">
+
+                    <h2>Additional Information</h2>
+
+                    <div class="info-grid">
+
+                        <div class="info-item">
+
+                            <span>Job Type</span>
+
+                            <strong> <%= data.jobType %></strong>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <span>Experience</span>
+
+                            <strong> <%= data.experience %> years</strong>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <span>Salary</span>
+
+                            <strong> <%= data.salary %></strong>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <span>Location</span>
+
+                            <strong> <%= data.location %></strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- RIGHT COLUMN -->
+
+            <div class="right-column">
+
+
+                <!-- DEADLINE CARD -->
+
+                <section class="side-card">
+
+                    <h3>Application Deadline</h3>
+
+                    <div class="deadline">
+
+                        <span class="calendar-icon">
+                            📅
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                 <%= data.deadline %>
+                            </strong>
+
+                            <p>
+                                Application deadline
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- JOB STATUS -->
+
+                <section class="side-card">
+
+                    <h3>Job Status</h3>
+
+                    <div class="status-box">
+
+                        <span class="status-dot"></span>
+
+                        <div>
+
+                            <strong>Active</strong>
+
+                            <p>
+                                This job is currently visible
+                                to candidates.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- POSTED INFORMATION -->
+
+                <section class="side-card">
+
+                    <h3>Job Information</h3>
+
+                    <div class="side-info">
+
+                        <div>
+                            <span>Posted On</span>
+                            <strong>15 Aug 2026</strong>
+                        </div>
+
+                        <div>
+                            <span>Applications</span>
+                            <strong>0</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

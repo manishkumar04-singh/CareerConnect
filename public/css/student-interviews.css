@@ -1,0 +1,391 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f6f8fc;
+
+    color: #172033;
+}
+
+
+.page-container {
+
+    width: 90%;
+
+    max-width: 1050px;
+
+    margin: 40px auto;
+}
+
+
+
+/* =========================
+   HEADER
+========================= */
+
+.page-header {
+
+    margin-bottom: 28px;
+}
+
+
+.back-link {
+
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    margin-bottom: 18px;
+}
+
+
+.back-link:hover {
+
+    color: #2563eb;
+}
+
+
+.page-header h1 {
+
+    font-size: 28px;
+
+    margin-bottom: 7px;
+}
+
+
+.page-header p {
+
+    color: #7c8697;
+
+    font-size: 12px;
+}
+
+
+
+/* =========================
+   INTERVIEW CARD
+========================= */
+
+.interview-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    margin-bottom: 18px;
+
+    transition: 0.2s;
+}
+
+
+.interview-card:hover {
+
+    border-color: #cfd8e6;
+
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.04);
+}
+
+
+
+/* =========================
+   TOP
+========================= */
+
+.interview-top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+
+.job-icon {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 21px;
+
+    flex-shrink: 0;
+}
+
+
+.job-info {
+
+    flex: 1;
+}
+
+
+.job-info h2 {
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+
+.job-info p {
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+.scheduled-badge {
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #ecfdf5;
+
+    color: #059669;
+
+    font-size: 9px;
+
+    font-weight: 600;
+}
+
+
+
+/* =========================
+   DETAILS
+========================= */
+
+.interview-details {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    padding: 22px 0;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+
+.detail {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.detail span,
+.location-section span,
+.instructions span {
+
+    color: #94a0b1;
+
+    font-size: 9px;
+
+    font-weight: 500;
+}
+
+
+.detail strong {
+
+    color: #334155;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+
+/* =========================
+   LOCATION
+========================= */
+
+.location-section {
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+
+.location-section p {
+
+    margin-top: 8px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    word-break: break-word;
+}
+
+
+
+/* =========================
+   INSTRUCTIONS
+========================= */
+
+.instructions {
+
+    padding-top: 20px;
+}
+
+
+.instructions p {
+
+    margin-top: 8px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    white-space: pre-line;
+}
+
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 14px;
+
+    padding: 60px 30px;
+
+    text-align: center;
+}
+
+
+.empty-icon {
+
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+
+.empty-card h2 {
+
+    font-size: 18px;
+
+    margin-bottom: 8px;
+}
+
+
+.empty-card p {
+
+    color: #7c8697;
+
+    font-size: 11px;
+
+    margin-bottom: 20px;
+}
+
+
+.jobs-button {
+
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+.jobs-button:hover {
+
+    background: #1d4ed8;
+}
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .page-container {
+
+        width: 94%;
+    }
+
+
+    .interview-top {
+
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+
+    .scheduled-badge {
+
+        margin-left: 65px;
+    }
+
+
+    .interview-details {
+
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+}
+

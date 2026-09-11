@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment variables / secrets
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Uploaded resumes
+public/uploads/resumes/
+
+# Temporary files
+*.tmp

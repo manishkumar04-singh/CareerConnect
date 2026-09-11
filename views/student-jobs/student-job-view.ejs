@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Details | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/student-job-view.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/student-dashboard" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/student/-jobs" class="nav-item active">
+                <span class="nav-icon">▤</span>
+                Find Jobs
+            </a>
+
+            <a href="/student-saved-jobs" class="nav-item">
+                <span class="nav-icon">♡</span>
+                Saved Jobs
+            </a>
+
+            <a href="/student/application" class="nav-item">
+                <span class="nav-icon">▣</span>
+                My Applications
+            </a>
+
+            <a href="/student/profile" class="nav-item">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <a href="/student/jobs" class="back-button">
+                    ← Back to Jobs
+                </a>
+
+                <h1>Job Details</h1>
+
+                <p>
+                    Review the job opportunity and application details.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- JOB HEADER CARD -->
+
+        <section class="job-header-card">
+
+            <div class="job-header-left">
+
+                <div class="job-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <h2><%= data.jobTitle %></h2>
+
+                    <p class="company">
+                        <%= data.company %>
+                    </p>
+
+                    <div class="job-meta">
+
+                        <span>📍 <%= data.location %></span>
+
+                        <span>💼 <%= data.jobtype %></span>
+
+                        <span>⌛ <%= data.experience %> years</span>
+
+                        <span>💰 <%= data.salary %></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button class="save-button">
+                ♡
+            </button>
+
+        </section>
+
+
+        <!-- MAIN GRID -->
+
+        <div class="content-grid">
+
+
+            <!-- LEFT SIDE -->
+
+            <div class="job-content">
+
+
+                <!-- DESCRIPTION -->
+
+                <section class="content-card">
+
+                    <h3>Job Description</h3>
+
+                    <p>
+                        <%= data.description %>
+                    </p>
+
+                    <p>
+                        You will work closely with other developers,
+                        designers and product teams to build reliable
+                        and high-quality software solutions.
+                    </p>
+
+                </section>
+
+
+                <!-- SKILLS -->
+
+                <section class="content-card">
+
+                    <h3>Required Skills</h3>
+
+                    <div class="skills">
+                    <% const skill=data.skills.split(",") %>
+                    <% skill.forEach(item =>{ %>
+                        <span><%= item.trim() %></span>
+                    <% }) %>
+
+                    </div>
+
+                </section>
+
+
+                <!-- RESPONSIBILITIES -->
+
+                <section class="content-card">
+
+                    <h3>Responsibilities</h3>
+
+                    <ul class="responsibilities">
+                    <% const responsibilitie= data.responsibilities.split("."); %>
+                    <% responsibilitie.forEach(item=>{ %>
+                        <li>
+                            <%= item.trim() %>
+                        </li>
+                    <% }) %>
+
+                    </ul>
+
+                </section>
+
+
+                <!-- QUALIFICATIONS -->
+
+                <section class="content-card">
+
+                    <h3>Qualifications</h3>
+
+                    <ul class="responsibilities">
+                    <% const qualification= data.qualifications.split("."); %>
+                    <% qualification.forEach(itemm=>{ %>
+                        <li>
+                           <%= itemm.trim() %>
+                        </li>
+                    <% }) %>
+
+                    </ul>
+
+                </section>
+
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+
+            <aside class="job-sidebar">
+
+
+                <!-- APPLY CARD -->
+
+                <section class="apply-card">
+
+                    <h3>Interested in this job?</h3>
+
+                    <p>
+                        Take the next step towards your career.
+                    </p>
+
+                    <a href="/student/job/apply/<%= data._id %>" >
+                        Apply Now
+                    </a>
+                    <a href="/student/job/saved/<%= data._id %>">
+                        <button class="save-job-button">
+                            ♡ Save Job
+                        </button>
+                    </a>
+                </section>
+
+
+                <!-- JOB INFORMATION -->
+
+                <section class="info-card">
+
+                    <h3>Job Information</h3>
+
+                    <div class="info-item">
+
+                        <span>Job Type</span>
+
+                        <strong><%= data.jobtype %></strong>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <span>Experience</span>
+
+                        <strong><%= data.experience %> years</strong>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <span>Salary</span>
+
+                        <strong><%= data.salary %></strong>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <span>Location</span>
+
+                        <strong><%= data.location %></strong>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <span>Deadline</span>
+
+                        <strong><%= data.deadline %></strong>
+
+                    </div>
+
+                </section>
+
+
+                <!-- COMPANY -->
+
+                <section class="company-card">
+
+                    <h3>About the Company</h3>
+
+                    <div class="company-name">
+
+                        <div class="company-icon">
+                            <%= data.company.charAt(0).toUpperCase() %>
+                        </div>
+
+                        <div>
+
+                            <strong><%= data.company %></strong>
+
+                            <span>Technology Company</span>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+                        A growing technology organization providing
+                        opportunities for talented professionals.
+                    </p>
+
+                </section>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

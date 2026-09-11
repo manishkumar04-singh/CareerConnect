@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/student-dashboard.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">C</div>
+                <span>CareerConnect</span>
+            </div>
+
+            <div class="menu-section">
+
+                <p class="menu-title">MAIN MENU</p>
+
+                <a href="/student/dashboard" class="menu-item active">
+                    <span>⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="/student-jobs" class="menu-item">
+                    <span>⌕</span>
+                    <span>Find Jobs</span>
+                </a>
+
+                <a href="/student/application" class="menu-item">
+                    <span>▣</span>
+                    <span>My Applications</span>
+                </a>
+
+                <a href="/student-saved-jobs" class="menu-item">
+                    <span>☆</span>
+                    <span>Saved Jobs</span>
+                </a>
+
+                <p class="menu-title second-title">ACCOUNT</p>
+
+                <a href="/student/profile" class="menu-item">
+                    <span>◯</span>
+                    <span>My Profile</span>
+                </a>
+
+                <a href="/student/setting" class="menu-item">
+                    <span>⚙</span>
+                    <span>Settings</span>
+                </a>
+
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <a href="/logout" class="menu-item logout">
+                    <span>↪</span>
+                    <span>Logout</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div class="mobile-logo">
+                    CareerConnect
+                </div>
+
+                <div class="search-box">
+
+                    <span class="search-icon">⌕</span>
+
+                    <input
+                        type="text"
+                        placeholder="Search jobs, companies..."
+                    >
+
+                </div>
+
+                <div class="topbar-right">
+                
+                    <div class="notification-wrapper">
+                
+                        <button class="notification" id="notificationBtn">
+                            🔔
+                
+                            <% if(unreadCount> 0) { %>
+                                <span class="notification-dot">
+                                    <%= unreadCount %>
+                                </span>
+                                <% } %>
+                        </button>
+                
+                
+                        <div class="notification-dropdown" id="notificationDropdown">
+                
+                            <div class="notification-header">
+                
+                                <h3>Notifications</h3>
+                
+                                <span>
+                                    <%= unreadCount %> unread
+                                </span>
+
+                                <% if(unreadCount> 0) { %>
+                                
+                                    <form action="/student/notifications/read-all" method="POST">
+                                
+                                        <button type="submit" class="mark-all-read">
+                                            Mark all as read
+                                        </button>
+                                
+                                    </form>
+                                
+                                <% } %>
+                
+                            </div>
+                
+                
+                            <div class="notification-list">
+                
+                                <% if(notification.length===0) { %>
+                
+                                    <div class="no-notifications">
+                                        No notifications yet.
+                                    </div>
+                
+                                <% } else { %>
+                                
+                                    <% notification.forEach(item=> { %>
+                                        <a href="/student/notification/<%= item._id %>">
+                                            <div class="notification-item <%= !item.isRead ? 'unread' : '' %>">
+                                        
+                                                <div class="notification-item-icon">
+                                        
+                                                    <% if(item.type==="Shortlist" ) { %>
+                                                        ★
+                                                    <% } else if(item.type==="Reject" ) { %>
+                                                        !
+                                                    <% } else if(item.type==="Interview" ) { %>
+                                                        📅
+                                                    <% } else if(item.type==="InterviewUpdate" ) { %>
+                                                        ↻
+                                                    <% } else { %>
+                                                        🔔
+                                                    <% } %>
+                                        
+                                                </div>
+                                        
+                                        
+                                                <div class="notification-content">
+                                        
+                                                    <h4>
+                                                        <%= item.title %>
+                                                    </h4>
+                                        
+                                                    <p>
+                                                        <%= item.message %>
+                                                    </p>
+                                        
+                                                    <span class="notification-time">
+                                                        <%= item.createdAt %>
+                                                    </span>
+                                        
+                                                </div>
+                                        
+                                            </div>
+                                        </a>
+                                    <% }) %>
+                
+                                <% } %>
+                
+                            </div>
+                
+                        </div>
+                
+                    </div>
+
+                    <div class="profile">
+
+                        <div class="profile-image">
+                            M
+                        </div>
+
+                        <div class="profile-info">
+                            <strong><%= name %></strong>
+                            <span>Student Account</span>
+                        </div>
+
+                        <span class="profile-arrow">⌄</span>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= PAGE CONTENT ================= -->
+
+            <section class="content">
+
+                <!-- WELCOME -->
+
+                <div class="welcome-section">
+
+                    <div>
+                        <p class="welcome-small">STUDENT DASHBOARD</p>
+
+                        <h1>
+                            Good morning, <%= name %> 👋
+                        </h1>
+
+                        <p class="welcome-text">
+                            Find the right opportunities and take the next step
+                            towards your career.
+                        </p>
+                    </div>
+
+                    <a class="profile-button" href="/student/profile/edit">
+                        Complete Profile
+                    </a>
+
+                </div>
+
+
+                <!-- ================= STATISTICS ================= -->
+
+                <div class="stats-container">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon application-icon">
+                            ▣
+                        </div>
+
+                        <div class="stat-details">
+
+                            <p>Applications</p>
+
+                            <h2><%= countApplication %></h2>
+
+                            <span class="positive">
+                                ↑ 8% this month
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon saved-icon">
+                            ☆
+                        </div>
+
+                        <div class="stat-details">
+
+                            <p>Saved Jobs</p>
+
+                            <h2>0<%= countSave %></h2>
+
+                            <span>
+                                Jobs saved
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon interview-icon">
+                            ✓
+                        </div>
+
+                        <div class="stat-details">
+
+                            <p>Interviews</p>
+
+                            <h2>0<%= countInterview %></h2>
+
+                            <span class="positive">
+                                <%= countInter %>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon profile-icon">
+                            %
+                        </div>
+
+                        <div class="stat-details">
+
+                            <p>Profile Completion</p>
+
+                            <h2><%= completionRate %>%</h2>
+
+                            <span>
+                                Keep improving
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= LOWER SECTION ================= -->
+
+                <div class="dashboard-grid">
+
+
+                    <!-- RECOMMENDED JOBS -->
+
+                    <section class="jobs-section">
+
+                        <div class="section-header">
+
+                            <div>
+                                <h2>Recommended Jobs</h2>
+
+                                <p>
+                                    Opportunities based on your profile
+                                </p>
+                            </div>
+
+                            <a href="/student-jobs">
+                                View all →
+                            </a>
+
+                        </div>
+
+
+                        <!-- JOB CARD -->
+                        <% first3.forEach(item1=>{ %>
+                        <div class="job-card">
+
+                            <div class="company-logo">
+                                A
+                            </div>
+
+                            <div class="job-info">
+
+                                <h3>
+                                    <%= item1.jobTitle %>
+                                </h3>
+
+                                <p>
+                                    <%= item1.company %>
+                                </p>
+
+                                <div class="job-meta">
+
+                                    <span>📍 <%= item1.location %></span>
+
+                                    <span>💼 <%= item1.jobType %></span>
+
+                                    <span>💰 <%= item1.salary %></span>
+
+                                </div>
+
+                            </div>
+                            <a href="/student/job-view/<%= item1._id %>">
+                                <button class="job-button">
+                                    View Job
+                                </button>
+                            </a>
+                        </div>
+                        <% }) %>
+
+                    </section>
+
+
+                    <!-- ================= QUICK ACTIONS ================= -->
+
+                    <section class="quick-section">
+
+                        <div class="section-header">
+
+                            <div>
+
+                                <h2>Quick Actions</h2>
+
+                                <p>
+                                    Manage your career
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    <a href="/student/profile">
+                        <div class="quick-card">
+                        
+                            <div class="quick-icon">
+                                +
+                            </div>
+
+                            <div>
+                                <h3>Complete Profile</h3>
+
+                                <p>
+                                    Add skills and experience
+                                </p>
+                            </div>
+
+                            <span>→</span>
+                            
+                        </div>
+                    </a>
+
+                    <a href="/student/profile/edit">
+                        <div class="quick-card">
+
+                            <div class="quick-icon">
+                                ↑
+                            </div>
+
+                            <div>
+                                <h3>Upload Resume</h3>
+
+                                <p>
+                                    Keep your resume updated
+                                </p>
+                            </div>
+
+                            <span>→</span>
+
+                        </div>
+                    </a>
+
+                    <a href="/student-jobs">
+
+                        <div class="quick-card">
+
+                            <div class="quick-icon">
+                                ★
+                            </div>
+
+                            <div>
+                                <h3>Explore Jobs</h3>
+
+                                <p>
+                                    Discover new opportunities
+                                </p>
+                            </div>
+
+                            <span>→</span>
+
+                        </div>
+                    </a>
+                    
+                    </section>
+
+                </div>
+
+
+                <!-- ================= RECENT APPLICATIONS ================= -->
+
+                <section class="applications-section">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>Recent Applications</h2>
+
+                            <p>
+                                Track your latest job applications
+                            </p>
+
+                        </div>
+
+                        <a href="#">
+                            View all →
+                        </a>
+
+                    </div>
+
+
+                    <div class="application-table">
+
+                        <div class="table-header">
+
+                            <span>JOB</span>
+                            <span>COMPANY</span>
+                            <span>DATE</span>
+                            <span>STATUS</span>
+
+                        </div>
+
+                        <% array.forEach(item=>{ %>
+                        <div class="table-row">
+
+                            <div class="table-job">
+                                <%= item.jobTitle %>
+                            </div>
+
+                            <div>
+                                <%= item.company %>
+                            </div>
+
+                            <div>
+                                <%= item.appliedDate %>
+                            </div>
+
+                            <div>
+                                <span class="status pending">
+                                    <%= item.status %>
+                                </span>
+                            </div>
+
+                        </div>
+                        <% }) %>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script>
+        const dataElement=document.querySelectorAll(".status.pending");
+        const notificationBtn=document.getElementById("notificationBtn");
+        const notificationPanel=document.getElementById("notificationDropdown");
+        dataElement.forEach(item=>{
+            if(item.innerText.trim()==='Shortlist'){
+                item.style.color= "#15803d";
+                item.style.background= "#dcfce7";
+            }
+            if(item.innerText.trim()==='Reject'){
+                item.style.color= "#dc2626";
+                item.style.background= "#fee2e2";
+            }
+            if(item.innerText.trim()==='Applied'){
+                item.style.color= "#fef3c7";
+                item.style.background= "#b45309";
+            }
+
+        })
+
+        notificationBtn.addEventListener("click", () => {
+
+            if (notificationPanel.classList.contains("active")) {
+                notificationPanel.classList.remove("active");
+            } else {
+                notificationPanel.classList.add("active");
+            }
+
+        });
+    
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/student-settings.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">C</div>
+                <span>CareerConnect</span>
+            </div>
+
+            <div class="menu-section">
+
+                <p class="menu-title">MAIN MENU</p>
+
+                <a href="/recruiter-dashboard" class="menu-item">
+                    <span>⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="/recruiter-jobs" class="menu-item">
+                    <span>⌕</span>
+                    <span>Find Jobs</span>
+                </a>
+
+                <a href="/recruiter/application" class="menu-item">
+                    <span>▣</span>
+                    <span>My Applications</span>
+                </a>
+
+                <a href="/recruiter-saved-jobs" class="menu-item">
+                    <span>☆</span>
+                    <span>Saved Jobs</span>
+                </a>
+
+                <a href="/recruiter/interview" class="menu-item">
+                    <span>✓</span>
+                    <span>Interviews</span>
+                </a>
+
+                <p class="menu-title second-title">ACCOUNT</p>
+
+                <a href="/recruiter/profile" class="menu-item">
+                    <span>◯</span>
+                    <span>My Profile</span>
+                </a>
+
+                <a href="/recruiter/settings" class="menu-item active">
+                    <span>⚙</span>
+                    <span>Settings</span>
+                </a>
+
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <a href="/logout" class="menu-item logout">
+                    <span>↪</span>
+                    <span>Logout</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Settings</h1>
+                    <p>Manage your CareerConnect account and security.</p>
+                </div>
+
+                <div class="profile">
+
+                    <div class="profile-image">
+                        <%= name.charAt(0).toUpperCase() %>
+                    </div>
+
+                    <div class="profile-info">
+                        <strong><%= name %></strong>
+                        <span>Recruiter Account</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= SETTINGS CONTENT ================= -->
+
+            <section class="settings-content">
+
+                <div class="settings-heading">
+
+                    <p class="settings-label">
+                        ACCOUNT SETTINGS
+                    </p>
+
+                    <h2>Manage your account</h2>
+
+                    <p>
+                        Update your login information and keep your account secure.
+                    </p>
+
+                </div>
+
+
+                <!-- ACCOUNT INFORMATION -->
+
+                <div class="account-card">
+
+                    <div class="account-icon">
+                        ◯
+                    </div>
+
+                    <div class="account-details">
+
+                        <span class="small-label">
+                            SIGNED IN AS
+                        </span>
+
+                        <h3><%= name %></h3>
+
+                        <p><%= email %></p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SETTINGS CARDS -->
+
+                <div class="settings-grid">
+
+
+                    <!-- CHANGE PASSWORD -->
+
+                    <a href="/recruiter/change-password" class="setting-card">
+
+                        <div class="setting-icon password-icon">
+                            🔐
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Change Password</h3>
+
+                            <p>
+                                Update your password or recover it using
+                                email verification.
+                            </p>
+
+                        </div>
+
+                        <div class="setting-arrow">
+                            →
+                        </div>
+
+                    </a>
+
+
+                    <!-- CHANGE EMAIL -->
+
+                    <button type="button" class="setting-card" id="openChangeEmail">
+                    
+                        <div class="setting-icon email-icon">
+                            ✉
+                        </div>
+                    
+                        <div class="setting-info">
+                    
+                            <h3>Change Email</h3>
+                    
+                            <p>
+                                Update the email address associated with
+                                your CareerConnect account.
+                            </p>
+                    
+                        </div>
+                    
+                        <div class="setting-arrow">
+                            →
+                        </div>
+                    
+                    </button>
+
+                </div>
+
+
+                <!-- SECURITY INFO -->
+
+                <div class="security-card">
+
+                    <div class="security-icon">
+                        🛡
+                    </div>
+
+                    <div>
+
+                        <h3>Account Security</h3>
+
+                        <p>
+                            Never share your password or verification codes
+                            with anyone. CareerConnect will never ask you
+                            to provide your password by email.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+    
+    <!-- ================= CHANGE EMAIL MODAL ================= -->
+    
+    <div class="change-email-overlay" id="changeEmailModal">
+    
+        <!-- STAGE 1 : ENTER NEW EMAIL -->
+    
+        <div class="change-email-box email-stage">
+    
+            <button type="button" class="change-email-close" id="closeChangeEmail">
+                ×
+            </button>
+    
+            <div class="change-email-icon">
+                ✉
+            </div>
+    
+            <h2>Change Email Address</h2>
+    
+            <p class="change-email-text">
+                Enter your new email address.
+                We’ll send a verification code before updating your account.
+            </p>
+    
+    
+            <form action="/recruiter/change-email/send-otp" method="POST">
+    
+                <div class="change-email-group">
+    
+                    <label for="newEmail">
+                        New Email Address
+                    </label>
+    
+                    <input type="email" id="newEmail" name="newEmail" placeholder="Enter your new email address" required>
+    
+                </div>
+    
+    
+                <!-- SPACE FOR ERROR MESSAGE -->
+                <% if( (typeof emailDuplicate !== "undefined" && emailDuplicate) || (typeof sendingOtp !== "undefined" && !sendingOtp)) { %>
+                    <p class="change-email-message"><%= msg %></p>
+                <% } %>
+    
+    
+                <button type="submit" class="change-email-primary-button">
+                    Send Verification Code
+                </button>
+    
+            </form>
+    
+    
+            <button type="button" class="change-email-cancel" id="cancelChangeEmail">
+    
+                Cancel
+    
+            </button>
+    
+        </div>
+    
+    
+        <!-- STAGE 2 : VERIFY OTP -->
+    
+        <div class="change-email-box email-otp-stage">
+    
+            <button type="button" class="change-email-close">
+                ×
+            </button>
+    
+            <div class="change-email-icon">
+                🔐
+            </div>
+    
+            <h2>Verify New Email</h2>
+    
+            <p class="change-email-text">
+                Enter the 5-digit verification code sent to your new email address.
+            </p>
+    
+    
+            <form action="/recruiter/change-email/verify-otp" method="POST">
+    
+                <div class="change-email-group">
+    
+                    <label for="emailOtp">
+                        Verification Code
+                    </label>
+    
+                    <input type="text" id="emailOtp" name="otp" maxlength="5" placeholder="Enter 5-digit OTP" required>
+    
+                </div>
+    
+    
+                <!-- SPACE FOR OTP ERROR -->
+                <% if (typeof otpVerified !== "undefined" && !otpVerified) { %>
+                    <p class="change-email-message"><%= msg %></p>
+                <% } %>
+    
+                <button type="submit" class="change-email-primary-button">
+                    Verify & Change Email
+                </button>
+    
+            </form>
+    
+    
+            <div class="change-email-resend">
+    
+                <span>Didn't receive the code?</span>
+    
+                <form action="/recruiter/change-email/resend-otp" method="POST">
+    
+                    <button type="submit">
+                        Resend OTP
+                    </button>
+    
+                </form>
+    
+            </div>
+    
+        </div>
+    
+    </div>
+
+    <% if( (typeof emailDuplicate !== "undefined" && emailDuplicate) || (typeof sendingOtp !== "undefined" && !sendingOtp)) { %>
+        <script>
+            document.getElementById("changeEmailModal").classList.add("active");
+        </script>
+    <% } %>
+
+    <% if ( (typeof sendingOtp !== "undefined" && sendingOtp) || (typeof otpVerified !== "undefined" && !otpVerified)) { %>
+        <script>
+            document.getElementById("changeEmailModal").classList.add("active");
+            document.querySelector(".email-stage").classList.add("inactive");
+            document.querySelector(".email-otp-stage").classList.add("active");
+        </script>
+    <% } %>    
+    <script>
+        const emailBtn=document.getElementById("openChangeEmail");
+        const model=document.getElementById("changeEmailModal");
+        const closeEmailBtn=document.querySelector(".change-email-close");
+        const cancelEmailBtn=document.querySelector(".change-email-cancel");
+        emailBtn.addEventListener("click",()=>{
+            model.classList.add("active");
+        })
+
+        closeEmailBtn.addEventListener("click",()=>{
+            model.classList.remove("active");
+        })
+
+        cancelEmailBtn.addEventListener("click",()=>{
+            model.classList.remove("active");
+        })
+
+    </script>
+
+</body>
+
+</html>

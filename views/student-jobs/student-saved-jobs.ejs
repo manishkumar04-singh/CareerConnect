@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Saved Jobs | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/student-saved-jobs.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                C
+            </span>
+
+            <span>
+                CareerConnect
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/student-dashboard" class="nav-item">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/student/jobs" class="nav-item">
+
+                <span class="nav-icon">
+                    💼
+                </span>
+
+                Find Jobs
+
+            </a>
+
+
+            <a href="/student/application" class="nav-item">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                My Applications
+
+            </a>
+
+
+            <a href="/student/saved-jobs" class="nav-item active">
+
+                <span class="nav-icon">
+                    ♡
+                </span>
+
+                Saved Jobs
+
+            </a>
+
+
+            <a href="/student/profile" class="nav-item">
+
+                <span class="nav-icon">
+                    ◎
+                </span>
+
+                Profile
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+
+                <span class="nav-icon">
+                    ↪
+                </span>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Saved Jobs
+                </h1>
+
+                <p>
+                    Keep track of jobs you are interested in and apply when you're ready.
+                </p>
+
+            </div>
+
+
+            <a href="/student/jobs" class="browse-button">
+                + Browse Jobs
+            </a>
+
+        </div>
+
+
+
+        <!-- =========================
+             SAVED JOBS COUNT
+        ========================== -->
+
+        <div class="job-count">
+
+            <span>
+                Total Saved Jobs
+            </span>
+
+            <strong>
+                <%=  countSave %>
+            </strong>
+
+        </div>
+
+
+
+        <!-- =========================
+             SAVED JOB LIST
+        ========================== -->
+
+        <section class="saved-job-list">
+
+
+            <!-- JOB CARD 1 -->
+            <% array.forEach(item=>{ %>
+            <article class="job-card">
+
+
+                <div class="job-main">
+
+
+                    <div class="job-icon">
+                        💼
+                    </div>
+
+
+                    <div class="job-info">
+
+
+                        <h2>
+                            <%= item.jobTitle %>
+                        </h2>
+
+
+                        <p class="company">
+                            <%= item.company %>
+                        </p>
+
+
+                        <div class="job-details">
+
+                            <span>
+                                📍 <%= item.location %>
+                            </span>
+
+                            <span>
+                                💼 <%= item.jobType %>
+                            </span>
+
+                            <span>
+                                💰 <%= item.salary %>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="job-actions">
+
+                    <a href="/student/job-view/<%= item.id %>" class="view-button">
+                        View Job
+                    </a>
+
+                    <a href="/student/remove-job/<%= item.id %>">
+                        <button type="button" class="remove-button">
+                    
+                            ♡ Remove
+                    
+                        </button>
+                    </a>
+                </div>
+
+
+            </article>
+            <% }) %>
+
+
+            
+
+        </section>
+
+
+
+        <!-- =========================
+             EMPTY STATE
+        ========================== -->
+
+        <!--
+        We will show this dynamically later
+        when the student has no saved jobs.
+        -->
+
+        
+    <% if(countSave === 0){ %>
+        <section class="empty-card">
+
+            <div class="empty-icon">
+                ♡
+            </div>
+
+            <h2>
+                No Saved Jobs
+            </h2>
+
+            <p>
+                You haven't saved any jobs yet.
+                Browse available opportunities and save jobs
+                you're interested in.
+            </p>
+
+            <a href="/student/jobs" class="browse-button">
+                Browse Jobs
+            </a>
+
+        </section>
+    <% } %>
+        
+
+
+    </main>
+
+
+</body>
+
+</html>

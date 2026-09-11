@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Jobs</title>
+
+    <link rel="stylesheet" href="/css/recruiter-jobs.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/recruiter/dashboard" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/recruiter/job/post" class="nav-item">
+                <span class="nav-icon">＋</span>
+                Post a Job
+            </a>
+
+            <a href="/recruiter/jobs" class="nav-item active">
+                <span class="nav-icon">▤</span>
+                My Jobs
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">♙</span>
+                Applications
+            </a>
+
+            <a href="/recruiter/profile" class="nav-item">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>My Jobs</h1>
+                <p>Manage the jobs you have posted.</p>
+            </div>
+
+            <div class="profile-mini">
+
+                <div class="profile-avatar">
+                    R
+                </div>
+
+                <div class="profile-mini-info">
+                    <strong>Recruiter</strong>
+                    <span>Recruiter Account</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+        
+            <% if(message) { %>
+        
+                <div class="popup-message" id="popupMessage">
+                    <span>
+                        <%= message %>
+                    </span>
+        
+                    <button type="button" onclick="this.parentElement.remove()">
+                        ×
+                    </button>
+                </div>
+        
+            <% } %>
+
+            <div>
+                <h2>Your Job Posts</h2>
+
+                <p>
+                    View and manage all the opportunities you have created.
+                </p>
+            </div>
+
+            <a href="/recruiter/job/post" class="post-button">
+                + Post New Job
+            </a>
+
+        </section>
+
+
+        <!-- JOB COUNT -->
+
+        <div class="job-count">
+
+            <span>Total Jobs</span>
+
+            <strong><%= data.length %></strong>
+
+        </div>
+
+
+        <!-- JOB LIST -->
+
+        <section class="job-list">
+
+
+            <!-- JOB CARD 1 -->
+            <% data.forEach(item =>{ %>
+            <article class="job-card">
+
+                <div class="job-main">
+
+                    <div class="job-icon">
+                        💼
+                    </div>
+
+                    <div class="job-info">
+
+                        <div class="job-title-row">
+                    
+
+                            <h3><%= item.jobTitle %></h3>
+
+                            <span class="status active-status">
+                                Active
+                            </span>
+
+                        </div>
+
+                        <p class="company">
+                            <%= item.company %>
+                        </p>
+
+                        <div class="job-details">
+
+                            <span>📍 <%= item.location %></span>
+
+                            <span>💼 <%= item.jobType %></span>
+
+                            <span>⌛ <%= item.experience %> years</span>
+
+                            <span>💰 <%= item.salary %></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="job-bottom">
+
+                    <div class="deadline">
+
+                        <span>Application Deadline</span>
+
+                        <strong><%= item.deadline %></strong>
+
+                    </div>
+                    
+
+                    <div class="job-actions">
+
+                        <a href="/recruiter/job/<%= item._id %>" class="view-button">
+                            View
+                        </a>
+
+                        <a href="/recruiter/job/edit/<%= item._id %>" class="edit-button">
+                            Edit
+                        </a>
+
+                        <a href="/recruiter/job/delete/<%= item._id %>">
+                            Delete
+                        </a>
+
+                    </div>
+                    
+                </div>
+
+            </article>
+            <% }) %>
+
+
+
+
+        </section>
+
+
+        <!-- EMPTY STATE
+             We'll show this later with EJS
+             when there are no jobs.
+        -->
+        
+    <% if(data.length ===0) { %>   
+        <section class="empty-card">
+
+            <div class="empty-icon">
+                📋
+            </div>
+
+            <h3>No Jobs Posted Yet</h3>
+
+            <p>
+                You haven't posted any jobs yet.
+                Create your first job opportunity to start finding candidates.
+            </p>
+
+            <a href="/recruiter/job/post" class="post-button">
+                + Post Your First Job
+            </a>
+
+        </section>
+    <% } %>
+
+
+    </main>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Recruiter Profile</title>
+
+    <link rel="stylesheet" href="/css/recruiter-profile-edit.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/recruiter/dashboard" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">＋</span>
+                Post a Job
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▤</span>
+                My Jobs
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">♙</span>
+                Applications
+            </a>
+
+            <a href="/recruiter/profile" class="nav-item active">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+            <a href="/recruiter/setting" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                Setting
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Edit Profile</h1>
+                <p>Update your professional information.</p>
+            </div>
+
+            <div class="profile-mini">
+
+                <div class="profile-avatar">
+                    R
+                </div>
+
+                <div class="profile-mini-info">
+                    <strong>Recruiter</strong>
+                    <span>Recruiter Account</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- EDIT PROFILE CARD -->
+
+        <section class="edit-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h2>Professional Information</h2>
+
+                    <p>
+                        Keep your recruiter and company information up to date.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form action="/recruiter/profile/edit" method="POST">
+
+
+                <!-- BASIC INFORMATION -->
+
+                <div class="form-section">
+
+                    <h3>Basic Information</h3>
+
+                    <div class="form-grid">
+
+
+                        <!-- NAME -->
+
+                        <div class="form-group">
+
+                            <label for="name">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your full name"
+                                value=""
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value="<%=email%>"
+                                
+                                readonly
+                            >
+                            <small class="email-note">
+                                To change your email, use
+                                <a href="/recruiter/setting">Account Settings</a>.
+                            </small>
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Phone
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter your phone number"
+                                value=""
+                            >
+
+                        </div>
+
+
+                        <!-- LOCATION -->
+
+                        <div class="form-group">
+
+                            <label for="location">
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                name="location"
+                                placeholder="City, State"
+                                value=""
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COMPANY INFORMATION -->
+
+                <div class="form-section">
+
+                    <h3>Company Information</h3>
+
+                    <div class="form-grid">
+
+
+                        <!-- COMPANY -->
+
+                        <div class="form-group">
+
+                            <label for="company">
+                                Company Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="company"
+                                name="company"
+                                placeholder="Enter company name"
+                                value=""
+                            >
+
+                        </div>
+
+
+                        <!-- WEBSITE -->
+
+                        <div class="form-group">
+
+                            <label for="website">
+                                Company Website
+                            </label>
+
+                            <input
+                                type="url"
+                                id="website"
+                                name="website"
+                                placeholder="https://example.com"
+                                value=""
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ABOUT -->
+
+                <div class="form-section">
+
+                    <h3>About</h3>
+
+                    <div class="form-group">
+
+                        <label for="about">
+                            About Your Organization
+                        </label>
+
+                        <textarea
+                            id="about"
+                            name="about"
+                            rows="6"
+                            placeholder="Tell candidates about your organization..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-actions">
+
+                    <a
+                        href="/recruiter/profile"
+                        class="cancel-button"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

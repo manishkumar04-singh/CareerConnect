@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Jobs | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/student-jobs.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/student-dashboard" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/student-jobs" class="nav-item active">
+                <span class="nav-icon">▤</span>
+                Find Jobs
+            </a>
+
+            <a href="/student-saved-jobs" class="nav-item">
+                <span class="nav-icon">♡</span>
+                Saved Jobs
+            </a>
+
+            <a href="/student/application" class="nav-item">
+                <span class="nav-icon">▣</span>
+                My Applications
+            </a>
+
+            <a href="/student/profile" class="nav-item">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Find Jobs</h1>
+
+                <p>
+                    Discover opportunities that match your skills and career goals.
+                </p>
+            </div>
+
+            <div class="profile-mini">
+
+                <div class="profile-avatar">
+                    S
+                </div>
+
+                <div class="profile-mini-info">
+
+                    <strong>Student</strong>
+
+                    <span>Student Account</span>
+
+                </div>
+
+            </div>
+
+            <% if(message) { %>
+            
+                <div class="popup-message" id="popupMessage">
+                    <span>
+                        <%= message %>
+                    </span>
+            
+                    <button type="button" onclick="this.parentElement.remove()">
+                        ×
+                    </button>
+                </div>
+            
+            <% } %>
+
+        </header>
+
+
+        <!-- SEARCH SECTION -->
+
+        <section class="search-card">
+            <form action="/student-jobs" method="GET">
+                <div class="search-box">
+        
+                    <span class="search-icon">⌕</span>
+        
+                    <input type="text" name="search" placeholder="Search jobs by title, company or skills">
+        
+                </div>
+        
+                <div class="location-box">
+        
+                    <span>📍</span>
+        
+                    <input type="text" name="locationSearch" placeholder="Location">
+        
+                </div>
+        
+                <button class="search-button">
+                    Search
+                </button>
+        
+        </section>
+        
+        
+        <!-- PAGE CONTENT -->
+        
+        <div class="jobs-layout">
+        
+        
+            <!-- FILTERS -->
+        
+            <aside class="filter-card">
+        
+                <h3>Filters</h3>
+        
+        
+                <div class="filter-group">
+        
+                    <label>Job Type</label>
+        
+                    <label class="check-item">
+                        <input type="checkbox" name="jobType" value="Full-time">
+                        Full-time
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="checkbox" name="jobType" value="Part-time">
+                        Part-time
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="checkbox" name="jobType" value="Internship">
+                        Internship
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="checkbox" name="jobType" value="Contract">
+                        Contract
+                    </label>
+        
+                </div>
+        
+        
+                <div class="filter-group">
+        
+                    <label>Experience</label>
+        
+                    <label class="check-item">
+                        <input type="radio" name="experience" value="0">
+                        Fresher
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="radio" name="experience" value="1-2">
+                        1-2 years
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="radio" name="experience" value="2-3">
+                        2-3 years
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="radio" name="experience" value="3-5">
+                        3-5 years
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="radio" name="experience" value="5+">
+                        5+ years
+                    </label>
+        
+                </div>
+        
+        
+                <div class="filter-group">
+        
+                    <label>Location</label>
+        
+                    <label class="check-item">
+                        <input type="checkbox" name="location" value="Kolkata">
+                        Kolkata
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="checkbox" name="location" value="Bengaluru">
+                        Bengaluru
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="checkbox" name="location" value="Delhi">
+                        Delhi
+                    </label>
+        
+                    <label class="check-item">
+                        <input type="checkbox" name="location" value="Remote">
+                        Remote
+                    </label>
+        
+                </div>
+                </form>
+            </aside>
+        
+        
+            <!-- JOB RESULTS -->
+        
+            <section class="jobs-section">
+        
+                <div class="jobs-heading">
+        
+                    <div>
+                        <h2>Latest Opportunities</h2>
+        
+                        <p>Find your next career opportunity.</p>
+                    </div>
+        
+                    <select class="sort-select">
+        
+                        <option>Newest</option>
+                        <option>Oldest</option>
+                        <option>Salary: High to Low</option>
+                        <option>Salary: Low to High</option>
+        
+                    </select>
+        
+                </div>
+        
+        
+                <!-- JOB CARD -->
+                <% data.forEach(item=> { %>
+        
+        
+                    <article class="job-card">
+        
+                        <div class="job-top">
+        
+                            <div class="job-icon">
+                                💼
+                            </div>
+        
+                            <div class="job-info">
+        
+                                <h3>
+                                    <%= item.jobTitle %>
+                                </h3>
+        
+                                <p class="company">
+                                    <%= item.company %>
+                                </p>
+        
+                            </div>
+        
+                            <button class="save-button">
+                                ♡
+                            </button>
+        
+                        </div>
+        
+        
+                        <div class="job-details">
+        
+                            <span>📍 <%= item.location %></span>
+        
+                            <span>💼 <%= item.jobType %></span>
+        
+                            <span>⌛ <%= item.experience %> years</span>
+        
+                            <span>💰 <%= item.salary %></span>
+        
+                        </div>
+        
+        
+                        <div class="job-skills">
+                            <% const skill=item.skills.split(","); %>
+                                <% skill.forEach(list=>{ %>
+                                    <span>
+                                        <%= list.trim() %>
+                                    </span>
+                                <% }) %>
+                        
+                        </div>
+        
+        
+                        <div class="job-bottom">
+        
+                            <div class="deadline">
+        
+                                <span>Application Deadline</span>
+        
+                                <strong>
+                                    <%= item.deadline %>
+                                </strong>
+        
+                            </div>
+        
+                            <a href="/student/job-view/<%= item._id %>" class="view-button">
+        
+                                View Job
+        
+                            </a>
+        
+                        </div>
+        
+                    </article>
+        
+                <% }) %>
+                        <div class="pagination">
+
+                            <% if (currentPage >1) { %>
+                                <a href="/student-jobs?page=<%= currentPage - 1 %>" class="page-button">
+        
+                                    ← Previous
+        
+                                </a>
+                            <% } %>
+        
+                            <% for(let i=1;i<=totalPage;i++){ %>
+                                <a href="/student-jobs?page=<%= i %>" class="page-button <%= currentPage === i ? 'active' : '' %>">
+        
+                                    <%= i %>
+        
+                                </a>
+                            <% } %>
+
+                            <% if (totalPage > currentPage) { %>
+                                <a href="/student-jobs?page=<%= currentPage + 1 %>" class="page-button">
+
+                                    Next →
+
+                                </a>
+                            <% } %>
+
+                        </div>
+        
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recruiter Dashboard</title>
+
+    <link rel="stylesheet" href="/css/recruiter-dashboard.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>CareerConnect</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="#" class="nav-item active">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/recruiter/job/post" class="nav-item">
+                <span class="nav-icon">＋</span>
+                Post a Job
+            </a>
+
+            <a href="/recruiter/jobs" class="nav-item">
+                <span class="nav-icon">▤</span>
+                My Jobs
+            </a>
+
+            <a href="/recruiter/application" class="nav-item">
+                <span class="nav-icon">♙</span>
+                Applications
+            </a>
+
+            <a href="/recruiter/profile" class="nav-item">
+                <span class="nav-icon">◎</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Recruiter Dashboard</h1>
+                <p>Manage your jobs and find the right candidates.</p>
+            </div>
+
+            <div class="profile-mini">
+            
+                <div class="notification-wrapper">
+                    <button class="notification-button" type="button">
+                        <span class="notification-bell">🔔</span>
+                        <% if(unreadCount > 0) { %>
+                            <span class="notification-dot">
+                                <%= unreadCount %>
+                            </span>
+                            <% } %>
+                    </button>
+                </div>
+                
+                <div class="notification-dropdown" id="notificationDropdown">
+                
+                    <div class="notification-header">
+                
+                        <h3>Notifications</h3>
+                
+                        <span>
+                            <%= unreadCount %> unread
+                        </span>
+                
+                        <% if(unreadCount> 0) { %>
+                
+                            <form action="/recruiter/notifications/read-all" method="POST">
+                
+                                <button type="submit" class="mark-all-read">
+                                    Mark all as read
+                                </button>
+                
+                            </form>
+                
+                            <% } %>
+                
+                    </div>
+                
+                
+                    <div class="notification-list">
+                
+                        <% if(notification.length===0) { %>
+                
+                            <div class="no-notifications">
+                                No notifications yet.
+                            </div>
+                
+                            <% } else { %>
+                
+                                <% notification.forEach(item=> { %>
+                                    <a href="/recruiter/notification/<%= item._id %>"
+                                        class="notification-item">
+                
+                                            <div class="notification-item-icon">
+                
+                                                <% if(item.type==="ApplicationWithdrawn" ) { %>
+                                                    ★
+                                                    <% } else if(item.type==="NewApplication" ) { %>
+                                                        !
+                                                        <% } else { %>
+                                                                🔔
+                                                                <% } %>
+                
+                                            </div>
+                
+                
+                                            <div class="notification-content">
+                
+                                                <h4>
+                                                    <%= item.title %>
+                                                </h4>
+                
+                                                <p>
+                                                    <%= item.message %>
+                                                </p>
+                
+                                                <span class="notification-time">
+                                                    <%= item.createdAt %>
+                                                </span>
+                
+                                            </div>
+                
+                                        
+                                    </a>
+                                <% }) %>
+                
+                             <% } %>
+                
+                    </div>
+                
+                
+                
+                </div>
+                
+                <div class="profile-avatar">
+                    R
+                </div>
+
+                <div class="profile-mini-info">
+                    <strong>Recruiter</strong>
+                    <span>Recruiter Account</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome-card">
+
+            <div class="welcome-content">
+
+                <span class="welcome-label">
+                    RECRUITER PORTAL
+                </span>
+
+                <h2>Welcome back, <%= name %>! 👋</h2>
+
+                <p>
+                    Find talented candidates and manage your job opportunities
+                    from one place.
+                </p>
+
+                <a href="/recruiter/job/post" class="primary-button">
+                    + Post a New Job
+                </a>
+
+            </div>
+
+            <div class="welcome-illustration">
+                💼
+            </div>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon jobs-icon">
+                    💼
+                </div>
+
+                <div class="stat-info">
+                    <span>Total Jobs</span>
+                    <h3><%= countJobs %></h3>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon active-icon">
+                    ✓
+                </div>
+
+                <div class="stat-info">
+                    <span>Active Jobs</span>
+                    <h3><%= countJobs %></h3>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon application-icon">
+                    ♙
+                </div>
+
+                <div class="stat-info">
+                    <span>Applications</span>
+                    <h3><%= countApplication %></h3>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon candidate-icon">
+                    ★
+                </div>
+
+                <div class="stat-info">
+                    <span>Shortlisted</span>
+                    <h3><%= countShort %></h3>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Quick Actions</h2>
+                    <p>Manage your recruitment activities.</p>
+                </div>
+
+            </div>
+
+
+            <div class="action-grid">
+
+                <a href="/recruiter/job/post" class="action-card">
+
+                    <div class="action-icon">
+                        ＋
+                    </div>
+
+                    <div>
+                        <h3>Post a Job</h3>
+                        <p>Create a new job opportunity.</p>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                </a>
+
+
+                <a href="/recruiter/jobs" class="action-card">
+
+                    <div class="action-icon">
+                        ▤
+                    </div>
+
+                    <div>
+                        <h3>Manage Jobs</h3>
+                        <p>View and manage your posted jobs.</p>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                </a>
+
+
+                <a href="/recruiter/application" class="action-card">
+
+                    <div class="action-icon">
+                        ♙
+                    </div>
+
+                    <div>
+                        <h3>View Applications</h3>
+                        <p>Review candidates who applied.</p>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                </a>
+
+
+                <a href="/recruiter/profile/edit" class="action-card">
+
+                    <div class="action-icon">
+                        ◎
+                    </div>
+
+                    <div>
+                        <h3>Edit Profile</h3>
+                        <p>Update your recruiter information.</p>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECENT JOBS -->
+
+        <section class="section">
+        
+        
+        
+            <div class="section-heading">
+        
+                <div>
+                    <h2>Recent Job Posts</h2>
+                    <p>Your latest job opportunities.</p>
+                </div>
+        
+                <a href="/recruiter/jobs" class="view-all">
+                    View All →
+                </a>
+        
+            </div>
+            
+    <% if(array){ %>
+        
+
+            <div class="recent-jobs-grid">
+        
+                <!-- JOB CARD 1 -->
+                <% array.forEach(item=> { %>
+                <a href="/recruiter/job/<%= item._id %>" class="recent-job-card">
+        
+                    <div class="recent-job-icon">
+                        💼
+                    </div>
+        
+                    <div class="recent-job-content">
+        
+                        <h3><%= item.jobTitle %></h3>
+        
+                        <p class="recent-job-company">
+                            <%= item.company %>
+                        </p>
+        
+                        <div class="recent-job-details">
+        
+                            <span>📍 <%= item.location %></span>
+        
+                            <span>💼 <%= item.jobType %></span>
+        
+                        </div>
+        
+                        <div class="recent-job-footer">
+        
+                            <span>Deadline- <%= item.deadline %></span>
+        
+                            <span class="recent-job-arrow">→</span>
+        
+                        </div>
+        
+                    </div>
+        
+                </a>
+                <% }) %>
+            </div>
+        
+    <% } else { %>
+            <div class="empty-card">
+
+                <div class="empty-icon">
+                    📋
+                </div>
+
+                <h3>No Jobs Posted Yet</h3>
+
+                <p>
+                    You haven't posted any jobs yet.
+                    Create your first job opportunity to start finding candidates.
+                </p>
+
+                <a href="#" class="secondary-button">
+                    + Post Your First Job
+                </a>
+
+            </div>
+    <% } %>
+        </section>
+
+        <script>
+            const notificationButton = document.querySelector(".notification-button");
+            const notificationPanel = document.getElementById("notificationDropdown");
+            notificationButton.addEventListener("click", () => {
+                if (notificationPanel.classList.contains("active")) {
+                    notificationPanel.classList.remove("active");
+                } else {
+                    notificationPanel.classList.add("active"); ß
+                }
+            })
+        </script>
+
+    </main>
+
+    
+
+</body>
+</html>

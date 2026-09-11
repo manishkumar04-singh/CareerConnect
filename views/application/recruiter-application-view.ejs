@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View Application | CareerConnect</title>
+
+    <link rel="stylesheet" href="/css/recruiter-application-view.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                C
+            </span>
+
+            <span>
+                CareerConnect
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/recruiter/dashboard" class="nav-item">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/recruiter/jobs" class="nav-item">
+
+                <span class="nav-icon">
+                    💼
+                </span>
+
+                My Jobs
+
+            </a>
+
+
+            <a href="/recruiter/application" class="nav-item active">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                Applications
+
+            </a>
+
+
+            <a href="/recruiter/profile" class="nav-item">
+
+                <span class="nav-icon">
+                    ◎
+                </span>
+
+                Profile
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="nav-item logout">
+
+                <span class="nav-icon">
+                    ↪
+                </span>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <a
+                href="/recruiter/application"
+                class="back-button">
+
+                ← Back to Applications
+
+            </a>
+
+
+            <h1>
+                View Application
+            </h1>
+
+            <p>
+                Review the candidate's application and make a decision.
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================
+             APPLICATION LAYOUT
+        ========================== -->
+
+        <div class="application-layout">
+
+
+            <!-- =========================
+                 LEFT CONTENT
+            ========================== -->
+
+            <section class="application-content">
+
+
+                <!-- CANDIDATE CARD -->
+
+                <div class="card candidate-card">
+
+
+                    <div class="candidate-header">
+
+
+                        <div class="candidate-avatar">
+                            M
+                        </div>
+
+
+                        <div class="candidate-info">
+
+                            <h2>
+                                <%= name %>
+                            </h2>
+
+                            <p>
+                                <%= email %>
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- JOB INFORMATION -->
+
+                <div class="card">
+
+
+                    <h2 class="card-title">
+                        Applied Job
+                    </h2>
+
+
+                    <div class="job-info">
+
+                        <div>
+
+                            <span>
+                                Job Title
+                            </span>
+
+                            <strong>
+                                <%= jobTitle %>
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Company
+                            </span>
+
+                            <strong>
+                                <%= company %>
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Applied On
+                            </span>
+
+                            <strong>
+                                <%= appliedDate %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- COVER LETTER -->
+
+                <div class="card">
+
+
+                    <h2 class="card-title">
+                        Cover Letter
+                    </h2>
+
+
+                    <div class="cover-letter">
+
+                        <p>
+                            <%= coverLetter %>
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- RESUME -->
+
+                <div class="card resume-card">
+
+
+                    <div>
+
+                        <h2 class="card-title">
+                            Resume
+                        </h2>
+
+                        <p class="resume-name">
+                            <%= file.Name %>
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="/uploads/apply-resumes/<%= file.Name %>"
+                        target="_blank"
+                        class="resume-button">
+
+                        📄 View Resume
+
+                    </a>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 RIGHT SIDEBAR
+            ========================== -->
+
+            <aside class="application-sidebar">
+
+
+                <!-- STATUS -->
+
+                <div class="card status-card">
+
+
+                    <h2 class="card-title">
+                        Application Status
+                    </h2>
+
+
+                    <span class="current-status applied">
+                        Applied
+                    </span>
+
+
+                    <p>
+                        Choose what you want to do with this application.
+                    </p>
+
+
+                    <div class="status-actions">
+                    <% if(status==='Shortlist'){ %>
+                        <div class="shortlisted-box">
+                            ✓ Shortlisted
+                        </div>
+                    <% } else if (status==='Reject'){ %>
+                        <div class="rejected-box">
+                            ✓ Rejected
+                        </div>
+                    <% } else { %>       
+                        <button
+                            type="button"
+                            class="shortlist-button">
+
+                            <a href="/recruiter/application/SHORTLIST/<%= _id %>" %>>✓ Shortlist</a>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="reject-button">
+
+                            <a href="/recruiter/application/REJECT/<%= _id %>">✕ Reject</a>
+
+                        </button>
+                    <% } %>
+                    <% if(interview && status==='Shortlist') { %>
+                        <a href="/recruiter/interview/<%= _id %>" class="interview-btn">
+                            Schedule Interview
+                        </a>
+                    <% } %>
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- APPLICATION SUMMARY -->
+
+                <div class="card summary-card">
+
+
+                    <h2 class="card-title">
+                        Application Summary
+                    </h2>
+
+
+                    <div class="summary-item">
+
+                        <span>
+                            Status
+                        </span>
+
+                        <strong>
+                            Applied
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>
+                            Job
+                        </span>
+
+                        <strong>
+                            <%= jobTitle %>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>
+                            Candidate
+                        </span>
+
+                        <strong>
+                            <%= name %>
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </aside>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>
