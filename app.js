@@ -924,12 +924,12 @@ app.get("/recruiter/view/application/:id",Auth,role("recruiter"),checkObjectId,a
     if(!application){
         return res.status(403).render("errors/403");
     };
-    const {jobId,studentId,appliedDate,coverLetter,file,interview,status}=application;
+    const {jobId,studentId,appliedDate,coverLetter,fileResume,interview,status}=application;
     const {jobTitle,company}=await db.getdb().collection("jobs").findOne({_id:jobId})
     const sId=studentId;
     const {name,email}=await db.getdb().collection("users").findOne({_id:sId});
 
-    res.render("application/recruiter-application-view",{name:name,email:email,jobTitle:jobTitle,company:company,appliedDate:appliedDate,coverLetter:coverLetter,file:file,_id:id,interview:interview,status:status});
+    res.render("application/recruiter-application-view",{name:name,email:email,jobTitle:jobTitle,company:company,appliedDate:appliedDate,coverLetter:coverLetter,file:fileResume,_id:id,interview:interview,status:status});
 })
 //shortlist
 app.get("/recruiter/application/REJECT/:id",Auth,role("recruiter"),checkObjectId,async (req,res)=>{
