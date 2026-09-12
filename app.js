@@ -820,16 +820,9 @@ app.get("/student/job/apply/:id",Auth,role("student"),async (req,res)=>{
 })
 
 //multer for apply resume
-const store=multer.diskStorage({
-    filename:(req,file,cb)=>{
-        cb(null,Date.now()+'-'+file.originalname);
-    },
-    destination:(req,file,cb)=>{
-        cb(null,'public/uploads/apply-resumes');
-    }
-})
 
-const uploaded=multer({storage:store})
+
+const uploaded=multer({storage:resumeStorage})
 app.post("/student/job/apply/:id",uploaded.single("resume"),async (req,res)=>{
     const cover=req.body;
     const jId=new ObjectId(req.params.id);
@@ -873,7 +866,7 @@ app.post("/student/job/apply/:id",uploaded.single("resume"),async (req,res)=>{
     }
     const file={
         Name:data.filename,
-        destination:data.destination
+        url:file.path
     }
 
     await db.getdb().collection("applications").insertOne({jobId:jId,studentId:sId,recruiterId:recruiterId,file,appliedDate:date,coverLetter:cover.coverLetter,status:"Applied",interview:"No"});
