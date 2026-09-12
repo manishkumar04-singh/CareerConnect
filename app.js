@@ -26,7 +26,7 @@ const { register } = require("module");
 const PORT =  process.env.PORT || 3000;;
 
 const storeSession=new mongodbConnect({
-    url:process.env.MONGODB_URI,
+    uri:process.env.MONGODB_URI,
     databaseName:'careeerconnect',
     collection:'sessions'
 })
