@@ -1070,7 +1070,7 @@ CareerConnect Team
     
 
     try{
-        await transporter.sendMail(option)
+        await ressend.emails.send(option);
         console.log("Email-sent suceesfully");
     }catch(err){
         console.log("Email not sent successfully", err)
@@ -1153,7 +1153,7 @@ app.post("/recruiter/interview/:id",Auth,role("recruiter"),checkObjectId,async (
     const {name,email}=await db.getdb().collection("users").findOne({_id:studentId});
     const {jobTitle,company}=await db.getdb().collection("jobs").findOne({_id:jobId});
     const option={
-        from:process.env.EMAIL_USER,
+        from:"Career <onboarding@resend.dev>",
         to:email,
         subject:`Interview Scheduled - ${jobTitle}`,
         text:`
@@ -1187,7 +1187,7 @@ CareerConnect Team
     })
 
     try{
-        await transporter.sendMail(option)
+        await ressend.emails.send(option);
         console.log("Email sent succesfully.")
     }catch(err){
         console.log("Email not sent succesfully.",err);
