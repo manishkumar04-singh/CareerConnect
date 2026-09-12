@@ -1027,7 +1027,7 @@ app.get("/recruiter/application/SHORTLIST/:id",Auth,role("recruiter"),checkObjec
         _id: jobId,
     });
     const option ={
-        from:"CareerConnect <onboarding@resend.dev>",
+        from:"Career <onboarding@resend.dev>",
         to: email,
         subject: `Application Update - ${jobTitle} `,
         text: `
