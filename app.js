@@ -462,7 +462,6 @@ app.post("/student/profile/resume",Auth,role("student"),resumeUpload.single("res
     }
 
     await db.getdb().collection("users").updateOne({_id:id},{$set:{resume:resumeFile}})
-    console.log(resume);
 
     res.redirect("/student/profile");
 })
