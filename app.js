@@ -415,7 +415,7 @@ app.get("/student/profile",Auth,role("student"),async (req,res)=>{
 
     let completionRate=(fieldCompleted/array.length)*100;
     
-    res.render("auth/student-profile",{Name:name,Email:email,about:about,college:college,degree:degree,graduationYear:graduationYear,location:location,phone:phone,skills:skills,rate:completionRate,filename:resume ? resume.fileName:" ",resume});
+    res.render("auth/student-profile",{Name:name,Email:email,about:about,college:college,degree:degree,graduationYear:graduationYear,location:location,phone:phone,skills:skills,rate:completionRate,filename:resume ? resume.fileName:" ",url:resume ? resume.url:""});
     
 }) 
 
