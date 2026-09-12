@@ -39,7 +39,7 @@ const resumeStorage = new CloudinaryStorage({
     params: {
         folder: "careerconnect/resumes",
 
-        resource_type: "raw",
+        resource_type: "image",
 
         public_id: (req, file) => {
             return Date.now() + "-" + file.originalname;
@@ -455,13 +455,13 @@ app.post("/student/profile/resume",Auth,role("student"),resumeUpload.single("res
     }
 
     const id=new ObjectId(req.session.userid);
-    let resume={
+    let resumeFile={
         fileName:file.originalname,
         url:file.path
 
     }
 
-    await db.getdb().collection("users").updateOne({_id:id},{$set:{resume:resume}})
+    await db.getdb().collection("users").updateOne({_id:id},{$set:{resume:resumeFile}})
     console.log(resume);
 
     res.redirect("/student/profile");
