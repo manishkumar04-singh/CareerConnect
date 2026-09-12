@@ -42,7 +42,7 @@ const resumeStorage = new CloudinaryStorage({
         resource_type: "image",
 
         public_id: (req, file) => {
-            return Date.now() + "-" + file.originalname;
+            return "resume-"+Date.now();
         }
     }
 });
