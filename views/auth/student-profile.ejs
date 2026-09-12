@@ -280,13 +280,13 @@
                         </div>
 
                         <div class="skills">
-
+                        <% if (typeof skills !== "undefined") { %>
                             <% const skill=skills.split(",") %>
 
                             <% skill.forEach(item => { %>
                                 <span><%= item.trim() %></span>
                             <% } )%>    
-
+                        <% } %>
                         </div>
 
                     </section>
@@ -318,71 +318,60 @@
 
                     <!-- RESUME -->
 
-<section class="profile-card resume-card">
-
-    <div class="card-heading">
-
-        <div>
-            <h2>Resume</h2>
-            <p>Keep your resume updated</p>
-        </div>
-
-    </div>
-
-
-    <div class="resume-box">
-
-        <div class="resume-icon">
-            📄
-        </div>
-
-        <div class="resume-info">
-
-            <% if (!filename) { %>
-                <h3>No Reume Uploaded</h3>
-            <% } else { %>
-                <h3><%= filename %></h3>    
-            <% } %>
-            <p>Uploaded recently</p>
-
-        </div>
-
-        <a href="/uploads/resumes/<%=filename %>" class="resume-button" target="_blank">
-            View
-        </a>
-
-    </div>
-
-
-    <!-- FILE PICKER -->
-
-    <form
-        action="/student/profile/resume"
-        method="POST"
-        enctype="multipart/form-data"
-    >
-
-        <input
-            type="file"
-            id="resume"
-            name="resume"
-            accept=".pdf"
-            hidden
-        >
-
-        <label
-            for="resume"
-            class="upload-button"
-        >
-            ↑ Upload New Resume
-        </label>
-
-    </form>
-
-</section>
-
+            <section class="profile-card resume-card">
+            
+                <div class="card-heading">
+            
+                    <div>
+                        <h2>Resume</h2>
+                        <p>Keep your resume updated</p>
+                    </div>
+            
                 </div>
-
+            
+            
+                <div class="resume-box">
+            
+                    <div class="resume-icon">
+                        📄
+                    </div>
+            
+                    <div class="resume-info">
+            
+                        <% if (!filename) { %>
+                            <h3>No Reume Uploaded</h3>
+                        <% } else { %>
+                            <h3>
+                                <%= filename %>
+                            </h3>
+                        <% } %>
+                        <p>Uploaded recently</p>
+            
+                    </div>
+            
+                    <a href="/uploads/resumes/<%=filename %>" class="resume-button" target="_blank">
+                        View
+                    </a>
+            
+                </div>
+            
+            
+                <!-- FILE PICKER -->
+            
+                <form action="/student/profile/resume" method="POST" enctype="multipart/form-data">
+            
+                    <input type="file" id="resume" name="resume" accept=".pdf" hidden>
+            
+                    <label for="resume" class="upload-button">
+                        ↑ Upload New Resume
+                    </label>
+            
+                </form>
+            
+            </section>
+            
+            </div>
+            
             </section>
 
         </main>
