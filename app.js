@@ -3,6 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 
+const {resend}=require("resend"); 
+
 const app = express();
 const db=require('./db/db.js');
 const bcrypt=require("bcrypt");
@@ -46,6 +48,8 @@ const resumeStorage = new CloudinaryStorage({
         }
     }
 });
+
+const ressend=new resend(process.env.RESEND_API_KEY);
 const PORT =  process.env.PORT || 3000;;
 
 const storeSession=new mongodbConnect({
@@ -216,7 +220,7 @@ CareerConnect Security Team
             email: data.email
         });
         await db.getdb().collection("otps").insertOne({email:data.email,otp:otpHash,expiryAt:expiry});
-        await transporter.sendMail(option);
+        await ressend.emails.send(option);
         return res.render("auth/login",{
             otpSended:true,otpSendedMsg:"Otp was sent.Check Your Email !"
         })
@@ -882,7 +886,7 @@ app.post("/student/job/apply/:id",uploaded.single("resume"),async (req,res)=>{
         createdAt: new Date()
     })
     try{
-        await transporter.sendMail(option);
+        await ressend.emails.send(option);
         console.log("Email sent succesfully");
     }catch(err){
         if(err){
@@ -1069,7 +1073,7 @@ CareerConnect Team
         await transporter.sendMail(option)
         console.log("Email-sent suceesfully");
     }catch(err){
-        console.log("Email not sent successfully",err)
+        console.log("Email not sent successfully", err)
     }
 
     res.redirect("/recruiter/application");

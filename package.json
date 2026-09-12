@@ -12,6 +12,7 @@
     "multer-storage-cloudinary": "^4.0.0",
     "nodemailer": "^9.0.5",
     "package": "^1.0.1",
+    "resend": "^6.28.0",
     "session": "^0.1.0"
   },
   "scripts": {
