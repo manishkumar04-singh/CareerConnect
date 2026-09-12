@@ -824,6 +824,7 @@ app.get("/student/job/apply/:id",Auth,role("student"),async (req,res)=>{
 
 const uploaded=multer({storage:resumeStorage})
 app.post("/student/job/apply/:id",uploaded.single("resume"),async (req,res)=>{
+    const file=req.file;
     const cover=req.body;
     const jId=new ObjectId(req.params.id);
     const sId=new ObjectId(req.session.userid);
@@ -864,12 +865,12 @@ app.post("/student/job/apply/:id",uploaded.single("resume"),async (req,res)=>{
             `
 
     }
-    const file={
+    const fileResume={
         Name:data.filename,
         url:file.path
     }
 
-    await db.getdb().collection("applications").insertOne({jobId:jId,studentId:sId,recruiterId:recruiterId,file,appliedDate:date,coverLetter:cover.coverLetter,status:"Applied",interview:"No"});
+    await db.getdb().collection("applications").insertOne({jobId:jId,studentId:sId,recruiterId:recruiterId,fileResume,appliedDate:date,coverLetter:cover.coverLetter,status:"Applied",interview:"No"});
     const message = `${name} has applied for the ${jobTitle} position.`;
     await db.getdb().collection("notifications").insertOne({
         userId: recruiterId,
