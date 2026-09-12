@@ -1069,7 +1069,7 @@ CareerConnect Team
         await transporter.sendMail(option)
         console.log("Email-sent suceesfully");
     }catch(err){
-        console.log("Email not sent successfully")
+        console.log("Email not sent successfully",err)
     }
 
     res.redirect("/recruiter/application");
