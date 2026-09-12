@@ -23,6 +23,29 @@ const { create } = require("domain");
 const { relative } = require("path/win32");
 const { title } = require("process");
 const { register } = require("module");
+
+const { v2: cloudinary } = require("cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const resumeStorage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+
+    params: {
+        folder: "careerconnect/resumes",
+
+        resource_type: "raw",
+
+        public_id: (req, file) => {
+            return Date.now() + "-" + file.originalname;
+        }
+    }
+});
 const PORT =  process.env.PORT || 3000;;
 
 const storeSession=new mongodbConnect({
@@ -417,21 +440,13 @@ app.post("/student/profile/edit",Auth,role("student"),async (req,res)=>{
 
 })
 
-const storage=multer.diskStorage({
-    filename:(req,file,cb)=>{
-        cb(null,Date.now()+'-'+file.originalname)
-    },
-    destination:(req,file,cb)=>{
-        cb(null,'public/uploads/resumes')
-    }
-    
-})
 
-const upload=multer({storage:storage,limits: {
+
+const resumeUpload=multer({storage:resumeStorage,limits: {
     fileSize: 6 * 1024 * 1024
 }});
 
-app.post("/student/profile/resume",Auth,role("student"),upload.single("resume"),async (req,res)=>{
+app.post("/student/profile/resume",Auth,role("student"),resumeUpload.single("resume"),async (req,res)=>{
   
     const file=req.file;
     
@@ -441,8 +456,8 @@ app.post("/student/profile/resume",Auth,role("student"),upload.single("resume"),
 
     const id=new ObjectId(req.session.userid);
     let resume={
-        fileName:file.filename,
-        destination:file.destination
+        fileName:file.originalname,
+        url:file.path
 
     }
 
