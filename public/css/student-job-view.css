@@ -724,3 +724,32 @@ body {
     }
 
 }
+
+.apply-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 12px 18px;
+
+    background: #6969f0;
+    color: rgb(6, 0, 0);
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 550;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    box-sizing: border-box;
+}
+
+.apply-btn:hover {
+    background: #becef9;
+    transform: translateY(-1px);
+}

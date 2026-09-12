@@ -23,10 +23,10 @@ const { create } = require("domain");
 const { relative } = require("path/win32");
 const { title } = require("process");
 const { register } = require("module");
-const PORT = 3000;
+const PORT =  process.env.PORT || 3000;;
 
 const storeSession=new mongodbConnect({
-    url:'mongodb://127.0.0.1:27017',
+    url:process.env.MONGODB_URI,
     databaseName:'careeerconnect',
     collection:'sessions'
 })
@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended:true}));
 
 app.use(session({
-    secret:'babu-ji1',
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized:false,
     store:storeSession,
@@ -1398,7 +1398,8 @@ app.get("/student/job/saved/:id",Auth,role("student"),checkObjectId,async (req,r
     });
 
     if(alreadySaved){
-        return res.send("Job already saved");
+        req.session.messageSjob="Job is already saved.!"
+        return res.redirect("/student-saved-jobs");
     }
 
     await db.getdb().collection("savedJobs").insertOne({
@@ -1413,8 +1414,9 @@ app.get("/student-saved-jobs",Auth,role("student"),async (req,res)=>{
     const id=new ObjectId(req.session.userid);
     const data=await db.getdb().collection("savedJobs").find({studentId:id}).toArray();
     let count=0;
-    const message=req.session.messageS2 || null;
+    const message=req.session.messageS2 || req.session.messageSjob || null;
     delete req.session.messageS2;
+    delete req.session.messageSjob;
 
     let array=[];
     for (const item of data) {

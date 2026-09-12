@@ -5,7 +5,7 @@ const mongoclient=mongodb.MongoClient;
 let database;
 
 async function connectdatabase(){
-    const client=await mongoclient.connect('mongodb://127.0.0.1:27017');
+    const client=await mongoclient.connect(process.env.MONGODB_URI);
     database=client.db("careeerconnect");
 }
 
