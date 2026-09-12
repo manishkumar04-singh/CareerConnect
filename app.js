@@ -866,7 +866,7 @@ app.post("/student/job/apply/:id",uploaded.single("resume"),async (req,res)=>{
 
     }
     const fileResume={
-        Name:data.filename,
+        Name:data.originalname,
         url:data.path
     }
 
