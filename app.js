@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 
-const {resend}=require("resend"); 
+const {Resend}=require("resend"); 
 
 const app = express();
 const db=require('./db/db.js');
@@ -49,7 +49,7 @@ const resumeStorage = new CloudinaryStorage({
     }
 });
 
-const ressend=new resend(process.env.RESEND_API_KEY);
+const ressend=new Resend(process.env.RESEND_API_KEY);
 const PORT =  process.env.PORT || 3000;;
 
 const storeSession=new mongodbConnect({
