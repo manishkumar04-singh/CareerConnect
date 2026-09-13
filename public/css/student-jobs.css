@@ -664,25 +664,6 @@ body {
    RESPONSIVE
 ========================= */
 
-@media (max-width: 900px) {
-
-    .jobs-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .filter-card {
-        display: none;
-    }
-
-    .search-card form {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .search-button {
-        height: 42px;
-    }
-
-}
 
 
 @media (max-width: 700px) {
@@ -802,8 +783,11 @@ body {
 }
 .popup-message {
     position: fixed;
+
     top: 25px;
-    right: 650px;
+    left: 50%;
+
+    transform: translateX(-50%);
 
     display: flex;
     align-items: center;
@@ -833,4 +817,448 @@ body {
 
     font-size: 18px;
     cursor: pointer;
+}
+
+/* =========================================================
+   FINAL RESPONSIVE FIXES — STUDENT JOBS
+========================================================= */
+
+
+/* =========================
+   MOBILE CONTROLS
+========================= */
+
+.mobile-brand,
+.mobile-filter-button {
+    display: none;
+}
+
+.mobile-menu-btn,
+.mobile-filter-button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    /* SIDEBAR */
+
+    .sidebar {
+        display: flex;
+
+        position: fixed;
+
+        top: 0;
+        left: -270px;
+
+        width: 250px;
+        height: 100vh;
+
+        padding: 25px 16px;
+
+        z-index: 3000;
+
+        transition: left 0.3s ease;
+
+        box-shadow: 8px 0 25px rgba(15, 23, 42, 0.15);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+
+    /* RESTORE FULL SIDEBAR CONTENT */
+
+    .logo span:last-child {
+        display: block;
+    }
+
+    .logo {
+        justify-content: flex-start;
+    }
+
+    .nav-item {
+        justify-content: flex-start;
+    }
+
+
+    /* MAIN */
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 26px 24px;
+    }
+
+
+    /* MOBILE BRAND */
+
+    .mobile-brand {
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        font-size: 17px;
+
+        font-weight: 700;
+    }
+
+    .mobile-menu-btn {
+        border: none;
+
+        background: transparent;
+
+        font-size: 23px;
+
+        color: #172033;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        gap: 20px;
+    }
+
+
+    /* SEARCH */
+
+    .search-card form,
+    .search-card {
+        width: 100%;
+    }
+
+    .search-card {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr 100px;
+
+        gap: 10px;
+    }
+
+
+    /* JOB LAYOUT */
+
+    .jobs-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* FILTER BECOMES DRAWER */
+
+    .filter-card {
+        display: block;
+
+        position: fixed;
+
+        top: 0;
+        left: -290px;
+
+        width: 270px;
+        height: 100vh;
+
+        overflow-y: auto;
+
+        border-radius: 0;
+
+        z-index: 3200;
+
+        padding: 25px 20px;
+
+        transition: left 0.3s ease;
+
+        box-shadow: 8px 0 25px rgba(15, 23, 42, 0.15);
+    }
+
+    .filter-card.active {
+        left: 0;
+    }
+
+
+    /* FILTER BUTTON */
+
+    .mobile-filter-button {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 6px;
+
+        border: 1px solid #dfe3ea;
+
+        background: white;
+
+        color: #596579;
+
+        padding: 9px 12px;
+
+        border-radius: 7px;
+
+        font-size: 11px;
+
+        font-weight: 600;
+    }
+}
+
+
+/* =========================
+   SIDEBAR / FILTER OVERLAY
+========================= */
+
+.sidebar-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    z-index: 2500;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+@media (max-width: 650px) {
+
+    /* MAIN */
+
+    .main-content {
+        padding: 18px 12px 30px;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        align-items: center;
+
+        margin-bottom: 20px;
+    }
+
+    .topbar > div:nth-child(2) {
+        display: none;
+    }
+
+    .topbar h1 {
+        font-size: 22px;
+    }
+
+    .topbar p {
+        display: none;
+    }
+
+
+    /* PROFILE */
+
+    .profile-mini-info {
+        display: none;
+    }
+
+    .profile-avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    /* SEARCH */
+
+    .search-card {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        padding: 12px;
+    }
+
+    .search-box,
+    .location-box,
+    .search-button {
+        width: 100%;
+    }
+
+
+    /* JOBS HEADING */
+
+    .jobs-heading {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+    }
+
+    .jobs-heading > div:first-child {
+        width: 100%;
+    }
+
+    .mobile-filter-button,
+    .sort-select {
+        width: 100%;
+    }
+
+
+    /* JOB CARD */
+
+    .job-card {
+        padding: 16px;
+    }
+
+    .job-top {
+        align-items: flex-start;
+    }
+
+    .job-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+    .job-info h3 {
+        font-size: 14px;
+    }
+
+
+    /* JOB DETAILS */
+
+    .job-details {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+
+        margin-top: 15px;
+    }
+
+
+    /* JOB BOTTOM */
+
+    .job-bottom {
+        gap: 15px;
+    }
+
+
+    /* PAGINATION */
+
+    .pagination {
+        flex-wrap: wrap;
+
+        gap: 6px;
+
+        padding: 15px 0;
+    }
+
+    .page-button {
+        min-width: 34px;
+
+        height: 34px;
+
+        padding: 0 10px;
+
+        font-size: 11px;
+    }
+
+
+    /* POPUP */
+
+    .popup-message {
+        top: 15px;
+
+        left: 12px;
+        right: 12px;
+
+        width: auto;
+
+        padding: 12px 14px;
+
+        gap: 12px;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONE
+========================= */
+
+@media (max-width: 420px) {
+
+    .main-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    /* SEARCH */
+
+    .search-card {
+        border-radius: 10px;
+    }
+
+
+    /* JOB CARD */
+
+    .job-details {
+        grid-template-columns: 1fr;
+    }
+
+
+    .job-bottom {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .view-button {
+        width: 100%;
+
+        text-align: center;
+
+        padding: 11px;
+    }
+
+
+    /* SKILLS */
+
+    .job-skills span {
+        font-size: 9px;
+    }
+
+
+    /* FILTER PANEL */
+
+    .filter-card {
+        width: 85vw;
+
+        left: -90vw;
+    }
+
+    .filter-card.active {
+        left: 0;
+    }
 }

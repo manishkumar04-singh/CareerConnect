@@ -61,6 +61,8 @@
 
     </aside>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 
     <!-- MAIN CONTENT -->
 
@@ -69,45 +71,62 @@
         <!-- HEADER -->
 
         <header class="topbar">
-
-            <div>
+        
+            <div class="mobile-brand">
+        
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                    ☰
+                </button>
+        
+                <span>CareerConnect</span>
+        
+            </div>
+        
+        
+            <div class="topbar-title">
+        
                 <h1>Find Jobs</h1>
-
+        
                 <p>
                     Discover opportunities that match your skills and career goals.
                 </p>
+        
             </div>
-
+        
+        
             <div class="profile-mini">
-
+        
                 <div class="profile-avatar">
                     S
                 </div>
-
+        
                 <div class="profile-mini-info">
-
+        
                     <strong>Student</strong>
-
+        
                     <span>Student Account</span>
-
+        
                 </div>
-
+        
             </div>
-
+        
+        
             <% if(message) { %>
-            
+        
                 <div class="popup-message" id="popupMessage">
+        
                     <span>
                         <%= message %>
                     </span>
-            
+        
                     <button type="button" onclick="this.parentElement.remove()">
                         ×
                     </button>
+        
                 </div>
-            
+        
             <% } %>
-
+        
         </header>
 
 
@@ -249,6 +268,10 @@
         
                         <p>Find your next career opportunity.</p>
                     </div>
+
+                    <button type="button" class="mobile-filter-button" id="mobileFilterBtn">
+                        ☰ Filters
+                    </button>
         
                     <select class="sort-select">
         
@@ -286,7 +309,7 @@
         
                             </div>
         
-                            <button class="save-button">
+                            <button type="button" class="save-button">
                                 ♡
                             </button>
         
@@ -373,6 +396,49 @@
         </div>
 
     </main>
+
+    <script>
+
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+
+        const sidebar = document.querySelector(".sidebar");
+
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+        const mobileFilterBtn = document.getElementById("mobileFilterBtn");
+
+        const filterCard = document.getElementById("filterCard");
+
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+
+            sidebarOverlay.classList.add("active");
+
+        });
+
+
+        mobileFilterBtn.addEventListener("click", () => {
+
+            filterCard.classList.add("active");
+
+            sidebarOverlay.classList.add("active");
+
+        });
+
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            filterCard.classList.remove("active");
+
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+    </script>
 
 </body>
 

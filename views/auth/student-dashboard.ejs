@@ -29,7 +29,7 @@
 
                 <p class="menu-title">MAIN MENU</p>
 
-                <a href="/student/dashboard" class="menu-item active">
+                <a href="/student-dashboard" class="menu-item active">
                     <span>⌂</span>
                     <span>Dashboard</span>
                 </a>
@@ -74,6 +74,8 @@
 
         </aside>
 
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 
         <!-- ================= MAIN CONTENT ================= -->
 
@@ -83,8 +85,16 @@
 
             <header class="topbar">
 
-                <div class="mobile-logo">
-                    CareerConnect
+                <div class="mobile-brand">
+                
+                    <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                        ☰
+                    </button>
+                
+                    <div class="mobile-logo">
+                        CareerConnect
+                    </div>
+                
                 </div>
 
                 <div class="search-box">
@@ -390,10 +400,8 @@
                                 </div>
 
                             </div>
-                            <a href="/student/job-view/<%= item1._id %>">
-                                <button class="job-button">
-                                    View Job
-                                </button>
+                            <a href="/student/job-view/<%= item1._id %>" class="job-button">
+                                View Job
                             </a>
                         </div>
                         <% }) %>
@@ -581,6 +589,39 @@
             } else {
                 notificationPanel.classList.add("active");
             }
+
+        });
+
+        
+
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const sidebar = document.querySelector(".sidebar");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+            sidebarOverlay.classList.add("active");
+
+        });
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+        const menuItems = document.querySelectorAll(".sidebar .menu-item");
+
+        menuItems.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+                sidebarOverlay.classList.remove("active");
+
+            });
 
         });
     
