@@ -82,10 +82,14 @@ app.use(session({
 console.log("USER:", process.env.EMAIL_USER);
 console.log("PASS length:", process.env.EMAIL_PASS?.length);
 const transporter=nodemailer.createTransport({
-    service: "gmail",
+    
+    host: "email-smtp.ap-south-1.amazonaws.com",
+    port: 587,
+    secure: false,
+
     auth: {
-        user:process.env.EMAIL_USER,
-        pass:process.env.EMAIL_PASS,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
     }
 
 })
@@ -220,7 +224,7 @@ CareerConnect Security Team
             email: data.email
         });
         await db.getdb().collection("otps").insertOne({email:data.email,otp:otpHash,expiryAt:expiry});
-        await ressend.emails.send(option);
+        await transporter.sendMail(option)
         return res.render("auth/login",{
             otpSended:true,otpSendedMsg:"Otp was sent.Check Your Email !"
         })
@@ -886,7 +890,7 @@ app.post("/student/job/apply/:id",uploaded.single("resume"),async (req,res)=>{
         createdAt: new Date()
     })
     try{
-        await ressend.emails.send(option);
+        await transporter.sendMail(option);
         console.log("Email sent succesfully");
     }catch(err){
         if(err){
@@ -1027,7 +1031,7 @@ app.get("/recruiter/application/SHORTLIST/:id",Auth,role("recruiter"),checkObjec
         _id: jobId,
     });
     const option ={
-        from:"Career <onboarding@resend.dev>",
+        from:process.env.EMAIL_USER,
         to: email,
         subject: `Application Update - ${jobTitle} `,
         text: `
@@ -1070,7 +1074,7 @@ CareerConnect Team
     
 
     try{
-        await ressend.emails.send(option);
+        await transporter.sendMail(option);
         console.log("Email-sent suceesfully");
     }catch(err){
         console.log("Email not sent successfully", err)
@@ -1153,7 +1157,7 @@ app.post("/recruiter/interview/:id",Auth,role("recruiter"),checkObjectId,async (
     const {name,email}=await db.getdb().collection("users").findOne({_id:studentId});
     const {jobTitle,company}=await db.getdb().collection("jobs").findOne({_id:jobId});
     const option={
-        from:"Career <onboarding@resend.dev>",
+        from:process.env.EMAIL_USER,
         to:email,
         subject:`Interview Scheduled - ${jobTitle}`,
         text:`
@@ -1187,7 +1191,7 @@ CareerConnect Team
     })
 
     try{
-        await ressend.emails.send(option);
+        await transporter.sendMail(option);
         console.log("Email sent succesfully.")
     }catch(err){
         console.log("Email not sent succesfully.",err);
