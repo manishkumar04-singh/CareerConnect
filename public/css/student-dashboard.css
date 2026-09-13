@@ -1051,7 +1051,7 @@ input {
     /* MOBILE LOGO */
 
     .mobile-logo {
-        display: block;
+        display: block !important;
 
         font-size: 16px;
         font-weight: 700;
@@ -1144,7 +1144,7 @@ input {
         width: 100%;
     }
     .mobile-brand {
-        display: flex;
+        display: flex !important;
     }
 
     
