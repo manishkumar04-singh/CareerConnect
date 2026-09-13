@@ -17,6 +17,11 @@ const multer=require("multer");
 
 const nodemailer=require("nodemailer");
 
+const { SESv2Client, SendEmailCommand } = require("@aws-sdk/client-sesv2");
+const sesClient = new SESv2Client({
+    region: process.env.AWS_REGION
+});
+
 
 const Auth=require('./middleware/auth.js');
 const role=require('./middleware/role.js');
@@ -83,13 +88,9 @@ console.log("USER:", process.env.EMAIL_USER);
 console.log("PASS length:", process.env.EMAIL_PASS?.length);
 const transporter=nodemailer.createTransport({
     
-    host: "email-smtp.ap-south-1.amazonaws.com",
-    port: 587,
-    secure: false,
-
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+    SES: {
+        sesClient: sesClient,
+        SendEmailCommand: SendEmailCommand
     }
 
 })
@@ -2055,6 +2056,23 @@ app.post("/recruiter/change-email/verify-otp",Auth,role("recruiter"),async (req,
     }
 
 })
+
+app.get("/test-ses", async (req, res) => {
+    try {
+        const info = await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: "rmanishsingh502@gmail.com",
+            subject: "CareerConnect SES Test",
+            text: "Amazon SES API email is working."
+        });
+
+        console.log("SES test success:", info);
+        res.send("SES test email sent");
+    } catch (err) {
+        console.log("SES test error:", err);
+        res.send("SES test failed");
+    }
+});
 
 db.connectTOdatabase().then(()=>{
     app.listen(PORT, () => {

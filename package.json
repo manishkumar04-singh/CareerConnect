@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@aws-sdk/client-sesv2": "^3.1131.0",
     "bcrypt": "^6.0.0",
     "cloudinary": "^1.41.3",
     "connect-mongodb-session": "^5.0.0",
