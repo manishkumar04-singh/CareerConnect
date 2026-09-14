@@ -131,7 +131,7 @@ app.post("/register",async (req,res)=>{
         return res.send("Please fill all required fields");
     }
     if (data.accountType !== "student" && data.accountType !== "recruiter") {
-        return res.status(404).render("errors/404.ejs");
+        return res.status(404).render("errors/404");
     }
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const user = {
@@ -354,7 +354,7 @@ app.get("/student-dashboard",Auth,role("student"),async (req,res)=>{
             countInter+=1;
         }
     }
-    let completionRate=Math.round((fieldCompleted/array.length)*100);
+    let completionRate=Math.floor((fieldCompleted/array.length)*100);
     let array1=[];
     for(const item of data ){
         let jId=item.jobId;
@@ -1525,7 +1525,7 @@ app.post("/student/change-password",Auth,role("student"),async (req,res)=>{
 
     if(check){
         if(data.newPassword === data.confirmPassword){
-            const newPass=await bcrypt.hash(data.confimrPassword,10);
+            const newPass=await bcrypt.hash(data.confirmPassword,10);
             await db.getdb().collection("users").updateOne({_id:sId},{$set:{password:newPass}});
             return res.redirect("/student/setting");
         }else{
