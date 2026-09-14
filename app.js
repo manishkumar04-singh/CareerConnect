@@ -909,6 +909,9 @@ app.get("/recruiter/application",Auth,role("recruiter"),async (req,res)=>{
     const data=await db.getdb().collection("applications").find({recruiterId:id}).toArray();
     
     let array=[];
+    let countApplied=0;
+    let countShort=0;
+    let countReject=0;
     const totalApplication=data.length;
     for (const item of data){
         const sId=item.studentId;
@@ -918,11 +921,18 @@ app.get("/recruiter/application",Auth,role("recruiter"),async (req,res)=>{
         let date=item.appliedDate;
         let status=item.status;
         let id=item._id;
+        if(item.status ==="Applied"){
+            countApplied+=1;
+        }else if (item.status === "Shortlist"){
+            countShort+=1;
+        }else if (item.status === "Reject"){
+            countReject+=1
+        }
         let details={name:name,email:email,title:jobTitle,appliedDate:date,id:id,status:status};
         array.push(details);
     }
     
-    res.render("application/recruiter-applications",{array:array,totalApplication:totalApplication});
+    res.render("application/recruiter-applications",{array:array,totalApplication:totalApplication,countApplied:countApplied,countShort:countShort,countReject:countReject});
 })
 
 //view-application
