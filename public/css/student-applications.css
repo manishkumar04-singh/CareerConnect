@@ -751,14 +751,6 @@ body {
     margin-left: 20px;
 }
 
-.application-action {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: flex-end;
-}
 
 
 .cancel-btn {
@@ -796,4 +788,483 @@ body {
     border-color: #dc2626;
 
     color: #b91c1c;
+}
+
+/* =========================================================
+   FINAL RESPONSIVE FIXES — STUDENT APPLICATIONS
+========================================================= */
+
+
+/* =========================
+   MOBILE NAVIGATION
+========================= */
+
+.mobile-topbar {
+    display: none;
+}
+
+.mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.mobile-menu-btn {
+    border: none;
+    background: transparent;
+
+    color: #172033;
+
+    font-size: 23px;
+
+    padding: 4px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   SIDEBAR OVERLAY
+========================= */
+
+.sidebar-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    z-index: 2500;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================
+   LARGE TABLET
+========================= */
+
+@media (max-width: 1050px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /*
+       Keep each application card readable instead of
+       forcing the old 4-column desktop structure.
+    */
+
+    .application-card {
+        grid-template-columns:
+            minmax(220px, 1fr)
+            130px
+            110px;
+
+        gap: 16px;
+    }
+
+    .application-action {
+        grid-column: 1 / -1;
+
+        justify-content: flex-end;
+
+        margin-left: 0;
+    }
+}
+
+
+/* =========================
+   TABLET + MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    /* MOBILE HEADER */
+
+    .mobile-topbar {
+        display: flex;
+
+        align-items: center;
+
+        height: 64px;
+
+        margin-bottom: 20px;
+    }
+
+
+    /* SIDEBAR */
+
+    .sidebar {
+        display: flex;
+
+        position: fixed;
+
+        top: 0;
+        left: -270px;
+
+        width: 250px;
+        height: 100vh;
+
+        padding: 25px 16px;
+
+        z-index: 3000;
+
+        transition: left 0.3s ease;
+
+        box-shadow: 8px 0 25px rgba(15, 23, 42, 0.15);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+
+    /*
+       Undo the old responsive rules that changed
+       the sidebar into a 70px icon-only bar.
+    */
+
+    .sidebar .logo span:last-child {
+        display: block;
+    }
+
+    .sidebar .logo {
+        justify-content: flex-start;
+    }
+
+    .sidebar .nav-item {
+        justify-content: flex-start;
+    }
+
+
+    /* MAIN CONTENT */
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 24px 20px 40px;
+
+        max-width: none;
+    }
+
+
+    /* PAGE HEADER */
+
+    .page-header {
+        margin-bottom: 22px;
+    }
+
+    .page-header h1 {
+        font-size: 24px;
+    }
+
+
+    /* STATS */
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+
+    /* APPLICATION SECTION */
+
+    .applications-section {
+        padding: 20px;
+    }
+
+
+    /* APPLICATION CARD */
+
+    .application-card {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 16px;
+
+        padding: 18px 4px;
+    }
+
+    .job-info {
+        grid-column: 1 / -1;
+    }
+
+    .application-date {
+        grid-column: 1;
+    }
+
+    .application-status {
+        grid-column: 2;
+        grid-row: auto;
+    }
+
+    .application-action {
+        grid-column: 1 / -1;
+
+        width: 100%;
+
+        justify-content: flex-start;
+
+        margin-left: 0;
+    }
+}
+
+
+/* =========================
+   PHONES
+========================= */
+
+@media (max-width: 600px) {
+
+    /* MAIN CONTENT */
+
+    .main-content {
+        padding: 16px 12px 30px;
+    }
+
+
+    /* MOBILE TOPBAR */
+
+    .mobile-topbar {
+        height: 58px;
+
+        margin-bottom: 12px;
+    }
+
+    .mobile-brand {
+        font-size: 16px;
+    }
+
+
+    /* PAGE HEADER */
+
+    .page-header {
+        margin-bottom: 20px;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+
+        margin-bottom: 6px;
+    }
+
+    .page-header p {
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    /* STATS */
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        margin-bottom: 20px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+
+        flex-shrink: 0;
+    }
+
+
+    /* APPLICATIONS SECTION */
+
+    .applications-section {
+        padding: 15px;
+
+        border-radius: 11px;
+    }
+
+
+    /* SECTION HEADER */
+
+    .section-header {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 13px;
+
+        padding-bottom: 16px;
+    }
+
+    .section-header h2 {
+        font-size: 16px;
+    }
+
+    .section-header p {
+        line-height: 1.5;
+    }
+
+    .status-filter {
+        width: 100%;
+
+        height: 40px;
+    }
+
+
+    /* APPLICATION CARD */
+
+    .application-card {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 14px;
+
+        padding: 18px 2px;
+    }
+
+
+    /* JOB INFORMATION */
+
+    .job-info {
+        width: 100%;
+
+        align-items: flex-start;
+    }
+
+    .job-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+    .job-info > div:last-child {
+        min-width: 0;
+    }
+
+    .job-info h3 {
+        font-size: 14px;
+
+        overflow-wrap: anywhere;
+    }
+
+    .job-info p {
+        font-size: 11px;
+    }
+
+    .job-info span {
+        font-size: 10px;
+    }
+
+
+    /* DATE + STATUS */
+
+    .application-date,
+    .application-status {
+        width: 100%;
+    }
+
+
+    /* CANCEL ACTION */
+
+    .application-action {
+        width: 100%;
+
+        margin-left: 0;
+
+        justify-content: stretch;
+    }
+
+    .cancel-btn {
+        width: 100%;
+
+        min-height: 40px;
+
+        border: 1px solid #fecaca;
+
+        background: #ffffff;
+
+        color: #dc2626;
+
+        border-radius: 7px;
+
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        font-family: inherit;
+
+        font-size: 11px;
+        font-weight: 600;
+
+        text-decoration: none;
+
+        cursor: pointer;
+    }
+
+
+    /* EMPTY STATE */
+
+    .empty-card {
+        padding: 40px 18px;
+    }
+
+    .empty-card p {
+        line-height: 1.6;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 420px) {
+
+    .main-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .mobile-brand {
+        font-size: 15px;
+    }
+
+    .page-header h1 {
+        font-size: 20px;
+    }
+
+    .stat-card {
+        border-radius: 10px;
+    }
+
+    .applications-section {
+        padding: 13px;
+    }
+
+    .job-info {
+        gap: 10px;
+    }
 }

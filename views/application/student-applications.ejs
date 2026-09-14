@@ -109,7 +109,7 @@
     </aside>
 
 
-
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <!-- =========================
          MAIN CONTENT
     ========================== -->
@@ -118,6 +118,19 @@
 
 
         <!-- PAGE HEADER -->
+        <div class="mobile-topbar">
+        
+            <div class="mobile-brand">
+        
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                    ☰
+                </button>
+        
+                <span>CareerConnect</span>
+        
+            </div>
+        
+        </div>
 
         <div class="page-header">
 
@@ -413,6 +426,45 @@
                 element.style.background= "#059669";
                 countshort+=1;
             } 
+        });
+
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+
+        const sidebar = document.querySelector(".sidebar");
+
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+
+            sidebarOverlay.classList.add("active");
+
+        });
+
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+
+        const sidebarLinks = document.querySelectorAll(".sidebar .nav-item");
+
+        sidebarLinks.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+
+                sidebarOverlay.classList.remove("active");
+
+            });
+
         });
 
 
