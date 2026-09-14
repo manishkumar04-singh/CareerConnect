@@ -1374,7 +1374,7 @@ app.get("/student/application",Auth,role("student"),async (req,res)=>{
         count+=1;
     }
     
-    res.render("application/student-applications",{array:array,count:count,countReject:countReject,countShort:countShort,countApplied:countApplied});
+    res.render("application/student-applications",{array:array,count:count,countReject:countReject,countShort:countShort,countApplied:countApplied,options:options});
 })
 
 app.get("/student/application/cancel/:id",Auth,role("student"),checkObjectId,async (req,res)=>{

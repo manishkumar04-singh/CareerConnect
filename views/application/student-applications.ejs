@@ -269,26 +269,26 @@
                 
                 
                     <select class="status-filter" name="status" onchange="this.form.submit()">
-                
-                        <option  disabled>
+                        
+                        <option  disabled selected>
                             All Applications
                         </option>
-                
-                        <option value="Applied">
+                        <option value=""  <%= !options ? "selected" : "" %> >
+                            Show all
+                        </option>
+                        <option value="Applied" <%= options === "Applied" ? "selected" : "" %>>
                             Applied
                         </option>
                 
-                        <option value="Shortlist">
+                        <option value="Shortlist" <%= options === "Shortlist" ? "selected" : "" %>>
                             Shortlisted
                         </option>
                 
-                        <option value="Reject">
+                        <option value="Reject" <%= options === "Rejected" ? "selected" : "" %>>
                             Rejected
                         </option>
 
-                        <option value="" >
-                            All Applications
-                        </option>
+
                 
                     </select>
                 
