@@ -265,27 +265,30 @@
                     </p>
 
                 </div>
-
-
-                <select class="status-filter">
-
-                    <option>
-                        All Applications
-                    </option>
-
-                    <option>
-                        Applied
-                    </option>
-
-                    <option>
-                        Shortlisted
-                    </option>
-
-                    <option>
-                        Rejected
-                    </option>
-
-                </select>
+                <form action="/student/application" method="get">
+                
+                
+                    <select class="status-filter" name="status" onchange="this.form.submit()">
+                
+                        <option value="">
+                            All Applications
+                        </option>
+                
+                        <option value="Applied">
+                            Applied
+                        </option>
+                
+                        <option value="Shortlist">
+                            Shortlisted
+                        </option>
+                
+                        <option value="Reject">
+                            Rejected
+                        </option>
+                
+                    </select>
+                
+                </form>
 
             </div>
 

@@ -422,7 +422,7 @@ app.get("/student/profile",Auth,role("student"),async (req,res)=>{
         }
     })
 
-    let completionRate=(fieldCompleted/array.length)*100;
+    let completionRate=Math.floor(fieldCompleted/array.length)*100;
     
     res.render("auth/student-profile",{Name:name,Email:email,about:about,college:college,degree:degree,graduationYear:graduationYear,location:location,phone:phone,skills:skills,rate:completionRate,filename:resume ? resume.fileName:" ",url:resume ? resume.url:""});
     
@@ -1331,6 +1331,7 @@ CareerConnect Team
 })
 
 app.get("/student/application",Auth,role("student"),async (req,res)=>{
+    const options=req.query.status;
     const id=new ObjectId(req.session.userid);
     const data=await db.getdb().collection("applications").find({studentId:id}).toArray();
     let count=0;;
@@ -1338,29 +1339,41 @@ app.get("/student/application",Auth,role("student"),async (req,res)=>{
     let countReject=0;
     let countShort=0;
     let countApplied=0;
-    for (const item of data){
-        let jID=item.jobId;
-        let aId=item._id;
-        const check=await db.getdb().collection("jobs").findOne({_id:jID});
-        if(!check){
+    let displayData=data;
+    if (options) {
+        displayData = await db.getdb().collection("applications").find({ studentId: id, status: options }).toArray();
+
+    } 
+    for (const item of displayData) {
+        let jID = item.jobId;
+        let aId = item._id;
+        const check = await db.getdb().collection("jobs").findOne({ _id: jID });
+        if (!check) {
             continue;
         }
-        let appliedDate=item.appliedDate;
-        let status=item.status;
-        const {jobTitle,company,location}=check;
-        if(status==='Reject'){
-            countReject+=1;
-        }
-        if(status==='Shortlist'){
-            countShort+=1;
-        }
-        if(status==='Applied'){
-            countApplied+=1;
-        }
-        const details={appliedDate:appliedDate,status:status,jobTitle:jobTitle,company:company,location:location,_id:aId};
+        let appliedDate = item.appliedDate;
+        let status = item.status;
+        const { jobTitle, company, location } = check;
+
+        const details = { appliedDate: appliedDate, status: status, jobTitle: jobTitle, company: company, location: location, _id: aId };
         array.push(details);
+
+    }
+    for (const item of data){
+        let status = item.status;
+        
+        if (status === 'Reject') {
+            countReject += 1;
+        }
+        if (status === 'Shortlist') {
+            countShort += 1;
+        }
+        if (status === 'Applied') {
+            countApplied += 1;
+        }
         count+=1;
     }
+    
     res.render("application/student-applications",{array:array,count:count,countReject:countReject,countShort:countShort,countApplied:countApplied});
 })
 
