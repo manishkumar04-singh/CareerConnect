@@ -422,7 +422,7 @@ app.get("/student/profile",Auth,role("student"),async (req,res)=>{
         }
     })
 
-    let completionRate=Math.floor(fieldCompleted/array.length)*100;
+    let completionRate=Math.floor((fieldCompleted/array.length)*100);
     
     res.render("auth/student-profile",{Name:name,Email:email,about:about,college:college,degree:degree,graduationYear:graduationYear,location:location,phone:phone,skills:skills,rate:completionRate,filename:resume ? resume.fileName:" ",url:resume ? resume.url:""});
     
@@ -565,7 +565,7 @@ app.get("/recruiter/profile",Auth,role("recruiter"),async (req,res)=>{
             dataCount+=1;
         }
     })
-    let completionRate= Math.floor(dataCount/data.length)*100;
+    let completionRate= Math.floor((dataCount/data.length)*100);
     res.render("auth/recruiter-profile",{name:name,email:email,about:about,company:company,location:location,phone:phone,website:website,rate:completionRate});
     
     
