@@ -263,11 +263,7 @@ body {
 
 /* FORM GROUP */
 
-.form-group {
-    display: flex;
 
-    flex-direction: column;
-}
 
 .full-width {
     grid-column: 1 / -1;
@@ -556,4 +552,327 @@ body {
     border-color: #2563eb;
 
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+/* =========================================================
+   FINAL RESPONSIVE FIXES — RECRUITER EDIT JOB
+========================================================= */
+
+
+/* =========================
+   MOBILE NAVIGATION
+========================= */
+
+.mobile-brand {
+    display: none;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+.mobile-menu-btn {
+    border: none;
+
+    background: transparent;
+
+    color: #172033;
+
+    font-size: 23px;
+
+    padding: 4px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   SIDEBAR OVERLAY
+========================= */
+
+.sidebar-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    z-index: 2500;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.3s ease;
+}
+
+
+.sidebar-overlay.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 850px) {
+
+    /* FORM */
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+
+    /* SIDEBAR */
+
+    .sidebar {
+        display: flex;
+
+        position: fixed;
+
+        top: 0;
+
+        left: -270px;
+
+        width: 250px;
+
+        height: 100vh;
+
+        padding: 25px 16px;
+
+        z-index: 3000;
+
+        transition: left 0.3s ease;
+
+        box-shadow:
+            8px 0 25px rgba(15, 23, 42, 0.15);
+    }
+
+
+    .sidebar.active {
+        left: 0;
+    }
+
+
+    /* RESTORE FULL SIDEBAR */
+
+    .sidebar .logo span:last-child {
+        display: block;
+    }
+
+    .sidebar .logo {
+        justify-content: flex-start;
+    }
+
+    .sidebar .nav-item {
+        justify-content: flex-start;
+    }
+
+
+    /* MAIN */
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 24px 20px 40px;
+
+        max-width: none;
+    }
+
+
+    /* HEADER */
+
+    .mobile-brand {
+        display: flex;
+    }
+
+    .page-title {
+        display: none;
+    }
+
+    .page-header {
+        gap: 16px;
+    }
+
+
+    /* CARDS */
+
+    .form-card {
+        padding: 24px;
+    }
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+@media (max-width: 600px) {
+
+    /* MAIN */
+
+    .main-content {
+        padding: 16px 12px 30px;
+    }
+
+
+    /* HEADER */
+
+    .page-header {
+        margin-bottom: 20px;
+
+        align-items: center;
+    }
+
+    .mobile-brand {
+        font-size: 16px;
+    }
+
+    .back-button {
+        padding: 9px 11px;
+
+        font-size: 10px;
+    }
+
+
+    /* FORM CARD */
+
+    .form-card {
+        padding: 18px;
+
+        border-radius: 12px;
+
+        margin-bottom: 15px;
+    }
+
+
+    /* SECTION HEADER */
+
+    .section-heading {
+        margin-bottom: 20px;
+    }
+
+    .section-heading h2 {
+        font-size: 16px;
+    }
+
+    .section-heading p {
+        font-size: 11px;
+
+        line-height: 1.5;
+    }
+
+
+    /* FORM */
+
+    .form-grid {
+        gap: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+
+    /* INPUTS */
+
+    .form-group input,
+    .form-group select {
+        height: 44px;
+
+        font-size: 12px;
+    }
+
+    .form-group textarea {
+        font-size: 12px;
+
+        min-height: 120px;
+    }
+
+
+    /* ACTIONS */
+
+    .form-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+
+        gap: 10px;
+
+        padding-bottom: 20px;
+    }
+
+
+    .cancel-button,
+    .save-button {
+        width: 100%;
+
+        min-height: 42px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONE
+========================= */
+
+@media (max-width: 420px) {
+
+    .main-content {
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+
+    .mobile-brand {
+        font-size: 15px;
+    }
+
+
+    .page-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .back-button {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .form-card {
+        padding: 15px;
+    }
+
+
+    .form-group textarea {
+        min-height: 110px;
+    }
 }

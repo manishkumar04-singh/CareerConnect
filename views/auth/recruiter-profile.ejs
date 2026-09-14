@@ -66,7 +66,7 @@
 
     </aside>
 
-
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <!-- MAIN CONTENT -->
 
     <main class="main-content">
@@ -74,6 +74,16 @@
         <!-- TOP BAR -->
 
         <header class="topbar">
+
+            <div class="mobile-brand">
+            
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                    ☰
+                </button>
+            
+                <span>CareerConnect</span>
+            
+            </div>
 
             <div>
                 <h1>Recruiter Profile</h1>
@@ -208,12 +218,12 @@
 
                     <span class="info-label">
                         Website
-                    </span>s
+                    </span>
 
                     <% if(!website){ %>
                         <h3>Website not added</h3>
                     <% } else { %>
-                        <a href="<%= website %>" ><%= website %></a>
+                        <a href="<%= website %>" target="_blank"><%= website %></a>
                     <% } %>
 
                 </div>
@@ -282,7 +292,7 @@
             <div class="progress-container">
 
                 <div class="progress-bar">
-                    <div class="progress-fill"></div>
+                    <div class="progress-fill" style="width: <%= rate %>"></div>
                 </div>
 
             </div>
@@ -290,6 +300,41 @@
         </section>
 
     </main>
+
+    <script>
+
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const sidebar = document.querySelector(".sidebar");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+            sidebarOverlay.classList.add("active");
+
+        });
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+        const sidebarLinks = document.querySelectorAll(".sidebar .nav-item");
+
+        sidebarLinks.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+                sidebarOverlay.classList.remove("active");
+
+            });
+
+        });
+
+    </script>
 
 </body>
 

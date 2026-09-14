@@ -764,3 +764,443 @@ body {
         padding: 20px;
     }
 }
+/* =========================================================
+   FINAL RESPONSIVE FIXES — RECRUITER JOB DETAILS
+========================================================= */
+
+
+/* =========================
+   MOBILE BRAND
+========================= */
+
+.mobile-brand {
+    display: none;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+.mobile-menu-btn {
+    border: none;
+
+    background: transparent;
+
+    color: #172033;
+
+    font-size: 23px;
+
+    padding: 4px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   SIDEBAR OVERLAY
+========================= */
+
+.sidebar-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    z-index: 2500;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .right-column {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 15px;
+    }
+
+    .side-card {
+        margin-bottom: 0;
+    }
+}
+
+
+/* =========================
+   TABLET + MOBILE NAVIGATION
+========================= */
+
+@media (max-width: 800px) {
+
+    /* SIDEBAR */
+
+    .sidebar {
+        display: flex;
+
+        position: fixed;
+
+        top: 0;
+
+        left: -270px;
+
+        width: 250px;
+
+        height: 100vh;
+
+        padding: 25px 16px;
+
+        z-index: 3000;
+
+        transition: left 0.3s ease;
+
+        box-shadow:
+            8px 0 25px rgba(15, 23, 42, 0.15);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+
+    /* RESTORE FULL SIDEBAR */
+
+    .sidebar .logo span:last-child {
+        display: block;
+    }
+
+    .sidebar .logo {
+        justify-content: flex-start;
+    }
+
+    .sidebar .nav-item {
+        justify-content: flex-start;
+    }
+
+
+    /* MAIN */
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 24px 20px 40px;
+
+        max-width: none;
+    }
+
+
+    /* TOPBAR */
+
+    .mobile-brand {
+        display: flex;
+    }
+
+    .topbar-title {
+        display: none;
+    }
+
+    .profile-mini-info {
+        display: none;
+    }
+
+    .profile-mini {
+        margin-left: auto;
+    }
+
+
+    /* JOB HEADER */
+
+    .job-header-card {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .job-header-main {
+        width: 100%;
+    }
+
+
+    /* ACTIONS */
+
+    .header-actions {
+        width: 100%;
+    }
+
+    .edit-button,
+    .delete-button {
+        flex: 1;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-align: center;
+    }
+
+
+    /* SIDE COLUMN */
+
+    .right-column {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+@media (max-width: 600px) {
+
+    /* MAIN */
+
+    .main-content {
+        padding: 16px 12px 30px;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        margin-bottom: 17px;
+    }
+
+    .mobile-brand {
+        font-size: 16px;
+    }
+
+    .profile-avatar {
+        width: 38px;
+
+        height: 38px;
+    }
+
+
+    /* BACK LINK */
+
+    .back-link {
+        margin-bottom: 13px;
+
+        font-size: 11px;
+    }
+
+
+    /* JOB HEADER */
+
+    .job-header-card {
+        padding: 18px;
+
+        border-radius: 12px;
+
+        gap: 17px;
+    }
+
+    .job-header-main {
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .job-icon {
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 21px;
+    }
+
+
+    /* TITLE */
+
+    .title-row {
+        flex-wrap: wrap;
+
+        align-items: flex-start;
+
+        gap: 7px;
+    }
+
+    .title-row h2 {
+        font-size: 18px;
+
+        overflow-wrap: anywhere;
+    }
+
+
+    /* QUICK DETAILS */
+
+    .quick-details {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 9px 12px;
+    }
+
+    .quick-details span {
+        font-size: 10px;
+    }
+
+
+    /* HEADER ACTIONS */
+
+    .header-actions {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+    }
+
+    .edit-button,
+    .delete-button {
+        width: 100%;
+
+        min-height: 40px;
+    }
+
+
+    /* DETAIL CARDS */
+
+    .detail-card,
+    .side-card {
+        padding: 18px;
+
+        border-radius: 11px;
+    }
+
+    .detail-card h2 {
+        font-size: 15px;
+
+        margin-bottom: 14px;
+    }
+
+    .description {
+        font-size: 11px;
+
+        line-height: 1.7;
+    }
+
+
+    /* SKILLS */
+
+    .skills {
+        gap: 7px;
+    }
+
+    .skills span {
+        font-size: 10px;
+
+        padding: 6px 9px;
+    }
+
+
+    /* INFORMATION */
+
+    .info-grid {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 15px;
+    }
+
+
+    /* RIGHT COLUMN */
+
+    .right-column {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .side-card {
+        margin-bottom: 0;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONE
+========================= */
+
+@media (max-width: 420px) {
+
+    .main-content {
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+    .mobile-brand {
+        font-size: 15px;
+    }
+
+
+    /* JOB HEADER */
+
+    .job-header-main {
+        flex-direction: column;
+    }
+
+
+    .title-row {
+        flex-direction: column;
+    }
+
+
+    /* QUICK DETAILS */
+
+    .quick-details {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* ACTIONS */
+
+    .header-actions {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* INFORMATION */
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .detail-card,
+    .side-card {
+        padding: 16px;
+    }
+}

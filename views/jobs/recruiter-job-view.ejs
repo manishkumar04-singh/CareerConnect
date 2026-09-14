@@ -23,7 +23,7 @@
 
         <nav class="sidebar-nav">
 
-            <a href="/recruiter/dashboard" class="nav-item">
+            <a href="/recruiter-dashboard" class="nav-item">
                 <span class="nav-icon">⌂</span>
                 Dashboard
             </a>
@@ -38,7 +38,7 @@
                 My Jobs
             </a>
 
-            <a href="#" class="nav-item">
+            <a href="/recruiter/application" class="nav-item">
                 <span class="nav-icon">♙</span>
                 Applications
             </a>
@@ -60,7 +60,8 @@
         </div>
 
     </aside>
-
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- MAIN CONTENT -->
 
@@ -69,6 +70,16 @@
         <!-- TOP BAR -->
 
         <header class="topbar">
+
+            <div class="mobile-brand">
+            
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                    ☰
+                </button>
+            
+                <span>CareerConnect</span>
+            
+            </div>
 
             <div>
                 <h1>Job Details</h1>
@@ -149,9 +160,9 @@
                     ✎ Edit Job
                 </a>
 
-                <button class="delete-button" type="button">
+                <a href="/recruiter/job/delete/<%= data._id %>" class="delete-button">
                     Delete
-                </button>
+                </a>
 
             </div>
 
@@ -335,6 +346,54 @@
         </div>
 
     </main>
+
+    <script>
+
+        const mobileMenuBtn =
+            document.getElementById("mobileMenuBtn");
+
+        const sidebar =
+            document.querySelector(".sidebar");
+
+        const sidebarOverlay =
+            document.getElementById("sidebarOverlay");
+
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+
+            sidebarOverlay.classList.add("active");
+
+        });
+
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+
+        const sidebarLinks =
+            document.querySelectorAll(".sidebar .nav-item");
+
+
+        sidebarLinks.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+
+                sidebarOverlay.classList.remove("active");
+
+            });
+
+        });
+
+    </script>
 
 </body>
 

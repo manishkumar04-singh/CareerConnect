@@ -577,3 +577,308 @@ body {
         text-align: center;
     }
 }
+
+.form-section .form-group + .form-group {
+    margin-top: 20px;
+}
+
+/* =========================================================
+   FINAL RESPONSIVE FIXES — POST JOB
+========================================================= */
+
+
+/* =========================
+   MOBILE NAVIGATION
+========================= */
+
+.mobile-brand {
+    display: none;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.mobile-menu-btn {
+    border: none;
+    background: transparent;
+
+    color: #172033;
+
+    font-size: 23px;
+
+    padding: 4px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   SIDEBAR OVERLAY
+========================= */
+
+.sidebar-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    z-index: 2500;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 850px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+
+    /* SIDEBAR */
+
+    .sidebar {
+        display: flex;
+
+        position: fixed;
+
+        top: 0;
+        left: -270px;
+
+        width: 250px;
+        height: 100vh;
+
+        padding: 25px 16px;
+
+        z-index: 3000;
+
+        transition: left 0.3s ease;
+
+        box-shadow:
+            8px 0 25px rgba(15, 23, 42, 0.15);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+
+    /* RESTORE FULL SIDEBAR */
+
+    .sidebar .logo span:last-child {
+        display: block;
+    }
+
+    .sidebar .logo {
+        justify-content: flex-start;
+    }
+
+    .sidebar .nav-item {
+        justify-content: flex-start;
+    }
+
+
+    /* MAIN */
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 24px 20px 40px;
+
+        max-width: none;
+    }
+
+
+    /* TOPBAR */
+
+    .mobile-brand {
+        display: flex;
+    }
+
+    .topbar-title {
+        display: none;
+    }
+
+    .profile-mini-info {
+        display: none;
+    }
+
+    .profile-mini {
+        margin-left: auto;
+    }
+
+
+    /* FORM */
+
+    .job-card {
+        padding: 24px;
+    }
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+@media (max-width: 600px) {
+
+    .main-content {
+        padding: 16px 12px 30px;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        margin-bottom: 18px;
+    }
+
+    .mobile-brand {
+        font-size: 16px;
+    }
+
+    .profile-avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    /* CARD */
+
+    .job-card {
+        padding: 18px;
+
+        border-radius: 12px;
+
+        margin-bottom: 20px;
+    }
+
+    .card-heading {
+        padding-bottom: 18px;
+
+        margin-bottom: 20px;
+    }
+
+    .card-heading h2 {
+        font-size: 17px;
+    }
+
+    .card-heading p {
+        font-size: 11px;
+
+        line-height: 1.5;
+    }
+
+
+    /* FORM SECTIONS */
+
+    .form-section {
+        padding-bottom: 20px;
+
+        margin-bottom: 20px;
+    }
+
+    .form-section h3 {
+        font-size: 13px;
+
+        margin-bottom: 15px;
+    }
+
+
+    /* FORM GRID */
+
+    .form-grid {
+        gap: 16px;
+    }
+
+
+    /* INPUTS */
+
+    .form-group input,
+    .form-group select {
+        height: 44px;
+
+        font-size: 12px;
+    }
+
+    .form-group textarea {
+        min-height: 130px;
+
+        font-size: 12px;
+    }
+
+
+    /* ACTIONS */
+
+    .form-actions {
+        width: 100%;
+
+        flex-direction: column-reverse;
+
+        gap: 10px;
+    }
+
+    .cancel-button,
+    .post-button {
+        width: 100%;
+
+        min-height: 42px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONE
+========================= */
+
+@media (max-width: 420px) {
+
+    .main-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .mobile-brand {
+        font-size: 15px;
+    }
+
+    .job-card {
+        padding: 15px;
+    }
+
+    .card-heading h2 {
+        font-size: 16px;
+    }
+
+    .form-group textarea {
+        min-height: 120px;
+    }
+}

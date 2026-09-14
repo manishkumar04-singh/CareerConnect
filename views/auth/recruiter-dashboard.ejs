@@ -21,169 +21,193 @@
         </div>
 
         <nav class="sidebar-nav">
-
-            <a href="#" class="nav-item active">
+        
+            <a href="/recruiter-dashboard" class="nav-item active">
                 <span class="nav-icon">⌂</span>
                 Dashboard
             </a>
-
+        
             <a href="/recruiter/job/post" class="nav-item">
                 <span class="nav-icon">＋</span>
                 Post a Job
             </a>
-
+        
             <a href="/recruiter/jobs" class="nav-item">
                 <span class="nav-icon">▤</span>
                 My Jobs
             </a>
-
+        
             <a href="/recruiter/application" class="nav-item">
                 <span class="nav-icon">♙</span>
                 Applications
             </a>
-
+        
             <a href="/recruiter/profile" class="nav-item">
                 <span class="nav-icon">◎</span>
                 Profile
             </a>
-
+        
         </nav>
-
+        
         <div class="sidebar-bottom">
-
+        
             <a href="/logout" class="nav-item logout">
                 <span class="nav-icon">↪</span>
                 Logout
             </a>
-
+        
             <a href="/recruiter/settings" class="nav-item">
                 <span class="nav-icon">⚙</span>
                 Setting
             </a>
-
+        
         </div>
-
-    </aside>
-
-
-    <!-- MAIN CONTENT -->
-
-    <main class="main-content">
-
-        <!-- TOP BAR -->
-
-        <header class="topbar">
-
-            <div>
-                <h1>Recruiter Dashboard</h1>
-                <p>Manage your jobs and find the right candidates.</p>
-            </div>
-
-            <div class="profile-mini">
-            
-                <div class="notification-wrapper">
-                    <button class="notification-button" type="button">
-                        <span class="notification-bell">🔔</span>
-                        <% if(unreadCount > 0) { %>
-                            <span class="notification-dot">
-                                <%= unreadCount %>
-                            </span>
-                            <% } %>
+        
+        </aside>
+        
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <!-- MAIN CONTENT -->
+        
+        <main class="main-content">
+        
+            <!-- TOP BAR -->
+        
+            <header class="topbar">
+        
+                <div class="mobile-brand">
+                
+                    <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                        ☰
                     </button>
+                
+                    <span>CareerConnect</span>
+                
                 </div>
                 
-                <div class="notification-dropdown" id="notificationDropdown">
                 
-                    <div class="notification-header">
+                <div class="topbar-title">
                 
-                        <h3>Notifications</h3>
+                    <h1>Recruiter Dashboard</h1>
                 
-                        <span>
-                            <%= unreadCount %> unread
-                        </span>
+                    <p>
+                        Manage your jobs and find the right candidates.
+                    </p>
                 
-                        <% if(unreadCount> 0) { %>
-                
-                            <form action="/recruiter/notifications/read-all" method="POST">
-                
-                                <button type="submit" class="mark-all-read">
-                                    Mark all as read
-                                </button>
-                
-                            </form>
-                
-                            <% } %>
-                
-                    </div>
-                
-                
-                    <div class="notification-list">
-                
-                        <% if(notification.length===0) { %>
-                
-                            <div class="no-notifications">
-                                No notifications yet.
+                </div>
+        
+                <div class="profile-mini">
+        
+                    <div class="notification-wrapper">
+        
+                        <button class="notification-button" type="button" id="notificationButton">
+        
+                            <span class="notification-bell">
+                                🔔
+                            </span>
+        
+                            <% if(unreadCount> 0) { %>
+        
+                                <span class="notification-dot">
+                                    <%= unreadCount %>
+                                </span>
+        
+                                <% } %>
+        
+                        </button>
+        
+        
+                        <div class="notification-dropdown" id="notificationDropdown">
+        
+                            <div class="notification-header">
+        
+                                <h3>Notifications</h3>
+        
+                                <span>
+                                    <%= unreadCount %> unread
+                                </span>
+        
+                                <% if(unreadCount> 0) { %>
+        
+                                    <form action="/recruiter/notifications/read-all" method="POST">
+        
+                                        <button type="submit" class="mark-all-read">
+                                            Mark all as read
+                                        </button>
+        
+                                    </form>
+        
+                                    <% } %>
+        
                             </div>
-                
-                            <% } else { %>
-                
-                                <% notification.forEach(item=> { %>
-                                    <a href="/recruiter/notification/<%= item._id %>"
-                                        class="notification-item">
-                
-                                            <div class="notification-item-icon">
-                
-                                                <% if(item.type==="ApplicationWithdrawn" ) { %>
-                                                    ★
-                                                    <% } else if(item.type==="NewApplication" ) { %>
-                                                        !
-                                                        <% } else { %>
+        
+        
+                            <div class="notification-list">
+        
+                                <% if(notification.length===0) { %>
+        
+                                    <div class="no-notifications">
+                                        No notifications yet.
+                                    </div>
+        
+                                    <% } else { %>
+        
+                                        <% notification.forEach(item=> { %>
+        
+                                            <a href="/recruiter/notification/<%= item._id %>" class="notification-item">
+        
+                                                <div class="notification-item-icon">
+        
+                                                    <% if(item.type==="ApplicationWithdrawn" ) { %>
+                                                        ★
+                                                        <% } else if(item.type==="NewApplication" ) { %>
+                                                            !
+                                                            <% } else { %>
                                                                 🔔
                                                                 <% } %>
-                
-                                            </div>
-                
-                
-                                            <div class="notification-content">
-                
-                                                <h4>
-                                                    <%= item.title %>
-                                                </h4>
-                
-                                                <p>
-                                                    <%= item.message %>
-                                                </p>
-                
-                                                <span class="notification-time">
-                                                    <%= item.createdAt %>
-                                                </span>
-                
-                                            </div>
-                
-                                        
-                                    </a>
-                                <% }) %>
-                
-                             <% } %>
-                
+        
+                                                </div>
+        
+                                                <div class="notification-content">
+        
+                                                    <h4>
+                                                        <%= item.title %>
+                                                    </h4>
+        
+                                                    <p>
+                                                        <%= item.message %>
+                                                    </p>
+        
+                                                    <span class="notification-time">
+                                                        <%= item.createdAt %>
+                                                    </span>
+        
+                                                </div>
+        
+                                            </a>
+        
+                                            <% }) %>
+        
+                                                <% } %>
+        
+                            </div>
+        
+                        </div>
+        
                     </div>
-                
-                
-                
-                </div>
-                
-                <div class="profile-avatar">
-                    R
+        
+        
+                    <div class="profile-avatar">
+                        R
+                    </div>
+        
+                    <div class="profile-mini-info">
+                        <strong>Recruiter</strong>
+                        <span>Recruiter Account</span>
+                    </div>
+        
                 </div>
 
-                <div class="profile-mini-info">
-                    <strong>Recruiter</strong>
-                    <span>Recruiter Account</span>
-                </div>
-
-            </div>
-
-        </header>
+            </header>
 
 
         <!-- WELCOME -->
@@ -381,7 +405,7 @@
         
             </div>
             
-    <% if(array){ %>
+    <% if(array.length > 0){ %>
         
 
             <div class="recent-jobs-grid">
@@ -438,7 +462,7 @@
                     Create your first job opportunity to start finding candidates.
                 </p>
 
-                <a href="#" class="secondary-button">
+                <a href="/recruiter/job/post" class="secondary-button">
                     + Post Your First Job
                 </a>
 
@@ -447,15 +471,64 @@
         </section>
 
         <script>
-            const notificationButton = document.querySelector(".notification-button");
-            const notificationPanel = document.getElementById("notificationDropdown");
+
+            const notificationButton =
+                document.getElementById("notificationButton");
+
+            const notificationPanel =
+                document.getElementById("notificationDropdown");
+
+            const mobileMenuBtn =
+                document.getElementById("mobileMenuBtn");
+
+            const sidebar =
+                document.querySelector(".sidebar");
+
+            const sidebarOverlay =
+                document.getElementById("sidebarOverlay");
+
+
             notificationButton.addEventListener("click", () => {
-                if (notificationPanel.classList.contains("active")) {
-                    notificationPanel.classList.remove("active");
-                } else {
-                    notificationPanel.classList.add("active"); ß
-                }
-            })
+
+                notificationPanel.classList.toggle("active");
+
+            });
+
+
+            mobileMenuBtn.addEventListener("click", () => {
+
+                sidebar.classList.add("active");
+
+                sidebarOverlay.classList.add("active");
+
+            });
+
+
+            sidebarOverlay.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+
+                sidebarOverlay.classList.remove("active");
+
+            });
+
+
+            const sidebarLinks =
+                document.querySelectorAll(".sidebar .nav-item");
+
+
+            sidebarLinks.forEach(item => {
+
+                item.addEventListener("click", () => {
+
+                    sidebar.classList.remove("active");
+
+                    sidebarOverlay.classList.remove("active");
+
+                });
+
+            });
+
         </script>
 
     </main>

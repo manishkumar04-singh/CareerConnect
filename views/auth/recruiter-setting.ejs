@@ -7,7 +7,7 @@
 
     <title>Settings | CareerConnect</title>
 
-    <link rel="stylesheet" href="/css/student-settings.css">
+    <link rel="stylesheet" href="/css/recruiter-setting.css">
 </head>
 
 <body>
@@ -24,46 +24,41 @@
             </div>
 
             <div class="menu-section">
-
+            
                 <p class="menu-title">MAIN MENU</p>
-
+            
                 <a href="/recruiter-dashboard" class="menu-item">
                     <span>⌂</span>
                     <span>Dashboard</span>
                 </a>
-
-                <a href="/recruiter-jobs" class="menu-item">
-                    <span>⌕</span>
-                    <span>Find Jobs</span>
+            
+                <a href="/recruiter/job/post" class="menu-item">
+                    <span>＋</span>
+                    <span>Post a Job</span>
                 </a>
-
+            
+                <a href="/recruiter/jobs" class="menu-item">
+                    <span>▤</span>
+                    <span>My Jobs</span>
+                </a>
+            
                 <a href="/recruiter/application" class="menu-item">
-                    <span>▣</span>
-                    <span>My Applications</span>
+                    <span>♙</span>
+                    <span>Applications</span>
                 </a>
-
-                <a href="/recruiter-saved-jobs" class="menu-item">
-                    <span>☆</span>
-                    <span>Saved Jobs</span>
-                </a>
-
-                <a href="/recruiter/interview" class="menu-item">
-                    <span>✓</span>
-                    <span>Interviews</span>
-                </a>
-
+            
                 <p class="menu-title second-title">ACCOUNT</p>
-
+            
                 <a href="/recruiter/profile" class="menu-item">
                     <span>◯</span>
                     <span>My Profile</span>
                 </a>
-
+            
                 <a href="/recruiter/settings" class="menu-item active">
                     <span>⚙</span>
                     <span>Settings</span>
                 </a>
-
+            
             </div>
 
             <div class="sidebar-bottom">
@@ -79,12 +74,22 @@
 
 
         <!-- ================= MAIN CONTENT ================= -->
-
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
         <main class="main-content">
 
             <!-- TOP BAR -->
 
             <header class="topbar">
+
+                <div class="mobile-brand">
+                
+                    <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                        ☰
+                    </button>
+                
+                    <span>CareerConnect</span>
+                
+                </div>
 
                 <div>
                     <h1>Settings</h1>
@@ -371,23 +376,89 @@
         </script>
     <% } %>    
     <script>
-        const emailBtn=document.getElementById("openChangeEmail");
-        const model=document.getElementById("changeEmailModal");
-        const closeEmailBtn=document.querySelector(".change-email-close");
-        const cancelEmailBtn=document.querySelector(".change-email-cancel");
-        emailBtn.addEventListener("click",()=>{
-            model.classList.add("active");
-        })
 
-        closeEmailBtn.addEventListener("click",()=>{
+    /* CHANGE EMAIL MODAL */
+
+    const emailBtn =
+        document.getElementById("openChangeEmail");
+
+    const model =
+        document.getElementById("changeEmailModal");
+
+    const closeEmailBtns =
+        document.querySelectorAll(".change-email-close");
+
+    const cancelEmailBtn =
+        document.getElementById("cancelChangeEmail");
+
+
+    emailBtn.addEventListener("click", () => {
+        model.classList.add("active");
+    });
+
+
+    closeEmailBtns.forEach(btn => {
+
+        btn.addEventListener("click", () => {
             model.classList.remove("active");
-        })
+        });
 
-        cancelEmailBtn.addEventListener("click",()=>{
-            model.classList.remove("active");
-        })
+    });
 
-    </script>
+
+    cancelEmailBtn.addEventListener("click", () => {
+        model.classList.remove("active");
+    });
+
+
+
+    /* MOBILE SIDEBAR */
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const sidebar =
+        document.querySelector(".sidebar");
+
+    const sidebarOverlay =
+        document.getElementById("sidebarOverlay");
+
+
+    mobileMenuBtn.addEventListener("click", () => {
+
+        sidebar.classList.add("active");
+
+        sidebarOverlay.classList.add("active");
+
+    });
+
+
+    sidebarOverlay.addEventListener("click", () => {
+
+        sidebar.classList.remove("active");
+
+        sidebarOverlay.classList.remove("active");
+
+    });
+
+
+    const sidebarLinks =
+        document.querySelectorAll(".sidebar .menu-item");
+
+
+    sidebarLinks.forEach(item => {
+
+        item.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+    });
+
+</script>
 
 </body>
 

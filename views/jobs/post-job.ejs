@@ -65,7 +65,8 @@
         </div>
 
     </aside>
-
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- MAIN CONTENT -->
 
@@ -74,6 +75,16 @@
         <!-- TOP BAR -->
 
         <header class="topbar">
+
+            <div class="mobile-brand">
+            
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                    ☰
+                </button>
+            
+                <span>CareerConnect</span>
+            
+            </div>
 
             <div>
                 <h1>Post a Job</h1>
@@ -275,101 +286,75 @@
 
                     </div>
 
-                </div>
+                    <div class="form-section">
+                    
+                        <h3>Skills Required</h3>
+                    
+                        <div class="form-group">
+                    
+                            <label for="skills">
+                                Required Skills
+                            </label>
+                    
+                            <input type="text" id="skills" name="skills" placeholder="e.g. HTML, CSS, JavaScript, Node.js, MongoDB"
+                                required>
+                    
+                            <span class="input-help">
+                                Separate multiple skills with commas.
+                            </span>
+                    
+                        </div>
+                    
+                    </div>
 
-
-                <!-- SKILLS -->
-
-                <div class="form-section">
-
-                    <h3>Skills Required</h3>
-
+                    <div class="form-section">
+                    
+                        <h3>Job Description</h3>
+                    
+                        <div class="form-group">
+                    
+                            <label for="description">
+                                Description
+                            </label>
+                    
+                            <textarea id="description" name="description" rows="8"
+                                placeholder="Describe the role, responsibilities and requirements..." required></textarea>
+                    
+                        </div>
+                    
+                    </div>
+                    
                     <div class="form-group">
-
-                        <label for="skills">
-                            Required Skills
+                    
+                        <label for="qualifications">
+                            Qualifications
                         </label>
-
-                        <input
-                            type="text"
-                            id="skills"
-                            name="skills"
-                            placeholder="e.g. HTML, CSS, JavaScript, Node.js, MongoDB"
-                            required
-                        >
-
-                        <span class="input-help">
-                            Separate multiple skills with commas.
-                        </span>
-
+                    
+                        <textarea id="qualifications" name="qualifications" rows="5" placeholder="Enter the required qualifications..."
+                            required>
+                                        </textarea>
+                    
                     </div>
-
-                </div>
-
-
-                <!-- JOB DESCRIPTION -->
-
-                <div class="form-section">
-
-                    <h3>Job Description</h3>
-
+                    
+                    
                     <div class="form-group">
-
-                        <label for="description">
-                            Description
+                    
+                        <label for="responsibilities">
+                            Responsibilities
                         </label>
-
-                        <textarea
-                            id="description"
-                            name="description"
-                            rows="8"
-                            placeholder="Describe the role, responsibilities and requirements..."
-                            required
-                        ></textarea>
-
+                    
+                        <textarea id="responsibilities" name="responsibilities" rows="6"
+                            placeholder="Enter the responsibilities for this position..." required></textarea>
+                    
                     </div>
 
                 </div>
 
-                <div class="form-group">
-
-                    <label for="qualifications">
-                        Qualifications
-                    </label>
-
-                    <textarea
-                        id="qualifications"
-                        name="qualifications"
-                        rows="5"
-                        placeholder="Enter the required qualifications..."
-                        required>
-                    </textarea>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="responsibilities">
-                        Responsibilities
-                    </label>
-
-                    <textarea
-                        id="responsibilities"
-                        name="responsibilities"
-                        rows="6"
-                        placeholder="Enter the responsibilities for this position..."
-                        required></textarea>
-
-                    </div>
-
-
-                <!-- FORM BUTTONS -->
 
                 <div class="form-actions">
 
                     <a
-                        href="/recruiter/dashboard"
+                        href="/recruiter-dashboard"
                         class="cancel-button"
                     >
                         Cancel
@@ -390,6 +375,54 @@
         </section>
 
     </main>
+
+    <script>
+
+        const mobileMenuBtn =
+            document.getElementById("mobileMenuBtn");
+
+        const sidebar =
+            document.querySelector(".sidebar");
+
+        const sidebarOverlay =
+            document.getElementById("sidebarOverlay");
+
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+
+            sidebarOverlay.classList.add("active");
+
+        });
+
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+
+        const sidebarLinks =
+            document.querySelectorAll(".sidebar .nav-item");
+
+
+        sidebarLinks.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+
+                sidebarOverlay.classList.remove("active");
+
+            });
+
+        });
+
+    </script>
 
 </body>
 

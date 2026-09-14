@@ -65,7 +65,7 @@
             </a>
 
 
-            <a href="/recruiter/applications" class="nav-item active">
+            <a href="/recruiter/application" class="nav-item active">
 
                 <span class="nav-icon">
                     ▣
@@ -111,12 +111,26 @@
     </aside>
 
 
-
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <!-- =========================
          MAIN CONTENT
     ========================== -->
 
     <main class="main-content">
+
+        <header class="mobile-topbar">
+        
+            <div class="mobile-brand">
+        
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                    ☰
+                </button>
+        
+                <span>CareerConnect</span>
+        
+            </div>
+        
+        </header>
 
 
         <!-- PAGE HEADER -->
@@ -180,7 +194,7 @@
                     </span>
 
                     <strong>
-                        7
+                        <%= countApplied %>
                     </strong>
 
                 </div>
@@ -201,7 +215,7 @@
                     </span>
 
                     <strong>
-                        3
+                        <%= countShort %>
                     </strong>
 
                 </div>
@@ -222,7 +236,7 @@
                     </span>
 
                     <strong>
-                        2
+                        <%= countReject %>
                     </strong>
 
                 </div>
@@ -381,6 +395,37 @@
                 item.style.background= "#fff1f2"
             }
         })
+
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const sidebar = document.querySelector(".sidebar");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+            sidebarOverlay.classList.add("active");
+
+        });
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+        const sidebarLinks = document.querySelectorAll(".sidebar .nav-item");
+
+        sidebarLinks.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+                sidebarOverlay.classList.remove("active");
+
+            });
+
+         });
     </script>
 </body>
 

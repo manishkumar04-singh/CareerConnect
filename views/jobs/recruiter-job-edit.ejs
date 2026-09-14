@@ -23,7 +23,7 @@
 
         <nav class="sidebar-nav">
 
-            <a href="/recruiter/dashboard" class="nav-item">
+            <a href="/recruiter-dashboard" class="nav-item">
                 <span class="nav-icon">⌂</span>
                 Dashboard
             </a>
@@ -38,7 +38,7 @@
                 My Jobs
             </a>
 
-            <a href="#" class="nav-item">
+            <a href="/recruiter/application" class="nav-item">
                 <span class="nav-icon">♙</span>
                 Applications
             </a>
@@ -63,12 +63,22 @@
 
 
     <!-- MAIN CONTENT -->
-
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <main class="main-content">
 
         <!-- HEADER -->
 
         <header class="page-header">
+
+            <div class="mobile-brand">
+            
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                    ☰
+                </button>
+            
+                <span>CareerConnect</span>
+            
+            </div>
 
             <div>
                 <h1>Edit Job</h1>
@@ -339,7 +349,7 @@
 
                     <textarea id="qualifications" name="qualifications"  rows="5" 
                         placeholder="Enter the qualifications for this role..."
-                        required><%= data.qualifications || " " %></textarea>
+                        required><%= data.qualifications || "Enter the qualifications for this role..." %></textarea>
 
                 </div>
 
@@ -353,7 +363,7 @@
                         name="responsibilities"
                         placeholder="Enter the responsibilities for this role..."
                         rows="6"
-                        required><%= data.responsibilities || "" %></textarea>
+                        required><%= data.responsibilities || "Enter the responsibilities for this role..." %></textarea>
 
                 </div>
 
@@ -384,7 +394,53 @@
         </form>
 
     </main>
-    
+    <script>
+
+        const mobileMenuBtn =
+            document.getElementById("mobileMenuBtn");
+
+        const sidebar =
+            document.querySelector(".sidebar");
+
+        const sidebarOverlay =
+            document.getElementById("sidebarOverlay");
+
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+
+            sidebarOverlay.classList.add("active");
+
+        });
+
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+
+        const sidebarLinks =
+            document.querySelectorAll(".sidebar .nav-item");
+
+
+        sidebarLinks.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+
+                sidebarOverlay.classList.remove("active");
+
+            });
+
+        });
+
+    </script>
 
 </body>
 

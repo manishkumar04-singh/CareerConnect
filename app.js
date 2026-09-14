@@ -565,7 +565,7 @@ app.get("/recruiter/profile",Auth,role("recruiter"),async (req,res)=>{
             dataCount+=1;
         }
     })
-    let completionRate= (dataCount/data.length)*100;
+    let completionRate= Math.floor(dataCount/data.length)*100;
     res.render("auth/recruiter-profile",{name:name,email:email,about:about,company:company,location:location,phone:phone,website:website,rate:completionRate});
     
     
