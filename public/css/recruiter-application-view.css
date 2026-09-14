@@ -765,3 +765,340 @@ body {
     font-size: 10px;
     font-weight: 600;
 }
+
+/* =========================================================
+   FINAL RESPONSIVE FIXES — VIEW APPLICATION
+========================================================= */
+
+.mobile-topbar {
+    display: none;
+}
+
+.mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.mobile-menu-btn {
+    border: none;
+    background: transparent;
+
+    color: #172033;
+
+    font-size: 23px;
+    padding: 4px;
+
+    cursor: pointer;
+}
+
+
+/* SIDEBAR OVERLAY */
+
+.sidebar-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    z-index: 2500;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* FIX ACTION LINKS */
+
+.shortlist-button,
+.reject-button {
+    width: 100%;
+
+    min-height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.shortlist-button {
+    border: none;
+
+    background: #059669;
+    color: white;
+}
+
+.shortlist-button:hover {
+    background: #047857;
+}
+
+.reject-button {
+    border: 1px solid #fecdd3;
+
+    background: #fff1f2;
+    color: #dc2626;
+}
+
+.reject-button:hover {
+    background: #ffe4e6;
+}
+
+
+/* TABLET */
+
+@media (max-width: 950px) {
+
+    .application-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .application-sidebar {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* MOBILE NAVIGATION */
+
+@media (max-width: 800px) {
+
+    .mobile-topbar {
+        display: flex;
+
+        align-items: center;
+
+        height: 60px;
+
+        margin-bottom: 14px;
+    }
+
+
+    .sidebar {
+        display: flex;
+
+        position: fixed;
+
+        top: 0;
+        left: -270px;
+
+        width: 250px;
+        height: 100vh;
+
+        padding: 25px 16px;
+
+        z-index: 3000;
+
+        transition: left 0.3s ease;
+
+        box-shadow:
+            8px 0 25px rgba(15, 23, 42, 0.15);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+
+    .sidebar .logo span:last-child {
+        display: block;
+    }
+
+    .sidebar .logo {
+        justify-content: flex-start;
+    }
+
+    .sidebar .nav-item {
+        justify-content: flex-start;
+    }
+
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 24px 20px 40px;
+
+        max-width: none;
+    }
+
+
+    .application-sidebar {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* PHONE */
+
+@media (max-width: 600px) {
+
+    .main-content {
+        padding: 16px 12px 30px;
+    }
+
+
+    .mobile-brand {
+        font-size: 16px;
+    }
+
+
+    .page-header {
+        margin-bottom: 20px;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+    }
+
+    .page-header p {
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    .card {
+        padding: 18px;
+
+        border-radius: 11px;
+    }
+
+
+    /* CANDIDATE */
+
+    .candidate-header {
+        align-items: flex-start;
+    }
+
+    .candidate-avatar {
+        width: 48px;
+        height: 48px;
+
+        font-size: 17px;
+
+        flex-shrink: 0;
+    }
+
+    .candidate-info {
+        min-width: 0;
+    }
+
+    .candidate-info h2,
+    .candidate-info p {
+        overflow-wrap: anywhere;
+    }
+
+
+    /* JOB DETAILS */
+
+    .job-info {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+
+    /* COVER LETTER */
+
+    .cover-letter {
+        padding: 14px;
+    }
+
+    .cover-letter p {
+        overflow-wrap: anywhere;
+    }
+
+
+    /* RESUME */
+
+    .resume-card {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .resume-name {
+        overflow-wrap: anywhere;
+    }
+
+    .resume-button {
+        width: 100%;
+
+        min-height: 40px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+    }
+
+
+    /* RIGHT SIDE */
+
+    .application-sidebar {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    .summary-item {
+        align-items: flex-start;
+    }
+
+    .summary-item strong {
+        overflow-wrap: anywhere;
+    }
+}
+
+
+/* VERY SMALL PHONE */
+
+@media (max-width: 420px) {
+
+    .main-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .mobile-brand {
+        font-size: 15px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .candidate-header {
+        gap: 11px;
+    }
+}

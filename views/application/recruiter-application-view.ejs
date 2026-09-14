@@ -38,7 +38,7 @@
 
         <nav class="sidebar-nav">
 
-            <a href="/recruiter/dashboard" class="nav-item">
+            <a href="/recruiter-dashboard" class="nav-item">
 
                 <span class="nav-icon">
                     ⌂
@@ -81,6 +81,11 @@
 
             </a>
 
+            <a href="/recruiter/settings" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                Setting
+            </a>
+
         </nav>
 
 
@@ -100,13 +105,26 @@
 
     </aside>
 
-
-
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <!-- =========================
          MAIN CONTENT
     ========================== -->
 
     <main class="main-content">
+
+        <header class="mobile-topbar">
+        
+            <div class="mobile-brand">
+        
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                    ☰
+                </button>
+        
+                <span>CareerConnect</span>
+        
+            </div>
+        
+        </header>
 
 
         <!-- PAGE HEADER -->
@@ -333,22 +351,14 @@
                             ✓ Rejected
                         </div>
                     <% } else { %>       
-                        <button
-                            type="button"
-                            class="shortlist-button">
-
-                            <a href="/recruiter/application/SHORTLIST/<%= _id %>" %>>✓ Shortlist</a>
-
-                        </button>
+                        <a href="/recruiter/application/SHORTLIST/<%= _id %>" class="shortlist-button">
+                            ✓ Shortlist
+                        </a>
 
 
-                        <button
-                            type="button"
-                            class="reject-button">
-
-                            <a href="/recruiter/application/REJECT/<%= _id %>">✕ Reject</a>
-
-                        </button>
+                        <a href="/recruiter/application/REJECT/<%= _id %>" class="reject-button">
+                            ✕ Reject
+                        </a>
                     <% } %>
                     <% if(interview && status==='Shortlist') { %>
                         <a href="/recruiter/interview/<%= _id %>" class="interview-btn">
@@ -379,7 +389,7 @@
                         </span>
 
                         <strong>
-                            Applied
+                            <%= status %>
                         </strong>
 
                     </div>
@@ -422,6 +432,53 @@
 
     </main>
 
+    <script>
+
+        const mobileMenuBtn =
+            document.getElementById("mobileMenuBtn");
+
+        const sidebar =
+            document.querySelector(".sidebar");
+
+        const sidebarOverlay =
+            document.getElementById("sidebarOverlay");
+
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+
+            sidebarOverlay.classList.add("active");
+
+        });
+
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+
+        const sidebarLinks =
+            document.querySelectorAll(".sidebar .nav-item");
+
+
+        sidebarLinks.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+
+                sidebarOverlay.classList.remove("active");
+
+            });
+
+        });
+
+    </script>
 
 </body>
 
