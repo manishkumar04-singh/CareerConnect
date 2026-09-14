@@ -831,7 +831,9 @@ app.get("/student/job/apply/:id",Auth,role("student"),async (req,res)=>{
 //multer for apply resume
 
 
-const uploaded=multer({storage:resumeStorage})
+const uploaded=multer({storage:resumeStorage,limits: {
+    fileSize: 6 * 1024 * 1024
+}})
 app.post("/student/job/apply/:id",uploaded.single("resume"),async (req,res)=>{
     
     const cover=req.body;
@@ -2085,6 +2087,16 @@ app.get("/test-ses", async (req, res) => {
         console.log("SES test error:", err);
         res.send("SES test failed");
     }
+});
+
+app.use((err, req, res, next) => {
+
+    console.error("FULL ERROR:", err);
+    console.error("ERROR MESSAGE:", err.message);
+    console.error("ERROR STACK:", err.stack);
+
+    res.status(500).send("Internal Server Error");
+
 });
 
 db.connectTOdatabase().then(()=>{
