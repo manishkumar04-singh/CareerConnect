@@ -28,7 +28,7 @@
                 Dashboard
             </a>
 
-            <a href="/student/-jobs" class="nav-item active">
+            <a href="/student-jobs" class="nav-item active">
                 <span class="nav-icon">▤</span>
                 Find Jobs
             </a>
@@ -61,6 +61,7 @@
 
     </aside>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- MAIN CONTENT -->
 
@@ -68,11 +69,21 @@
 
         <!-- TOP HEADER -->
 
+        <header class="mobile-topbar">
+        
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                ☰
+            </button>
+        
+            <span>CareerConnect</span>
+        
+        </header>
+
         <div class="page-header">
 
             <div>
 
-                <a href="/student/jobs" class="back-button">
+                <a href="/student-jobs" class="back-button">
                     ← Back to Jobs
                 </a>
 
@@ -325,6 +336,54 @@
         </div>
 
     </main>
+
+    <script>
+
+        const mobileMenuBtn =
+            document.getElementById("mobileMenuBtn");
+
+        const sidebar =
+            document.querySelector(".sidebar");
+
+        const sidebarOverlay =
+            document.getElementById("sidebarOverlay");
+
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+
+            sidebarOverlay.classList.add("active");
+
+        });
+
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+
+        const sidebarLinks =
+            document.querySelectorAll(".sidebar .nav-item");
+
+
+        sidebarLinks.forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+
+                sidebarOverlay.classList.remove("active");
+
+            });
+
+        });
+
+    </script>
 
 </body>
 

@@ -733,8 +733,8 @@ body {
     width: 100%;
     padding: 12px 18px;
 
-    background: #6969f0;
-    color: rgb(6, 0, 0);
+    background: #2563eb;
+    color: white;;
 
     border: none;
     border-radius: 10px;
@@ -751,5 +751,344 @@ body {
 
 .apply-btn:hover {
     background: #becef9;
-    transform: translateY(-1px);
+    
+}
+
+/* =========================================
+   FINAL RESPONSIVE
+========================================= */
+
+.mobile-topbar {
+    display: none;
+}
+
+.mobile-menu-btn {
+    border: none;
+    background: transparent;
+    color: #172033;
+
+    font-size: 23px;
+    cursor: pointer;
+
+    padding: 4px;
+}
+
+
+/* OVERLAY */
+
+.sidebar-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 2500;
+
+    transition: 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .job-sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .company-card {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    /* MOBILE HEADER */
+
+    .mobile-topbar {
+        display: flex;
+
+        align-items: center;
+
+        gap: 11px;
+
+        height: 55px;
+
+        margin-bottom: 15px;
+
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+
+    /* SIDEBAR DRAWER */
+
+    .sidebar {
+        position: fixed;
+
+        top: 0;
+        left: -270px;
+
+        width: 250px;
+        height: 100vh;
+
+        padding: 25px 16px;
+
+        z-index: 3000;
+
+        transition: left 0.3s ease;
+
+        box-shadow:
+            8px 0 25px rgba(15, 23, 42, 0.15);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+
+    /* Restore full sidebar content */
+
+    .logo span:last-child {
+        display: inline;
+    }
+
+    .logo {
+        justify-content: flex-start;
+    }
+
+    .nav-item {
+        justify-content: flex-start;
+    }
+
+
+    /* FULL-WIDTH MAIN PAGE */
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 20px 16px 35px;
+
+        max-width: none;
+    }
+
+
+    /* JOB HEADER */
+
+    .job-header-card {
+        align-items: flex-start;
+    }
+
+    .job-header-left {
+        align-items: flex-start;
+
+        min-width: 0;
+    }
+
+    .job-header-left > div:last-child {
+        min-width: 0;
+    }
+
+    .job-header-card h2,
+    .company {
+        overflow-wrap: anywhere;
+    }
+
+
+    .job-meta {
+        flex-direction: column;
+
+        gap: 9px;
+    }
+
+
+    /* RIGHT SIDE CARDS */
+
+    .job-sidebar {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .company-card {
+        grid-column: auto;
+    }
+
+
+    /* LONG DATA PROTECTION */
+
+    .info-item strong,
+    .content-card p,
+    .responsibilities,
+    .company-card p {
+        overflow-wrap: anywhere;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .main-content {
+        padding: 15px 11px 30px;
+    }
+
+
+    /* HEADER */
+
+    .mobile-topbar {
+        height: 50px;
+
+        margin-bottom: 12px;
+
+        font-size: 16px;
+    }
+
+
+    .page-header {
+        margin-bottom: 18px;
+    }
+
+    .page-header h1 {
+        font-size: 23px;
+    }
+
+    .page-header p {
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    /* JOB HEADER CARD */
+
+    .job-header-card {
+        flex-direction: column;
+
+        gap: 18px;
+
+        padding: 18px;
+    }
+
+    .job-header-left {
+        width: 100%;
+
+        gap: 12px;
+    }
+
+    .job-icon {
+        width: 50px;
+        height: 50px;
+
+        font-size: 22px;
+
+        flex-shrink: 0;
+    }
+
+    .job-header-card h2 {
+        font-size: 18px;
+    }
+
+    .save-button {
+        align-self: flex-end;
+    }
+
+
+    /* CONTENT CARDS */
+
+    .content-card,
+    .apply-card,
+    .info-card,
+    .company-card {
+        padding: 18px;
+    }
+
+    .content-card {
+        margin-bottom: 14px;
+    }
+
+
+    /* SKILLS */
+
+    .skills {
+        gap: 6px;
+    }
+
+
+    /* INFO */
+
+    .info-item {
+        gap: 15px;
+    }
+
+
+    /* BUTTONS */
+
+    .apply-btn,
+    .save-job-button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL PHONE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .main-content {
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    .job-header-left {
+        gap: 10px;
+    }
+
+    .job-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 19px;
+    }
+
+    .job-header-card h2 {
+        font-size: 17px;
+    }
+
+    .content-card,
+    .apply-card,
+    .info-card,
+    .company-card {
+        padding: 15px;
+    }
 }
