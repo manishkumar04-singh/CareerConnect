@@ -61,10 +61,22 @@
 
     </aside>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- MAIN CONTENT -->
 
     <main class="main-content">
+
+
+        <header class="mobile-topbar">
+        
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
+                ☰
+            </button>
+        
+            <span>CareerConnect</span>
+        
+        </header>
 
         <div class="page-header">
 
@@ -258,6 +270,54 @@
         </div>
 
     </main>
+
+    <script>
+
+        const mobileMenuBtn =
+            document.getElementById("mobileMenuBtn");
+
+        const sidebar =
+            document.querySelector(".sidebar");
+
+        const sidebarOverlay =
+            document.getElementById("sidebarOverlay");
+
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            sidebar.classList.add("active");
+
+            sidebarOverlay.classList.add("active");
+
+        });
+
+
+        sidebarOverlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            sidebarOverlay.classList.remove("active");
+
+        });
+
+
+        const sidebarLinks =
+            document.querySelectorAll(".sidebar .nav-item");
+
+
+        sidebarLinks.forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+
+                sidebarOverlay.classList.remove("active");
+
+            });
+
+        });
+
+    </script>
 
 </body>
 
