@@ -431,8 +431,8 @@ app.get("/student/profile",Auth,role("student"),async (req,res)=>{
 app.get("/student/profile/edit",Auth,role("student"),async(req,res)=>{
     const id=new ObjectId(req.session.userid);
     const data=await db.getdb().collection("users").findOne({_id:id})
-    const {email}=data;
-    res.render("edit-student-profile",{email:email});
+    const {email,name,college,phone,about,location,degree,skills}=data;
+    res.render("edit-student-profile",{email:email,name:name,college:college,phone:phone,about:about,location:location,degree:degree,skills:skills});
 })
 
 app.post("/student/profile/edit",Auth,role("student"),async (req,res)=>{
