@@ -1,116 +1,239 @@
-/* =====================================================
-   MAIN CONTENT
-===================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-.main-content {
-    margin-left: 240px;
-
-    min-height: 100vh;
-
-    padding: 30px 42px;
-
+body {
+    font-family: Arial, Helvetica, sans-serif;
     background: #f6f8fc;
+    color: #172033;
 }
 
 
-/* =====================================================
-   TOPBAR
-===================================================== */
+/* =========================
+   DASHBOARD
+========================= */
 
-.topbar {
-    width: 100%;
+.dashboard {
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 240px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e7eaf0;
+
+    padding: 25px 16px;
 
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    flex-direction: column;
 
-    gap: 30px;
-
-    margin-bottom: 40px;
+    z-index: 100;
 }
 
 
-/* LEFT SIDE - SETTINGS TITLE */
+/* LOGO */
 
-.topbar > div:first-child {
-    flex: 1;
-
-    min-width: 0;
-}
-
-
-.topbar h1 {
-    margin: 0 0 6px;
-
-    color: #172033;
-
-    font-size: 26px;
-    font-weight: 700;
-
-    line-height: 1.2;
-}
-
-
-.topbar > div:first-child p {
-    margin: 0;
-
-    color: #7d8798;
-
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-
-/* =====================================================
-   TOPBAR PROFILE
-===================================================== */
-
-.profile {
+.logo {
     display: flex;
     align-items: center;
 
     gap: 10px;
 
-    flex-shrink: 0;
+    padding: 0 10px;
+
+    margin-bottom: 40px;
+
+    font-size: 19px;
+    font-weight: 700;
 }
 
+.logo-icon {
+    width: 34px;
+    height: 34px;
 
-.profile-image {
-    width: 42px;
-    height: 42px;
+    border-radius: 9px;
 
-    flex-shrink: 0;
+    background: #2563eb;
+    color: white;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 700;
+}
 
-    background: #2563eb;
 
-    color: #ffffff;
+/* MENU */
 
-    font-size: 15px;
+.menu-section {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.menu-title {
+    padding: 0 13px;
+
+    margin-bottom: 7px;
+
+    font-size: 9px;
+
+    color: #a0a8b6;
+
+    letter-spacing: 1.2px;
+
+    font-weight: 600;
+}
+
+.second-title {
+    margin-top: 22px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 12px 13px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    color: #687386;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.menu-item:hover {
+    background: #f1f5ff;
+
+    color: #2563eb;
+}
+
+.menu-item.active {
+    background: #eff5ff;
+
+    color: #2563eb;
+
     font-weight: 600;
 }
 
 
+/* SIDEBAR BOTTOM */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.logout {
+    color: #ef4444;
+}
+
+.logout:hover {
+    background: #fff1f2;
+
+    color: #dc2626;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+    margin-left: 240px;
+
+    padding: 30px 42px;
+
+    min-height: 100vh;
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 40px;
+}
+
+.topbar h1 {
+    font-size: 26px;
+
+    margin-bottom: 6px;
+}
+
+.topbar > div:first-child p {
+    color: #7d8798;
+
+    font-size: 13px;
+}
+
+
+/* PROFILE */
+
+.profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.profile-image {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+}
+
 .profile-info {
     display: flex;
+
     flex-direction: column;
 
     gap: 3px;
 }
 
-
 .profile-info strong {
-    color: #172033;
-
     font-size: 13px;
-    font-weight: 600;
 }
-
 
 .profile-info span {
     color: #8a93a3;
@@ -119,97 +242,75 @@
 }
 
 
-/* =====================================================
+/* =========================
    SETTINGS CONTENT
-===================================================== */
+========================= */
 
 .settings-content {
-    width: 100%;
     max-width: 900px;
 
     margin: 0 auto;
 }
 
 
-/* =====================================================
-   SETTINGS HEADING
-===================================================== */
+/* SETTINGS HEADING */
 
 .settings-heading {
-    width: 100%;
-
     margin-bottom: 25px;
 }
 
-
 .settings-label {
-    margin: 0 0 8px;
-
     color: #2563eb !important;
 
     font-size: 10px !important;
+
     font-weight: 700;
 
     letter-spacing: 1.3px;
 
-    text-transform: uppercase;
+    margin-bottom: 8px;
 }
-
 
 .settings-heading h2 {
-    margin: 0 0 7px;
-
-    color: #172033;
-
     font-size: 22px;
-    font-weight: 700;
 
-    line-height: 1.3;
+    margin-bottom: 7px;
 }
 
-
 .settings-heading p {
-    margin: 0;
-
     color: #7d8798;
 
     font-size: 13px;
+
     line-height: 1.5;
 }
 
 
-/* =====================================================
+/* =========================
    ACCOUNT CARD
-===================================================== */
+========================= */
 
 .account-card {
-    width: 100%;
+    background: white;
+
+    border: 1px solid #e8ebf1;
+
+    border-radius: 13px;
+
+    padding: 20px;
 
     display: flex;
+
     align-items: center;
 
     gap: 15px;
 
     margin-bottom: 20px;
-
-    padding: 20px;
-
-    background: #ffffff;
-
-    border: 1px solid #e8ebf1;
-    border-radius: 13px;
 }
-
 
 .account-icon {
     width: 48px;
     height: 48px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     border-radius: 50%;
 
@@ -217,60 +318,53 @@
 
     color: #2563eb;
 
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
     font-size: 21px;
 }
 
-
 .account-details {
-    min-width: 0;
-
     display: flex;
+
     flex-direction: column;
 
     gap: 3px;
 }
 
-
 .small-label {
-    color: #9aa3b2;
-
     font-size: 9px;
-    font-weight: 600;
 
     letter-spacing: 1px;
-}
 
+    color: #9aa3b2;
+
+    font-weight: 600;
+}
 
 .account-details h3 {
-    margin: 2px 0 0;
-
-    color: #172033;
-
     font-size: 14px;
+
+    margin-top: 2px;
 }
 
-
 .account-details p {
-    margin: 0;
-
     color: #7d8798;
 
     font-size: 12px;
-
-    overflow-wrap: anywhere;
 }
 
 
-/* =====================================================
+/* =========================
    SETTINGS GRID
-===================================================== */
+========================= */
 
 .settings-grid {
-    width: 100%;
-
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 16px;
 
@@ -278,41 +372,31 @@
 }
 
 
-/* =====================================================
-   SETTING CARD
-===================================================== */
+/* SETTING CARD */
 
 .setting-card {
-    width: 100%;
-    min-width: 0;
+    background: white;
+
+    border: 1px solid #e8ebf1;
+
+    border-radius: 13px;
+
+    padding: 22px;
+
     min-height: 150px;
 
+    text-decoration: none;
+
+    color: #172033;
+
     display: flex;
+
     align-items: flex-start;
 
     gap: 15px;
 
-    padding: 22px;
-
-    background: #ffffff;
-
-    border: 1px solid #e8ebf1;
-    border-radius: 13px;
-
-    color: #172033;
-
-    font-family: inherit;
-    text-align: left;
-    text-decoration: none;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: 0.2s;
 }
-
 
 .setting-card:hover {
     border-color: #bfdbfe;
@@ -324,154 +408,118 @@
 }
 
 
-/* =====================================================
-   SETTING ICON
-===================================================== */
+/* SETTING ICON */
 
 .setting-icon {
     width: 45px;
     height: 45px;
 
-    flex-shrink: 0;
+    border-radius: 10px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border-radius: 10px;
+    flex-shrink: 0;
 
     font-size: 19px;
 }
 
-
 .password-icon {
     background: #eff6ff;
 }
-
 
 .email-icon {
     background: #ecfdf5;
 }
 
 
-/* =====================================================
-   SETTING INFORMATION
-===================================================== */
+/* SETTING INFORMATION */
 
 .setting-info {
     flex: 1;
-
-    min-width: 0;
 }
-
 
 .setting-info h3 {
-    margin: 0 0 7px;
-
-    color: #172033;
-
     font-size: 14px;
+
+    margin-bottom: 7px;
 }
 
-
 .setting-info p {
-    margin: 0;
-
     color: #7d8798;
 
     font-size: 11px;
-    line-height: 1.6;
 
-    overflow-wrap: anywhere;
+    line-height: 1.6;
 }
 
-
 .setting-arrow {
-    flex-shrink: 0;
-
-    margin-top: 10px;
-
     color: #2563eb;
 
     font-size: 19px;
+
+    margin-top: 10px;
 }
 
 
-/* =====================================================
+/* =========================
    SECURITY CARD
-===================================================== */
+========================= */
 
 .security-card {
-    width: 100%;
-
-    display: flex;
-    align-items: flex-start;
-
-    gap: 14px;
-
-    padding: 18px;
-
     background: #f8fbff;
 
     border: 1px solid #dbeafe;
-    border-radius: 12px;
-}
 
+    border-radius: 12px;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+}
 
 .security-icon {
     width: 38px;
     height: 38px;
 
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     border-radius: 9px;
 
     background: #eff6ff;
 
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
     font-size: 17px;
 }
 
-
 .security-card h3 {
-    margin: 0 0 5px;
-
-    color: #172033;
-
     font-size: 12px;
+
+    margin-bottom: 5px;
 }
 
-
 .security-card p {
-    margin: 0;
-
     color: #687386;
 
     font-size: 11px;
+
     line-height: 1.6;
 }
 
 
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 1000px) {
-
-    .main-content {
-        padding: 28px 30px;
-    }
-
-
-    .settings-content {
-        max-width: 100%;
-    }
-
-}
-
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 900px) {
 
@@ -482,10 +530,6 @@
 }
 
 
-/* =====================================================
-   SMALL TABLET / MOBILE SIDEBAR
-===================================================== */
-
 @media (max-width: 700px) {
 
     .sidebar {
@@ -494,13 +538,11 @@
         padding: 20px 8px;
     }
 
-
     .logo span:last-child,
     .menu-title,
     .menu-item span:last-child {
         display: none;
     }
-
 
     .logo {
         justify-content: center;
@@ -508,11 +550,9 @@
         padding: 0;
     }
 
-
     .menu-item {
         justify-content: center;
     }
-
 
     .main-content {
         margin-left: 70px;
@@ -520,155 +560,42 @@
         padding: 22px 18px;
     }
 
-
-    .topbar {
-        margin-bottom: 30px;
-    }
-
-
     .profile-info {
         display: none;
     }
 
-
     .settings-content {
-        width: 100%;
         max-width: 100%;
     }
 
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
-
 @media (max-width: 500px) {
-
-    .main-content {
-        padding: 20px 14px;
-    }
-
 
     .topbar {
         align-items: flex-start;
 
-        gap: 12px;
-
-        margin-bottom: 28px;
+        gap: 15px;
     }
-
-
-    .topbar h1 {
-        font-size: 22px;
-    }
-
-
-    .topbar > div:first-child p {
-        max-width: 220px;
-
-        font-size: 12px;
-    }
-
-
-    .profile-image {
-        width: 38px;
-        height: 38px;
-
-        font-size: 14px;
-    }
-
-
-    .settings-heading {
-        margin-bottom: 20px;
-    }
-
-
-    .settings-heading h2 {
-        font-size: 20px;
-    }
-
-
-    .settings-heading p {
-        font-size: 12px;
-    }
-
-
-    .account-card {
-        padding: 16px;
-
-        gap: 12px;
-    }
-
-
-    .account-icon {
-        width: 43px;
-        height: 43px;
-
-        font-size: 18px;
-    }
-
 
     .setting-card {
-        min-height: auto;
-
         padding: 18px;
-
-        gap: 12px;
-    }
-
-
-    .setting-icon {
-        width: 41px;
-        height: 41px;
-
-        font-size: 17px;
-    }
-
-
-    .security-card {
-        padding: 15px;
     }
 
 }
+.setting-card {
+    width: 100%;
 
+    border: none;
 
-/* =====================================================
-   VERY SMALL MOBILE
-===================================================== */
+    font-family: inherit;
 
-@media (max-width: 380px) {
+    text-align: left;
 
-    .main-content {
-        padding: 18px 10px;
-    }
-
-
-    .topbar h1 {
-        font-size: 20px;
-    }
-
-
-    .topbar > div:first-child p {
-        font-size: 11px;
-    }
-
-
-    .settings-heading h2 {
-        font-size: 18px;
-    }
-
-
-    .account-card {
-        padding: 14px;
-    }
-
-
-    .setting-card {
-        padding: 15px;
-    }
-
+    cursor: pointer;
 }
+
 /* =========================
    CHANGE EMAIL MODAL
 ========================= */
