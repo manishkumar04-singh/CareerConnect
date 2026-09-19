@@ -1838,7 +1838,7 @@ app.post("/recruiter/notifications/delete-all",Auth,role("recruiter"),async (req
         return res.status(500).render("errors/500");
     }
 
-    return res.redirect("/student-dashboard");
+    return res.redirect("/recruiter-dashboard");
 })
 
 app.get("/recruiter/settings",Auth,role("recruiter"),async (req,res)=>{
