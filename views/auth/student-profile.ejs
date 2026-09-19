@@ -651,6 +651,7 @@
         const educationModalEdit=document.querySelector(".add-button");
         const educationModal=document.getElementById("educationModal");
         const closeEducationModal=document.getElementById("educationModalCancel");
+        const closeEducationModal2=document.getElementById("educationModalCancel");
 
         educationModalEdit.addEventListener("click",()=>{
             educationModal.classList.add("active");
@@ -658,10 +659,14 @@
         closeEducationModal.addEventListener("click",()=>{
             educationModal.classList.remove("active");
         })
+        closeEducationModal2.addEventListener("click",()=>{
+            educationModal.classList.remove("active");
+        })
 
         const skillsModalEdit=document.querySelector(".add-button1");
         const skillsModal=document.getElementById("skillsModal");
         const closeSkillsModal=document.getElementById("skillsModalCancel");
+        const closeSkillsModal2=document.getElementById("skillsModalCancel");
 
         skillsModalEdit.addEventListener("click",()=>{
             skillsModal.classList.add("active");
@@ -669,15 +674,22 @@
         closeSkillsModal.addEventListener("click",()=>{
             skillsModal.classList.remove("active");
         })
+        closeSkillsModal2.addEventListener("click",()=>{
+            skillsModal.classList.remove("active");
+        })
 
         const aboutModalEdit=document.querySelector(".small-edit1");
         const aboutModal=document.getElementById("aboutModal");
         const closeAboutModal=document.getElementById("aboutModalCancel");
+        const closeAboutModal2=document.getElementById("aboutModalCancel");
 
         aboutModalEdit.addEventListener("click",()=>{
             aboutModal.classList.add("active");
         })
         closeAboutModal.addEventListener("click",()=>{
+            aboutModal.classList.remove("active")
+        })
+        closeAboutModal2.addEventListener("click",()=>{
             aboutModal.classList.remove("active")
         })
 
