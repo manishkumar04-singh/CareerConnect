@@ -236,14 +236,7 @@ a {
     border-radius: 8px;
     cursor: pointer;
 }
-.edit-button1 {
-    border: none;
-    background: #2563eb;
-    color: white;
-    padding: 11px 17px;
-    border-radius: 8px;
-    cursor: pointer;
-}
+
 
 .edit-button:hover {
     background: #1d4ed8;
@@ -372,7 +365,8 @@ a {
     cursor: pointer;
     font-weight: bold;
 }
-.add-button1 {
+
+.small-edit1,.add-button1 {
     border: none;
     background: transparent;
     color: #2563eb;
@@ -626,6 +620,46 @@ a {
 }
 
 
+/* =========================================================
+   PROFILE EDIT MODALS
+   Used for:
+   1. Personal Information
+   2. Education
+   3. Skills
+   4. About Me
+========================================================= */
+
+
+/* =========================================================
+   EDIT / ADD BUTTONS
+========================================================= */
+
+.card-edit-btn {
+    border: none;
+    background: transparent;
+
+    color: #2563eb;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    padding: 4px 6px;
+
+    transition: color 0.2s ease;
+}
+
+.card-edit-btn:hover {
+    color: #1d4ed8;
+}
+
+
+/* =========================================================
+   MODAL BACKGROUND / OVERLAY
+========================================================= */
+
 .profile-modal {
     position: fixed;
 
@@ -634,34 +668,56 @@ a {
     width: 100%;
     height: 100%;
 
-    background: rgba(15, 23, 42, 0.48);
-
+    /* Centers modal box */
     display: flex;
     align-items: center;
     justify-content: center;
 
     padding: 20px;
 
+    box-sizing: border-box;
+
+    /* Dark transparent background */
+    background: rgba(15, 23, 42, 0.48);
+
+    /* Blur page behind modal */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
     z-index: 5000;
 
+
+    /* Hidden normally */
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 
     transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease;
+        opacity 0.25s ease,
+        visibility 0.25s ease;
 }
 
+
+/* =========================================================
+   ACTIVE MODAL
+
+   JavaScript:
+   modal.classList.add("active");
+
+   Close:
+   modal.classList.remove("active");
+========================================================= */
 
 .profile-modal.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 
-/* ========================================
-   MODAL BOX
-======================================== */
+/* =========================================================
+   MODAL WHITE BOX
+========================================================= */
 
 .profile-modal-box {
     width: 100%;
@@ -681,22 +737,44 @@ a {
     box-sizing: border-box;
 
     box-shadow:
-        0 20px 50px rgba(15, 23, 42, 0.18);
+        0 20px 50px rgba(15, 23, 42, 0.22);
 
-    transform: translateY(12px) scale(0.98);
+    /* Opening animation */
+    transform: translateY(15px) scale(0.97);
 
-    transition: transform 0.2s ease;
+    transition: transform 0.25s ease;
 }
 
+
+/* Modal opening animation */
 
 .profile-modal.active .profile-modal-box {
     transform: translateY(0) scale(1);
 }
 
 
-/* ========================================
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.profile-modal-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.profile-modal-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.profile-modal-box::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
    MODAL HEADER
-======================================== */
+========================================================= */
 
 .profile-modal-header {
     display: flex;
@@ -717,6 +795,8 @@ a {
 
     font-size: 19px;
     font-weight: 700;
+
+    line-height: 1.3;
 }
 
 
@@ -730,6 +810,10 @@ a {
 }
 
 
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
 .profile-modal-close {
     flex-shrink: 0;
 
@@ -739,6 +823,8 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    padding: 0;
 
     border: none;
 
@@ -753,19 +839,25 @@ a {
 
     cursor: pointer;
 
-    transition: 0.2s ease;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 
 .profile-modal-close:hover {
     background: #e9edf3;
+
     color: #111827;
+
+    transform: rotate(90deg);
 }
 
 
-/* ========================================
-   FORM
-======================================== */
+/* =========================================================
+   FORM GROUP
+========================================================= */
 
 .modal-form-group {
     display: flex;
@@ -786,8 +878,13 @@ a {
 }
 
 
+/* =========================================================
+   INPUT / TEXTAREA / SELECT
+========================================================= */
+
 .modal-form-group input,
-.modal-form-group textarea {
+.modal-form-group textarea,
+.modal-form-group select {
     width: 100%;
     min-width: 0;
 
@@ -810,27 +907,41 @@ a {
 
     transition:
         border-color 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
 
-.modal-form-group textarea {
-    resize: vertical;
-
-    min-height: 130px;
-
-    line-height: 1.6;
-}
-
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
 
 .modal-form-group input:focus,
-.modal-form-group textarea:focus {
+.modal-form-group textarea:focus,
+.modal-form-group select:focus {
     border-color: #2563eb;
 
     box-shadow:
         0 0 0 3px rgba(37, 99, 235, 0.08);
 }
 
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.modal-form-group textarea {
+    min-height: 130px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   READ ONLY INPUT
+========================================================= */
 
 .modal-form-group input[readonly] {
     background: #f8fafc;
@@ -841,6 +952,10 @@ a {
 }
 
 
+/* =========================================================
+   SMALL HELP TEXT
+========================================================= */
+
 .modal-input-help {
     color: #9aa3b1;
 
@@ -849,9 +964,9 @@ a {
 }
 
 
-/* ========================================
-   SKILL EXAMPLE CHIPS
-======================================== */
+/* =========================================================
+   SKILLS EXAMPLE CHIPS
+========================================================= */
 
 .skills-example {
     display: flex;
@@ -879,9 +994,9 @@ a {
 }
 
 
-/* ========================================
-   MODAL BUTTONS
-======================================== */
+/* =========================================================
+   MODAL BOTTOM ACTION AREA
+========================================================= */
 
 .profile-modal-actions {
     display: flex;
@@ -899,6 +1014,10 @@ a {
 }
 
 
+/* =========================================================
+   CANCEL + SAVE BUTTONS
+========================================================= */
+
 .modal-cancel,
 .modal-save {
     min-height: 40px;
@@ -913,9 +1032,14 @@ a {
 
     cursor: pointer;
 
-    transition: 0.2s ease;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
 }
 
+
+/* Cancel button */
 
 .modal-cancel {
     border: 1px solid #dce2ea;
@@ -928,8 +1052,12 @@ a {
 
 .modal-cancel:hover {
     background: #f8fafc;
+
+    border-color: #cbd5e1;
 }
 
+
+/* Save button */
 
 .modal-save {
     border: none;
@@ -945,9 +1073,16 @@ a {
 }
 
 
-/* ========================================
-   TABLET / SMALL SCREEN
-======================================== */
+.modal-save:active,
+.modal-cancel:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   TABLET
+   iPad / smaller laptop / tablet
+========================================================= */
 
 @media (max-width: 768px) {
 
@@ -955,21 +1090,40 @@ a {
         padding: 16px;
     }
 
+
     .profile-modal-box {
+        width: 100%;
         max-width: 500px;
+
+        max-height: 90vh;
+
+        padding: 22px;
+    }
+
+
+    .profile-modal-header h2 {
+        font-size: 18px;
+    }
+
+
+    .profile-modal-header p {
+        font-size: 11px;
     }
 
 }
 
 
-/* ========================================
+/* =========================================================
    MOBILE
-======================================== */
+   iPhone / Android
+========================================================= */
 
 @media (max-width: 500px) {
 
     .profile-modal {
         padding: 12px;
+
+        align-items: center;
     }
 
 
@@ -979,14 +1133,16 @@ a {
 
         max-height: 92vh;
 
-        padding: 19px;
+        padding: 18px;
 
         border-radius: 12px;
     }
 
 
+    /* Header */
+
     .profile-modal-header {
-        gap: 12px;
+        gap: 10px;
 
         margin-bottom: 20px;
     }
@@ -999,19 +1155,66 @@ a {
 
     .profile-modal-header p {
         font-size: 11px;
+
+        line-height: 1.4;
+    }
+
+
+    /* Close button */
+
+    .profile-modal-close {
+        width: 30px;
+        height: 30px;
+
+        font-size: 20px;
+    }
+
+
+    /* Form */
+
+    .modal-form-group {
+        margin-bottom: 16px;
+    }
+
+
+    .modal-form-group label {
+        font-size: 11px;
     }
 
 
     .modal-form-group input,
-    .modal-form-group textarea {
+    .modal-form-group textarea,
+    .modal-form-group select {
+        padding: 11px;
+
+        /*
+           16px helps prevent automatic zoom
+           when focusing inputs on iPhone.
+        */
         font-size: 16px;
     }
 
+
+    .modal-form-group textarea {
+        min-height: 120px;
+    }
+
+
+    /* Skills */
+
+    .skills-example {
+        gap: 6px;
+    }
+
+
+    /* Buttons */
 
     .profile-modal-actions {
         flex-direction: column-reverse;
 
         gap: 8px;
+
+        padding-top: 15px;
     }
 
 
@@ -1020,14 +1223,16 @@ a {
         width: 100%;
 
         min-height: 44px;
+
+        font-size: 12px;
     }
 
 }
 
 
-/* ========================================
+/* =========================================================
    VERY SMALL PHONES
-======================================== */
+========================================================= */
 
 @media (max-width: 380px) {
 
@@ -1038,6 +1243,13 @@ a {
 
     .profile-modal-box {
         padding: 15px;
+
+        border-radius: 10px;
+    }
+
+
+    .profile-modal-header {
+        margin-bottom: 17px;
     }
 
 
@@ -1045,22 +1257,42 @@ a {
         font-size: 16px;
     }
 
+
+    .profile-modal-header p {
+        font-size: 10px;
+    }
+
+
+    .modal-form-group {
+        margin-bottom: 14px;
+    }
+
+
+    .modal-form-group label {
+        font-size: 11px;
+    }
+
 }
-.card-edit-btn {
-    border: none;
-    background: transparent;
 
-    color: #2563eb;
 
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
+/* =========================================================
+   SHORT HEIGHT / LANDSCAPE PHONE
+========================================================= */
 
-    cursor: pointer;
+@media (max-height: 600px) {
 
-    padding: 4px 6px;
-}
+    .profile-modal {
+        align-items: flex-start;
 
-.card-edit-btn:hover {
-    color: #1d4ed8;
+        overflow-y: auto;
+
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+
+    .profile-modal-box {
+        max-height: none;
+    }
+
 }

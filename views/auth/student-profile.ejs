@@ -380,18 +380,18 @@
 
     </div>
 
-    <div class="personal-modal" id="personalModal">
+    <div class="profile-modal" id="personalModal">
     
-        <div class="personal-modal-box">
+        <div class="profile-modal-box">
     
-            <div class="personal-modal-header">
+            <div class="profile-modal-header">
     
                 <div>
                     <h2>Edit Personal Information</h2>
                     <p>Update your personal details.</p>
                 </div>
     
-                <button type="button" class="personal-modal-close" id="personalModalClose">
+                <button type="button" class="profile-modal-close" id="personalModalClose">
                     ×
                 </button>
     
@@ -400,7 +400,7 @@
     
             <form action="/student/profile/edit" method="POST">
     
-                <div class="personal-form-group">
+                <div class="profile-form-group">
     
                     <label>Full Name</label>
     
@@ -409,7 +409,7 @@
                 </div>
     
     
-                <div class="personal-form-group">
+                <div class="modal-form-group">
     
                     <label>Email Address</label>
     
@@ -418,7 +418,7 @@
                 </div>
     
     
-                <div class="personal-form-group">
+                <div class="modal-form-group">
     
                     <label>Phone Number</label>
     
@@ -427,7 +427,7 @@
                 </div>
     
     
-                <div class="personal-form-group">
+                <div class="modal-form-group">
     
                     <label>Location</label>
     
@@ -436,13 +436,13 @@
                 </div>
     
     
-                <div class="personal-modal-actions">
+                <div class="profile-modal-actions">
     
-                    <button type="button" class="modal-cancel-btn" id="personalModalCancel">
+                    <button type="button" class="modal-cancel" id="personalModalCancel">
                         Cancel
                     </button>
     
-                    <button type="submit" class="modal-save-btn">
+                    <button type="submit" class="modal-save">
                         Save Changes
                     </button>
     
@@ -505,7 +505,7 @@
     
                 <div class="profile-modal-actions">
     
-                    <button type="button" class="modal-cancel" id="educationModalClose">
+                    <button type="button" class="modal-cancel" id="educationModalCancel">
                         Cancel
                     </button>
     
@@ -567,7 +567,7 @@
     
                 <div class="profile-modal-actions">
     
-                    <button type="button" class="modal-cancel" id="skillsModalClose">
+                    <button type="button" class="modal-cancel" id="skillsModalCancel">
                         Cancel
                     </button>
     
@@ -619,7 +619,7 @@
     
                 <div class="profile-modal-actions">
     
-                    <button type="button" class="modal-cancel" id="aboutModalClose">
+                    <button type="button" class="modal-cancel" id="aboutModalCancel">
                         Cancel
                     </button>
     
@@ -639,7 +639,7 @@
 
         const personalModalEdit=document.querySelector(".small-edit");
         const personalmodal=document.getElementById("personalModal");
-        const closePersonal=document.getElementById("personalModalClose");
+        const closePersonal=document.getElementById("personalModalCancel");
 
         personalModalEdit.addEventListener("click",()=>{
             personalmodal.classList.add("active");
@@ -650,7 +650,7 @@
 
         const educationModalEdit=document.querySelector(".add-button");
         const educationModal=document.getElementById("educationModal");
-        const closeEducationModal=document.getElementById("educationModalClose");
+        const closeEducationModal=document.getElementById("educationModalCancel");
 
         educationModalEdit.addEventListener("click",()=>{
             educationModal.classList.add("active");
@@ -661,7 +661,7 @@
 
         const skillsModalEdit=document.querySelector(".add-button1");
         const skillsModal=document.getElementById("skillsModal");
-        const closeSkillsModal=document.getElementById("skillsModalClose");
+        const closeSkillsModal=document.getElementById("skillsModalCancel");
 
         skillsModalEdit.addEventListener("click",()=>{
             skillsModal.classList.add("active");
@@ -672,7 +672,7 @@
 
         const aboutModalEdit=document.querySelector(".small-edit1");
         const aboutModal=document.getElementById("aboutModal");
-        const closeAboutModal=document.getElementById("aboutModalClose");
+        const closeAboutModal=document.getElementById("aboutModalCancel");
 
         aboutModalEdit.addEventListener("click",()=>{
             aboutModal.classList.add("active");
