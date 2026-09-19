@@ -380,9 +380,323 @@
 
     </div>
 
-    <script>document.getElementById("resume").addEventListener("change",function(){
-                this.form.submit();
+    <div class="personal-modal" id="personalModal">
+    
+        <div class="personal-modal-box">
+    
+            <div class="personal-modal-header">
+    
+                <div>
+                    <h2>Edit Personal Information</h2>
+                    <p>Update your personal details.</p>
+                </div>
+    
+                <button type="button" class="personal-modal-close" id="personalModalClose">
+                    ×
+                </button>
+    
+            </div>
+    
+    
+            <form action="/student/profile/edit" method="POST">
+    
+                <div class="personal-form-group">
+    
+                    <label>Full Name</label>
+    
+                    <input type="text" name="name" value="<%= name || '' %>" required>
+    
+                </div>
+    
+    
+                <div class="personal-form-group">
+    
+                    <label>Email Address</label>
+    
+                    <input type="email" name="email" value="<%= email || '' %>" readonly>
+    
+                </div>
+    
+    
+                <div class="personal-form-group">
+    
+                    <label>Phone Number</label>
+    
+                    <input type="text" name="phone" value="<%= phone || '' %>">
+    
+                </div>
+    
+    
+                <div class="personal-form-group">
+    
+                    <label>Location</label>
+    
+                    <input type="text" name="location" value="<%= location || '' %>">
+    
+                </div>
+    
+    
+                <div class="personal-modal-actions">
+    
+                    <button type="button" class="modal-cancel-btn" id="personalModalCancel">
+                        Cancel
+                    </button>
+    
+                    <button type="submit" class="modal-save-btn">
+                        Save Changes
+                    </button>
+    
+                </div>
+    
+            </form>
+    
+        </div>
+    
+    </div>
+
+    <div class="profile-modal" id="educationModal">
+    
+        <div class="profile-modal-box">
+    
+            <div class="profile-modal-header">
+    
+                <div>
+                    <h2>Edit Education</h2>
+                    <p>Update your academic information.</p>
+                </div>
+    
+                <button type="button" class="profile-modal-close" onclick="closeProfileModal('educationModal')">
+                    &times;
+                </button>
+    
+            </div>
+    
+    
+            <form action="/student/profile/edit" method="POST">
+    
+                <div class="modal-form-group">
+    
+                    <label>College / University</label>
+    
+                    <input type="text" name="college" value="<%= college || '' %>"
+                        placeholder="Enter college or university">
+    
+                </div>
+    
+    
+                <div class="modal-form-group">
+    
+                    <label>Degree</label>
+    
+                    <input type="text" name="degree" value="<%= degree || '' %>"
+                        placeholder="e.g. B.Tech in Information Technology">
+    
+                </div>
+    
+    
+                <div class="modal-form-group">
+    
+                    <label>Graduation Year</label>
+    
+                    <input type="number" name="graduationYear" value="<%= graduationYear || '' %>" placeholder="e.g. 2028">
+    
+                </div>
+    
+    
+                <div class="profile-modal-actions">
+    
+                    <button type="button" class="modal-cancel" onclick="closeProfileModal('educationModal')">
+                        Cancel
+                    </button>
+    
+                    <button type="submit" class="modal-save">
+                        Save Education
+                    </button>
+    
+                </div>
+    
+            </form>
+    
+        </div>
+    
+    </div>
+    
+    <div class="profile-modal" id="skillsModal">
+    
+        <div class="profile-modal-box">
+    
+            <div class="profile-modal-header">
+    
+                <div>
+                    <h2>Edit Skills</h2>
+                    <p>Add your technical and professional skills.</p>
+                </div>
+    
+                <button type="button" class="profile-modal-close" onclick="closeProfileModal('skillsModal')">
+                    &times;
+                </button>
+    
+            </div>
+    
+    
+            <form action="/student/profile/edit" method="POST">
+    
+                <div class="modal-form-group">
+    
+                    <label>Skills</label>
+    
+                    <input type="text" name="skills" value="<%= skills || '' %>"
+                        placeholder="HTML, CSS, JavaScript, Node.js">
+    
+                    <span class="modal-input-help">
+                        Separate each skill with a comma.
+                    </span>
+    
+                </div>
+    
+    
+                <div class="skills-example">
+    
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>Node.js</span>
+    
+                </div>
+    
+    
+                <div class="profile-modal-actions">
+    
+                    <button type="button" class="modal-cancel" onclick="closeProfileModal('skillsModal')">
+                        Cancel
+                    </button>
+    
+                    <button type="submit" class="modal-save">
+                        Save Skills
+                    </button>
+    
+                </div>
+    
+            </form>
+    
+        </div>
+    
+    </div>
+    
+    <div class="profile-modal" id="aboutModal">
+    
+        <div class="profile-modal-box">
+    
+            <div class="profile-modal-header">
+    
+                <div>
+                    <h2>Edit About Me</h2>
+                    <p>Write a short introduction about yourself.</p>
+                </div>
+    
+                <button type="button" class="profile-modal-close" onclick="closeProfileModal('aboutModal')">
+                    &times;
+                </button>
+    
+            </div>
+    
+    
+            <form action="/student/profile/edit" method="POST">
+    
+                <div class="modal-form-group">
+    
+                    <label>About You</label>
+    
+                    <textarea name="about" rows="6" maxlength="600"
+                        placeholder="Tell recruiters about yourself, your interests and career goals..."><%= about || '' %></textarea>
+    
+                    <span class="modal-input-help">
+                        Keep it short and professional.
+                    </span>
+    
+                </div>
+    
+    
+                <div class="profile-modal-actions">
+    
+                    <button type="button" class="modal-cancel" onclick="closeProfileModal('aboutModal')">
+                        Cancel
+                    </button>
+    
+                    <button type="submit" class="modal-save">
+                        Save About
+                    </button>
+    
+                </div>
+    
+            </form>
+    
+        </div>
+    
+    </div>
+
+    <script>
+
+        function openProfileModal(modalId) {
+
+            const modal = document.getElementById(modalId);
+
+            if (modal) {
+                modal.classList.add("active");
+
+                document.body.style.overflow = "hidden";
+            }
+
+        }
+
+
+        function closeProfileModal(modalId) {
+
+            const modal = document.getElementById(modalId);
+
+            if (modal) {
+                modal.classList.remove("active");
+
+                document.body.style.overflow = "";
+            }
+
+        }
+
+
+        document.querySelectorAll(".profile-modal").forEach((modal) => {
+
+            modal.addEventListener("click", (event) => {
+
+                if (event.target === modal) {
+
+                    modal.classList.remove("active");
+
+                    document.body.style.overflow = "";
+
+                }
+
             });
+
+        });
+
+
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "Escape") {
+
+                document.querySelectorAll(".profile-modal.active")
+                    .forEach((modal) => {
+
+                        modal.classList.remove("active");
+
+                    });
+
+                document.body.style.overflow = "";
+
+            }
+
+        });
+
     </script>
 
 </body>

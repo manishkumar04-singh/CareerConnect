@@ -273,63 +273,47 @@
 
     <script>
 
-        function openProfileModal(modalId) {
+        const mobileMenuBtn =
+            document.getElementById("mobileMenuBtn");
 
-            const modal = document.getElementById(modalId);
+        const sidebar =
+            document.querySelector(".sidebar");
 
-            if (modal) {
-                modal.classList.add("active");
-
-                document.body.style.overflow = "hidden";
-            }
-
-        }
+        const sidebarOverlay =
+            document.getElementById("sidebarOverlay");
 
 
-        function closeProfileModal(modalId) {
+        mobileMenuBtn.addEventListener("click", () => {
 
-            const modal = document.getElementById(modalId);
+            sidebar.classList.add("active");
 
-            if (modal) {
-                modal.classList.remove("active");
-
-                document.body.style.overflow = "";
-            }
-
-        }
-
-
-        document.querySelectorAll(".profile-modal").forEach((modal) => {
-
-            modal.addEventListener("click", (event) => {
-
-                if (event.target === modal) {
-
-                    modal.classList.remove("active");
-
-                    document.body.style.overflow = "";
-
-                }
-
-            });
+            sidebarOverlay.classList.add("active");
 
         });
 
 
-        document.addEventListener("keydown", (event) => {
+        sidebarOverlay.addEventListener("click", () => {
 
-            if (event.key === "Escape") {
+            sidebar.classList.remove("active");
 
-                document.querySelectorAll(".profile-modal.active")
-                    .forEach((modal) => {
+            sidebarOverlay.classList.remove("active");
 
-                        modal.classList.remove("active");
+        });
 
-                    });
 
-                document.body.style.overflow = "";
+        const sidebarLinks =
+            document.querySelectorAll(".sidebar .nav-item");
 
-            }
+
+        sidebarLinks.forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                sidebar.classList.remove("active");
+
+                sidebarOverlay.classList.remove("active");
+
+            });
 
         });
 
