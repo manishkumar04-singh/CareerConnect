@@ -1803,7 +1803,7 @@ app.get("/student/notification/:id",Auth,role("student"),checkObjectId,async (re
     const data=await db.getdb().collection("notifications").findOne({_id:nId,userId:sId});
 
     if(!data){
-        return res.send("Acess Denied");
+        return res.status(403).render("errors/403");
     }
     const {type}=data;
     await db.getdb().collection("notifications").updateOne({_id:data._id},{$set:{isRead:true}});
@@ -1813,6 +1813,19 @@ app.get("/student/notification/:id",Auth,role("student"),checkObjectId,async (re
     }else{
         return res.redirect("/student/interview");
     }
+})
+
+app.post("/student/notifications/delete-all",Auth,role("student"),async (req,res)=>{
+
+    const sId=new ObjectId(req.session.userid);
+    
+    const {deletedCount}=await db.getdb().collection("notifications").deleteMany({userId:sId});
+
+    if (deletedCount === 0){
+        return res.status(500).render("errors/500");
+    }
+
+    return res.redirect("/student-dashboard");
 })
 
 app.get("/recruiter/settings",Auth,role("recruiter"),async (req,res)=>{

@@ -144,6 +144,22 @@
                                     </form>
                                 
                                 <% } %>
+
+                                <% if (notification.length> 0) { %>
+                                
+                                    <form action="/student/notifications/delete-all" method="POST">
+                                
+                                        <button type="submit" class="delete-all-notifications">
+                                            Delete all
+                                        </button>
+                                
+                                    </form>
+                                
+                                    <% } %>
+                                
+                                    <button type="button" class="notification-close" id="notificationClose">
+                                        &times;
+                                    </button>
                 
                             </div>
                 
@@ -566,6 +582,8 @@
         const dataElement=document.querySelectorAll(".status.pending");
         const notificationBtn=document.getElementById("notificationBtn");
         const notificationPanel=document.getElementById("notificationDropdown");
+        const notificationclose=document.getElementById("notificationClose");
+
         dataElement.forEach(item=>{
             if(item.innerText.trim()==='Shortlist'){
                 item.style.color= "#15803d";
@@ -591,6 +609,10 @@
             }
 
         });
+
+        notificationclose.addEventListener("click",()=>{
+            notificationPanel.classList.remove("remove");
+        })
 
         
 
