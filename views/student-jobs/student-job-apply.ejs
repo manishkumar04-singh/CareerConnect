@@ -273,47 +273,63 @@
 
     <script>
 
-        const mobileMenuBtn =
-            document.getElementById("mobileMenuBtn");
+        function openProfileModal(modalId) {
 
-        const sidebar =
-            document.querySelector(".sidebar");
+            const modal = document.getElementById(modalId);
 
-        const sidebarOverlay =
-            document.getElementById("sidebarOverlay");
+            if (modal) {
+                modal.classList.add("active");
 
+                document.body.style.overflow = "hidden";
+            }
 
-        mobileMenuBtn.addEventListener("click", () => {
-
-            sidebar.classList.add("active");
-
-            sidebarOverlay.classList.add("active");
-
-        });
+        }
 
 
-        sidebarOverlay.addEventListener("click", () => {
+        function closeProfileModal(modalId) {
 
-            sidebar.classList.remove("active");
+            const modal = document.getElementById(modalId);
 
-            sidebarOverlay.classList.remove("active");
+            if (modal) {
+                modal.classList.remove("active");
 
-        });
+                document.body.style.overflow = "";
+            }
+
+        }
 
 
-        const sidebarLinks =
-            document.querySelectorAll(".sidebar .nav-item");
+        document.querySelectorAll(".profile-modal").forEach((modal) => {
 
+            modal.addEventListener("click", (event) => {
 
-        sidebarLinks.forEach(link => {
+                if (event.target === modal) {
 
-            link.addEventListener("click", () => {
+                    modal.classList.remove("active");
 
-                sidebar.classList.remove("active");
+                    document.body.style.overflow = "";
 
-                sidebarOverlay.classList.remove("active");
+                }
 
             });
+
+        });
+
+
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "Escape") {
+
+                document.querySelectorAll(".profile-modal.active")
+                    .forEach((modal) => {
+
+                        modal.classList.remove("active");
+
+                    });
+
+                document.body.style.overflow = "";
+
+            }
 
         });
 
