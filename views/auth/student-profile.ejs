@@ -275,7 +275,7 @@
                                 <p>Your technical skills</p>
                             </div>
 
-                            <button class="add-button">+ Add</button>
+                            <button class="add-button1">+ Add</button>
 
                         </div>
 
@@ -303,7 +303,7 @@
                                 <p>A short introduction about yourself</p>
                             </div>
 
-                            <button class="small-edit">Edit</button>
+                            <button class="small-edit1">Edit</button>
 
                         </div>
 
@@ -465,7 +465,7 @@
                     <p>Update your academic information.</p>
                 </div>
     
-                <button type="button" class="profile-modal-close" onclick="closeProfileModal('educationModal')">
+                <button type="button" class="profile-modal-close" id="educationModalClose">
                     &times;
                 </button>
     
@@ -505,7 +505,7 @@
     
                 <div class="profile-modal-actions">
     
-                    <button type="button" class="modal-cancel" onclick="closeProfileModal('educationModal')">
+                    <button type="button" class="modal-cancel" id="educationModalClose">
                         Cancel
                     </button>
     
@@ -532,7 +532,7 @@
                     <p>Add your technical and professional skills.</p>
                 </div>
     
-                <button type="button" class="profile-modal-close" onclick="closeProfileModal('skillsModal')">
+                <button type="button" class="profile-modal-close" id="skillsModalClose">
                     &times;
                 </button>
     
@@ -567,7 +567,7 @@
     
                 <div class="profile-modal-actions">
     
-                    <button type="button" class="modal-cancel" onclick="closeProfileModal('skillsModal')">
+                    <button type="button" class="modal-cancel" id="skillsModalClose">
                         Cancel
                     </button>
     
@@ -594,7 +594,7 @@
                     <p>Write a short introduction about yourself.</p>
                 </div>
     
-                <button type="button" class="profile-modal-close" onclick="closeProfileModal('aboutModal')">
+                <button type="button" class="profile-modal-close" id="aboutModalClose">
                     &times;
                 </button>
     
@@ -619,7 +619,7 @@
     
                 <div class="profile-modal-actions">
     
-                    <button type="button" class="modal-cancel" onclick="closeProfileModal('aboutModal')">
+                    <button type="button" class="modal-cancel" id="aboutModalClose">
                         Cancel
                     </button>
     
@@ -637,65 +637,49 @@
 
     <script>
 
-        function openProfileModal(modalId) {
+        const personalModalEdit=document.querySelector(".small-edit");
+        const personalmodal=document.getElementById("personalModal");
+        const closePersonal=document.getElementById("personalModalClose");
 
-            const modal = document.getElementById(modalId);
+        personalModalEdit.addEventListener("click",()=>{
+            personalmodal.classList.add("active");
+        })
+        closePersonal.addEventListener("click",()=>{
+            personalmodal.classList.remove("active");
+        })
 
-            if (modal) {
-                modal.classList.add("active");
+        const educationModalEdit=document.querySelector(".add-button");
+        const educationModal=document.getElementById("educationModal");
+        const closeEducationModal=document.getElementById("educationModalClose");
 
-                document.body.style.overflow = "hidden";
-            }
+        educationModalEdit.addEventListener("click",()=>{
+            educationModal.classList.add("active");
+        })
+        closeEducationModal.addEventListener("click",()=>{
+            educationModal.classList.remove("active");
+        })
 
-        }
+        const skillsModalEdit=document.querySelector(".add-button1");
+        const skillsModal=document.getElementById("skillsModal");
+        const closeSkillsModal=document.getElementById("skillsModalClose");
 
+        skillsModalEdit.addEventListener("click",()=>{
+            skillsModal.classList.add("active");
+        })
+        closeSkillsModal.addEventListener("click",()=>{
+            skillsModal.classList.remove("active");
+        })
 
-        function closeProfileModal(modalId) {
+        const aboutModalEdit=document.querySelector(".small-edit1");
+        const aboutModal=document.getElementById("aboutModal");
+        const closeAboutModal=document.getElementById("aboutModalClose");
 
-            const modal = document.getElementById(modalId);
-
-            if (modal) {
-                modal.classList.remove("active");
-
-                document.body.style.overflow = "";
-            }
-
-        }
-
-
-        document.querySelectorAll(".profile-modal").forEach((modal) => {
-
-            modal.addEventListener("click", (event) => {
-
-                if (event.target === modal) {
-
-                    modal.classList.remove("active");
-
-                    document.body.style.overflow = "";
-
-                }
-
-            });
-
-        });
-
-
-        document.addEventListener("keydown", (event) => {
-
-            if (event.key === "Escape") {
-
-                document.querySelectorAll(".profile-modal.active")
-                    .forEach((modal) => {
-
-                        modal.classList.remove("active");
-
-                    });
-
-                document.body.style.overflow = "";
-
-            }
-
-        });
+        aboutModalEdit.addEventListener("click",()=>{
+            aboutModal.classList.add("active");
+        })
+        closeAboutModal.addEventListener("click",()=>{
+            aboutModal.classList.remove("active")
+        })
 
         document.getElementById("resume").addEventListener("change",function(){
             this.form.submit();

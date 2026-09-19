@@ -236,6 +236,14 @@ a {
     border-radius: 8px;
     cursor: pointer;
 }
+.edit-button1 {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 11px 17px;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
 .edit-button:hover {
     background: #1d4ed8;
@@ -357,6 +365,14 @@ a {
 
 .small-edit,
 .add-button {
+    border: none;
+    background: transparent;
+    color: #2563eb;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.add-button1 {
     border: none;
     background: transparent;
     color: #2563eb;
