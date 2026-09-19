@@ -1828,6 +1828,19 @@ app.post("/student/notifications/delete-all",Auth,role("student"),async (req,res
     return res.redirect("/student-dashboard");
 })
 
+app.post("/recruiter/notifications/delete-all",Auth,role("recruiter"),async (req,res)=>{
+
+    const sId=new ObjectId(req.session.userid);
+    
+    const {deletedCount}=await db.getdb().collection("notifications").deleteMany({userId:sId});
+
+    if (deletedCount === 0){
+        return res.status(500).render("errors/500");
+    }
+
+    return res.redirect("/student-dashboard");
+})
+
 app.get("/recruiter/settings",Auth,role("recruiter"),async (req,res)=>{
     const sId=new ObjectId(req.session.userid);
     const {name,email}=await db.getdb().collection("users").findOne({_id:sId});

@@ -137,6 +137,22 @@
                                     </form>
         
                                     <% } %>
+
+                                <% if (notification.length> 0) { %>
+                                
+                                    <form action="/recruiter/notifications/delete-all" method="POST">
+                                
+                                        <button type="submit" class="delete-all-notifications">
+                                            Delete all
+                                        </button>
+                                
+                                    </form>
+                                
+                                <% } %>
+
+                                <button type="button" class="notification-close" id="notificationClose">
+                                    &times;
+                                </button>
         
                             </div>
         
@@ -472,6 +488,8 @@
 
         <script>
 
+            const notificationclose=document.getElementById("notificationClose");
+
             const notificationButton =
                 document.getElementById("notificationButton");
 
@@ -494,7 +512,11 @@
 
             });
 
+            notificationclose.addEventListener("click", () => {
+                notificationPanel.classList.remove("active");
+            })
 
+ 
             mobileMenuBtn.addEventListener("click", () => {
 
                 sidebar.classList.add("active");

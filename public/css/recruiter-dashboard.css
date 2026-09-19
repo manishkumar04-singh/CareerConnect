@@ -1571,3 +1571,81 @@ body {
         flex-wrap: wrap;
     }
 }
+
+/* DELETE ALL BUTTON */
+
+.delete-all-notifications {
+    border: none;
+    background: transparent;
+
+    color: #dc2626;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    padding: 5px 8px;
+
+    transition: 0.2s ease;
+}
+
+.delete-all-notifications:hover {
+    color: #b91c1c;
+    text-decoration: underline;
+}
+
+
+/* CLOSE / CANCEL BUTTON */
+
+.notification-close {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    font-size: 21px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.notification-close:hover {
+    background: #e2e8f0;
+    color: #111827;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    .delete-all-notifications {
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+
+    .notification-close {
+        width: 28px;
+        height: 28px;
+
+        font-size: 19px;
+    }
+}
