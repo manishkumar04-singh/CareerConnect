@@ -595,8 +595,11 @@ app.post("/recruiter/profile/edit",Auth,role("recruiter"),async (req,res)=>{
 })
 
 // post job
-app.get("/recruiter/job/post",Auth,role("recruiter"),(req,res)=>{
-    res.render("jobs/post-job");
+app.get("/recruiter/job/post",Auth,role("recruiter"),async (req,res)=>{
+    const rId=new ObjectId(req.session.userid);
+    const data=await db.getdb().collection("users").findOne({_id:rId});
+    const {name}=data;
+    res.render("jobs/post-job",{name:name});
 })
 
 app.post("/recruiter/job/post",Auth,role("recruiter"),async (req,res)=>{
@@ -611,11 +614,13 @@ app.post("/recruiter/job/post",Auth,role("recruiter"),async (req,res)=>{
 
 app.get("/recruiter/jobs",Auth,role("recruiter"),async (req,res)=>{
     const id=new ObjectId(req.session.userid);
+    const user=await db.getdb().collection("users").findOne({_id:id});
+    const {name}=user;
     const data=await db.getdb().collection("jobs").find({recruiterId:id}).toArray(); 
     const message=req.session.message || null;
     delete req.session.message;
     
-    res.render("jobs/recruiter-jobs",{data:data,message:message});
+    res.render("jobs/recruiter-jobs",{data:data,message:message,name:name});
 })
 
 //view jobs
@@ -628,11 +633,14 @@ app.get("/recruiter/job/:id",Auth,role("recruiter"),checkObjectId,async (req,res
         recruiterId: recruiterId
     });
 
+    const user=await db.getdb().collection("users").findOne({_id:recruiterId})
+    const {name}=user;
+
     if(!data){
         return res.send("Access Denied");
     }
 
-    res.render("jobs/recruiter-job-view",{data:data});
+    res.render("jobs/recruiter-job-view",{data:data,name:name});
 })
 
 //edit jobs
@@ -736,6 +744,8 @@ app.get("/student-jobs",Auth,role("student"),async (req,res)=>{
     
     let filter={};
 
+    const sId=new ObjectId(req.session.userid);
+
     if(search){
         filter.$or=[
             {
@@ -797,10 +807,10 @@ app.get("/student-jobs",Auth,role("student"),async (req,res)=>{
     const  jobsPerPage=6;
     const totalPage=Math.ceil(totalJobs/jobsPerPage);
     const skip=(page-1) * jobsPerPage;
-
-    
+    const user=await db.getdb().collection("users").findOne({_id:sId})
+    const {name}=user;
     const data=await db.getdb().collection("jobs").find(filter).sort({_id:-1}).skip(skip).limit(jobsPerPage).toArray();
-    res.render("student-jobs/student-jobs",{data:data,currentPage:page,totalPage:totalPage,message:message});
+    res.render("student-jobs/student-jobs",{data:data,currentPage:page,totalPage:totalPage,message:message,name:name});
 })
 
 app.get("/student/job-view/:id",Auth,role("student"),async (req,res)=>{
